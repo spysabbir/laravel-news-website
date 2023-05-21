@@ -34,13 +34,6 @@
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
-                            <div class="m-3">
-                                <label>Google Redirect Url</label>
-                                <input type="text" class="form-control" name="google_redirect_url" value="{{$social_login_setting->google_redirect_url}}">
-                                @error('google_redirect_url')
-                                <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
@@ -61,13 +54,6 @@
                                 <label>Facebook Client Secret</label>
                                 <input type="text" class="form-control" name="facebook_client_secret" value="{{$social_login_setting->facebook_client_secret}}">
                                 @error('facebook_client_secret')
-                                <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
-                            <div class="m-3">
-                                <label>Facebook Redirect Url</label>
-                                <input type="text" class="form-control" name="facebook_redirect_url" value="{{$social_login_setting->facebook_redirect_url}}">
-                                @error('facebook_redirect_url')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>

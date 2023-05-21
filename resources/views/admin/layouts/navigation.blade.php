@@ -6,6 +6,7 @@
             <div data-i18n="Dashboard">Dashboard</div>
         </a>
     </li>
+    
     <!-- Super Admin Panel -->
     @if (Auth::guard('admin')->user()->role == 'Super Admin')
     <li class="menu-header small text-uppercase">
@@ -128,6 +129,7 @@
     <!-- Admin Panel -->
 
     <!-- Reporter Panel -->
+    @if (Auth::guard('admin')->user()->role == 'Reporter')
     <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Reporter Panel</span>
     </li>
@@ -154,4 +156,6 @@
             </li>
         </ul>
     </li>
+    @endif
+    <!-- Reporter Panel -->
 </ul>

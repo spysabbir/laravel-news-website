@@ -50,7 +50,7 @@ class SettingController extends Controller
         $this->updateEnv("APP_NAME", "'$request->app_name_en'");
         $this->updateEnv("APP_URL", "'$request->app_url'");
         $this->updateEnv("TIME_ZONE", "'$request->time_zone'");
-        
+
         $default_setting = DefaultSetting::where('id', $id)->first();
 
         $default_setting_data = [
@@ -210,10 +210,8 @@ class SettingController extends Controller
 
         $this->updateEnv("GOOGLE_CLIENT_ID", $request->google_client_id);
         $this->updateEnv("GOOGLE_CLIENT_SECRET", $request->google_client_secret);
-        $this->updateEnv("GOOGLE_REDIRECT_URI", $request->google_redirect_url);
         $this->updateEnv("FACEBOOK_CLIENT_ID", $request->facebook_client_id);
         $this->updateEnv("FACEBOOK_CLIENT_SECRET", $request->facebook_client_secret);
-        $this->updateEnv("FACEBOOK_REDIRECT_URI", $request->facebook_redirect_url);
 
         if ($request->google_auth_status == NULL) {
             $google_auth_status = "No";
@@ -231,11 +229,9 @@ class SettingController extends Controller
             'google_auth_status' => $google_auth_status,
             'google_client_id' => $request->google_client_id,
             'google_client_secret' => $request->google_client_secret,
-            'google_redirect_url' => $request->google_redirect_url,
             'facebook_auth_status' => $facebook_auth_status,
             'facebook_client_id' => $request->facebook_client_id,
             'facebook_client_secret' => $request->facebook_client_secret,
-            'facebook_redirect_url' => $request->facebook_redirect_url,
             'updated_by' => Auth::guard('admin')->user()->id,
             'updated_at' => Carbon::now(),
         ]);

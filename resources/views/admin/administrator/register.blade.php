@@ -111,7 +111,7 @@
             @enderror
         </div>
         <button class="btn btn-primary d-grid w-100">Sign up</button>
-        <a href="{{ url()->previous() }}" class="btn btn-warning d-grid w-100 mt-3">Back</a>
+        <a href="{{ route('admin.dashboard') }}" class="btn btn-warning d-grid w-100 mt-3">Go to Dashboard</a>
     </form>
     </div>
 </div>

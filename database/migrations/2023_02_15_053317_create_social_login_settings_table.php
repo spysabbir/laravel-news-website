@@ -18,11 +18,9 @@ return new class extends Migration
             $table->string('google_auth_status')->default('No');
             $table->string('google_client_id')->nullable();
             $table->string('google_client_secret')->nullable();
-            $table->string('google_redirect_url')->nullable();
             $table->string('facebook_auth_status')->default('No');
             $table->string('facebook_client_id')->nullable();
             $table->string('facebook_client_secret')->nullable();
-            $table->string('facebook_redirect_url')->nullable();
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();
             $table->timestamps();

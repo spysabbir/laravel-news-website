@@ -14,28 +14,28 @@
                 </div>
                 <div class="action_btn">
                     <!-- createModal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal"><i class="fa-solid fa-plus"></i></button>
                     <div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
+                        <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel1">Create</h5>
+                                    <h5 class="modal-title">Create</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form action="#" method="POST" id="create_form">
                                         @csrf
-                                        <div class="mb-3">
-                                            <label class="form-label">Page Name (English)</label>
-                                            <input type="text" name="page_name_en" class="form-control" placeholder="Enter page name english" />
-                                            <span class="text-danger error-text page_name_en_error"></span>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Page Name (Bangla)</label>
-                                            <input type="text" name="page_name_bn" class="form-control" placeholder="Enter page name bangla" />
-                                            <span class="text-danger error-text page_name_bn_error"></span>
+                                        <div class="row">
+                                            <div class="col-lg-6 mb-3">
+                                                <label class="form-label">Page Name (English)</label>
+                                                <input type="text" name="page_name_en" class="form-control" placeholder="Enter page name english" />
+                                                <span class="text-danger error-text page_name_en_error"></span>
+                                            </div>
+                                            <div class="col-lg-6 mb-3">
+                                                <label class="form-label">Page Name (Bangla)</label>
+                                                <input type="text" name="page_name_bn" class="form-control" placeholder="Enter page name bangla" />
+                                                <span class="text-danger error-text page_name_bn_error"></span>
+                                            </div>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Page Description (English)</label>
@@ -51,7 +51,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                             @endforeach
                             <!-- Modal -->
                             <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
+                                <div class="modal-dialog modal-xl" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel1">Update</h5>
@@ -99,24 +99,26 @@
                                                 @method("PUT")
                                                 @csrf
                                                 <input type="hidden" name="" value="" id="page_id">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Page Name (English)</label>
-                                                    <input type="text" name="page_name_en" class="form-control" id="page_name_en" />
-                                                    <span class="text-danger error-text update_page_name_en_error"></span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Page Name (Bangla)</label>
-                                                    <input type="text" name="page_name_bn" class="form-control" id="page_name_bn" />
-                                                    <span class="text-danger error-text update_page_name_bn_error"></span>
+                                                <div class="row">
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Page Name (English)</label>
+                                                        <input type="text" name="page_name_en" class="form-control" id="page_name_en" />
+                                                        <span class="text-danger error-text update_page_name_en_error"></span>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Page Name (Bangla)</label>
+                                                        <input type="text" name="page_name_bn" class="form-control" id="page_name_bn" />
+                                                        <span class="text-danger error-text update_page_name_bn_error"></span>
+                                                    </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Page Description (English)</label>
-                                                    <textarea name="page_description_en" class="form-control " id="page_description_en"></textarea>
+                                                    <textarea name="page_description_en" class="form-control" id="page_description_en"></textarea>
                                                     <span class="text-danger error-text update_page_description_en_error"></span>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Page Description Bangla</label>
-                                                    <textarea name="page_description_bn" class="form-control " id="page_description_bn"></textarea>
+                                                    <textarea name="page_description_bn" class="form-control" id="page_description_bn"></textarea>
                                                     <span class="text-danger error-text update_page_description_bn_error"></span>
                                                 </div>
                                                 <button type="submit" id="update_btn" class="btn btn-primary">Update</button>

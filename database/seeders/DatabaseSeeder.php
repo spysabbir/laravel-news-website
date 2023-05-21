@@ -15,28 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         $this->call([
             CountrySeeder::class,
-        ]);
-        $this->call([
             DivisionSeeder::class,
-        ]);
-        $this->call([
             DistrictSeeder::class,
-        ]);
-        $this->call([
             UpazilaSeeder::class,
-        ]);
-        $this->call([
             UnionSeeder::class,
+            MailSettingSeeder::class,
+            SeoSettingSeeder::class,
+            DefaultSettingSeeder::class,
+            SocialLoginSettingSeeder::class,
+            BackendUserSeeder::class,
         ]);
-
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }
