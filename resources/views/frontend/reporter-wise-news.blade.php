@@ -43,8 +43,7 @@
                                             href="{{ route('category.wise.news', $news->relationtocategory->category_slug) }}">{{ $news->relationtocategory->category_name }}</a>
                                         <a class="text-body" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                                     </div>
-                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 25)  }}</a>
-                                    <p class="m-0">{!! Str::limit($news->news_details, 50) !!}</p>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 30, '...')  }}</a>
                                 </div>
                                 <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                                     <div class="d-flex align-items-center">
@@ -106,7 +105,7 @@
                     </div>
                     <div class="bg-white border border-top-0 p-3">
                         @forelse ($categories as $category)
-                        <a href="" class="btn btn-sm btn-secondary m-1">{{ $category->category_name }}</a>
+                        <a href="{{ route('category.wise.news', $category->category_slug) }}" class="btn btn-sm btn-secondary m-1">{{ $category->category_name }}</a>
                         @empty
                         <span class="text-danger">{{ __('messages.not_found') }}</span>
                         @endforelse

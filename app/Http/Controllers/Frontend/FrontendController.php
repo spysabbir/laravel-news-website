@@ -48,7 +48,7 @@ class FrontendController extends Controller
         $advertisements = Advertisement::where('status', 'Active')->get();
         $photo_galleries = Photo_gallery::where('status', 'Active')->latest()->take(8)->get();
         $video_galleries = Video_gallery::where('status', 'Active')->latest()->take(8)->get();
-        $countries_id = News::where('country_id', '!=', 0)->get();
+        $countries_id = News::where('country_id', '!=', 0)->groupBy('country_id')->pluck('country_id');
         SEOMeta::setTitle($seo_setting->title);
         SEOMeta::setDescription($seo_setting->description);
         SEOMeta::setCanonical(url()->current());

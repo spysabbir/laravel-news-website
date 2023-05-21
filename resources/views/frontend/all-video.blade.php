@@ -29,7 +29,7 @@
                     </div>
                     <div class="bg-white border border-top-0 p-3">
                         @forelse ($categories as $category)
-                        <a href="" class="btn btn-sm btn-secondary m-1">{{ $category->category_name }}</a>
+                        <a href="{{ route('category.wise.news', $category->category_slug) }}" class="btn btn-sm btn-secondary m-1">{{ $category->category_name }}</a>
                         @empty
                         <span class="text-danger">{{ __('messages.not_found') }}</span>
                         @endforelse

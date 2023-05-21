@@ -154,7 +154,7 @@
 
                     @forelse ($advertisements->where('advertisement_position', 'Center Top')->take(1) as $advertisement)
                         <div class="col-lg-12 mb-3">
-                            <a href="{{ $advertisement->advertisement_link }}"><img class="img-fluid w-100" src="{{ asset('uploads/advertisement_photo') }}/{{ $advertisement->advertisement_photo }}" alt="{{ $advertisement->advertisement_title }}"></a>
+                            <a target="_blank" href="{{ $advertisement->advertisement_link }}"><img class="img-fluid w-100" src="{{ asset('uploads/advertisement_photo') }}/{{ $advertisement->advertisement_photo }}" alt="{{ $advertisement->advertisement_title }}"></a>
                         </div>
                     @empty
                     <span class="text-danger">{{ __('messages.not_found') }}</span>
@@ -205,7 +205,7 @@
 
                     @forelse ($advertisements->where('advertisement_position', 'Center Bottom')->take(1) as $advertisement)
                         <div class="col-lg-12 mb-3">
-                            <a href="{{ $advertisement->advertisement_link }}"><img class="img-fluid w-100" src="{{ asset('uploads/advertisement_photo') }}/{{ $advertisement->advertisement_photo }}" alt="{{ $advertisement->advertisement_title }}"></a>
+                            <a target="_blank" href="{{ $advertisement->advertisement_link }}"><img class="img-fluid w-100" src="{{ asset('uploads/advertisement_photo') }}/{{ $advertisement->advertisement_photo }}" alt="{{ $advertisement->advertisement_title }}"></a>
                         </div>
                     @empty
                         <span class="text-danger">{{ __('messages.not_found') }}</span>
@@ -274,7 +274,7 @@
                                     <option value="">Select Country</option>
                                     @foreach ($countries_id as $country_id)
                                     @php
-                                        $country = App\Models\Country::find($country_id->country_id);
+                                        $country = App\Models\Country::find($country_id);
                                     @endphp
                                     <option value="{{ $country->id }}">{{ $country->country_name }}</option>
                                     @endforeach
@@ -421,7 +421,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('messages.all_photo') }}</h4>
+                            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('messages.latest_photo') }}</h4>
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -438,7 +438,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('messages.all_video') }}</h4>
+                            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('messages.latest_video') }}</h4>
                         </div>
                     </div>
                     <div class="col-lg-12">
