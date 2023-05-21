@@ -55,37 +55,37 @@ Route::middleware('auth')->group(function () {
     Route::get('change/language', [FrontendController::class, 'changeLanguage'])->name('change.language');
 
 
-    Route::get('/all/news', [FrontendController::class, 'allNews'])->name('all.news');
-    Route::get('/all/category', [FrontendController::class, 'allCategory'])->name('all.category');
-    Route::get('/all/tag', [FrontendController::class, 'allTag'])->name('all.tag');
-    Route::get('/category/wise/news/{slug}', [FrontendController::class, 'categoryWiseNews'])->name('category.wise.news');
-    Route::get('/tag/wise/news/{slug}', [FrontendController::class, 'tagWiseNews'])->name('tag.wise.news');
-    Route::get('/reporter/wise/news/{id}', [FrontendController::class, 'reporterWiseNews'])->name('reporter.wise.news');
-    Route::get('/news/details/{slug}', [FrontendController::class, 'newsDetails'])->name('news.details');
-    Route::post('/comment/store', [FrontendController::class, 'commentStore'])->name('comment.store');
-    Route::post('/comment/reply/store', [FrontendController::class, 'commentReplyStore'])->name('comment.reply.store');
+    Route::get('/all-news', [FrontendController::class, 'allNews'])->name('all.news');
+    Route::get('/all-category', [FrontendController::class, 'allCategory'])->name('all.category');
+    Route::get('/all-tag', [FrontendController::class, 'allTag'])->name('all.tag');
+    Route::get('/category-wise-news/{slug}', [FrontendController::class, 'categoryWiseNews'])->name('category.wise.news');
+    Route::get('/tag-wise-news/{slug}', [FrontendController::class, 'tagWiseNews'])->name('tag.wise.news');
+    Route::get('/reporter-wise-news/{id}', [FrontendController::class, 'reporterWiseNews'])->name('reporter.wise.news');
+    Route::get('location-wise-news', [FrontendController::class, 'locationWiseNews'])->name('location.wise.news');
+    Route::get('/news-details/{slug}', [FrontendController::class, 'newsDetails'])->name('news.details');
+    Route::post('/comment-store', [FrontendController::class, 'commentStore'])->name('comment.store');
+    Route::post('/comment-reply/store', [FrontendController::class, 'commentReplyStore'])->name('comment.reply.store');
 
-    Route::get('/page-{slug}', [FrontendController::class, 'page'])->name('page');
+    Route::get('/page/{slug}', [FrontendController::class, 'page'])->name('page');
 
-    Route::get('/all/gallery/photo', [FrontendController::class, 'allGalleryPhoto'])->name('all.gallery.photo');
-    Route::get('/all/gallery/video', [FrontendController::class, 'allGalleryVideo'])->name('all.gallery.video');
+    Route::get('/all-gallery-photo', [FrontendController::class, 'allGalleryPhoto'])->name('all.gallery.photo');
+    Route::get('/all-gallery-video', [FrontendController::class, 'allGalleryVideo'])->name('all.gallery.video');
 
     Route::get('/about-us', [FrontendController::class, 'aboutUs'])->name('about.us');
 
     Route::get('/contact-us', [FrontendController::class, 'contactUs'])->name('contact.us');
-    Route::post('/contact/message/store', [FrontendController::class, 'contactMessageStore'])->name('contact.message.store');
+    Route::post('/contact-message-store', [FrontendController::class, 'contactMessageStore'])->name('contact.message.store');
 
-    Route::get('/today/news', [FrontendController::class, 'todayNews'])->name('today.news');
-    Route::get('/archive/news/result', [FrontendController::class, 'archiveNewsResult'])->name('archive.news.result');
+    Route::get('/today-news', [FrontendController::class, 'todayNews'])->name('today.news');
+    Route::get('/archive-news-result', [FrontendController::class, 'archiveNewsResult'])->name('archive.news.result');
 
-    Route::post('/subscriber/store', [FrontendController::class, 'subscriberStore'])->name('subscriber.store');
+    Route::post('/subscriber-store', [FrontendController::class, 'subscriberStore'])->name('subscriber.store');
 
-    Route::post('/find/news', [FrontendController::class, 'findNews'])->name('find.news');
+    Route::post('/find-news', [FrontendController::class, 'findNews'])->name('find.news');
     Route::get('/search-news', [FrontendController::class, 'searchNews'])->name('search.news');
 
-    Route::post('get/divisions', [FrontendController::class, 'getDivisions'])->name('get.divisions');
-    Route::post('get/districts', [FrontendController::class, 'getDistricts'])->name('get.districts');
-    Route::post('get/upazilas', [FrontendController::class, 'getUpazilas'])->name('get.upazilas');
-    Route::post('get/unions', [FrontendController::class, 'getUnions'])->name('get.unions');
+    Route::post('get-divisions', [FrontendController::class, 'getDivisions'])->name('get.divisions');
+    Route::post('get-districts', [FrontendController::class, 'getDistricts'])->name('get.districts');
+    Route::post('get-upazilas', [FrontendController::class, 'getUpazilas'])->name('get.upazilas');
+    Route::post('get-unions', [FrontendController::class, 'getUnions'])->name('get.unions');
 
-    Route::get('location/wise/news', [FrontendController::class, 'locationWiseNews'])->name('location.wise.news');

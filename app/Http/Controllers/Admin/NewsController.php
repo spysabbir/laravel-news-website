@@ -45,7 +45,7 @@ class NewsController extends Controller
                 $query->where('news.created_at', 'LIKE', '%'.$request->created_at.'%');
             }
 
-            $all_news = $query->select('news.*', 'admins.name',)->get();
+            $all_news = $query->select('news.*', 'admins.name')->get();
 
             return Datatables::of($all_news)
                     ->addIndexColumn()

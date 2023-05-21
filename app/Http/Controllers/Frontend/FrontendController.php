@@ -17,6 +17,7 @@ use App\Models\Division;
 use App\Models\News;
 use App\Models\NewsTranslation;
 use App\Models\PageSetting;
+use App\Models\PageSettingTranslation;
 use App\Models\Photo_gallery;
 use App\Models\Video_gallery;
 use App\Models\Seo_setting;
@@ -78,7 +79,7 @@ class FrontendController extends Controller
 
     public function page($slug)
     {
-        $page = PageSetting::where('page_slug', $slug)->first();
+        $page = PageSettingTranslation::where('page_slug', $slug)->first();
         $default_setting = DefaultSetting::first();
         return view('frontend.page', compact('page', 'default_setting'));
     }
@@ -86,13 +87,14 @@ class FrontendController extends Controller
     public function findNews(Request $request)
     {
         $find_news = "";
-        $result_news = News::orderBy('id', 'desc')->where('news_headline', 'LIKE', '%'.$request->search.'%')->limit(8)->get();
+        $result_news = NewsTranslation::orderBy('id', 'desc')->where('news_headline', 'LIKE', '%'.$request->search.'%')->limit(8)->get();
         if ($result_news->count() > 0) {
             foreach ($result_news as $news){
+                $news_thumbnail_photo = News::find($news->news_id)->news_thumbnail_photo;
                 $find_news .= '
                 <a href="'.route('news.details', $news->news_slug).'">
                     <li>
-                        <img src="'.asset('uploads/news_thumbnail_photo')."/".$news->news_thumbnail_photo.'" alt="">
+                        <img src="'.asset('uploads/news_thumbnail_photo')."/".$news_thumbnail_photo.'" alt="">
                         <p>'.$news->news_headline.'</p>
                     </li>
                 </a>
@@ -113,10 +115,13 @@ class FrontendController extends Controller
     {
         $search_data = $request->news_headline;
 
-        $all_news = "";
-        $result_news = News::orderBy('id', 'desc')->where('news_headline', 'LIKE', '%'.$search_data.'%');
+        $all_news = News::orderBy('id', 'desc')->paginate(20);
 
-        $all_news = $result_news->paginate(20);
+        if($search_data){
+            $result_news = NewsTranslation::where('news_headline', 'LIKE', '%'.$search_data.'%')
+            ->leftJoin('news', 'news_translations.news_id', 'news.id');
+            $all_news = $result_news->select('news_translations.*', 'news.news_category_id', 'news.news_thumbnail_photo', 'news.created_at')->orderBy('id', 'desc')->paginate(20);
+        }
 
         $default_setting = DefaultSetting::first();
         $tags = Tag::where('status', 'Active')->get();

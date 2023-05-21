@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h4 class="m-0 text-uppercase font-weight-bold">Search: {{ $search_data }}</h4>
+                            <h4 class="m-0 text-uppercase font-weight-bold">Search: {{ ($search_data) ? $search_data : "N/A" }}</h4>
                             <a class="text-secondary font-weight-medium text-decoration-none" href="{{ route('all.news') }}">{{ __('messages.view_all') }}</a>
                         </div>
                     </div>
@@ -34,8 +34,11 @@
                             <img width="110" height="110" src="{{ asset('uploads/news_thumbnail_photo') }}/{{ $news->news_thumbnail_photo }}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
-                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="{{ route('category.wise.news', $news->relationtocategory->category_slug) }}">{{ $news->relationtocategory->category_name }}</a>
-                                    <a class="text-body" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
+                                    @php
+                                        $convert_category = App\Models\Category::find($news->news_category_id)
+                                    @endphp
+                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="{{ route('category.wise.news', $convert_category->category_slug) }}">{{ $convert_category->category_name }}</a>
+                                    <a class="text-body" href="#"><small>{{ date('d-M-Y h:m:s A', strtotime($news->created_at)) }}</small></a>
                                 </div>
                                 <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 50)  }}</a>
                             </div>
