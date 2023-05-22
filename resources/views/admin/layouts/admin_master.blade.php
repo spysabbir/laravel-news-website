@@ -114,9 +114,9 @@
                                         <small class="text-muted">{{ Auth::guard('admin')->user()->role }}</small>
                                     </div>
                                 </a>
-                                <form method="POST" class="my-4" action="{{ route('admin.logout') }}">
-                                @csrf
-                                    <button class="btn btn-sm btn-outline-danger" type="submit"><i class="bx bx-log-out-circle"></i></button>
+                                <button class="btn btn-sm btn-danger mx-2" id="logoutBtn" type="button"><i class="bx bx-log-out-circle"></i></button>
+                                <form id="logout-form" method="POST" class="d-none" action="{{ route('admin.logout') }}" >
+                                    @csrf
                                 </form>
                             </li>
                             <!--/ User -->
@@ -180,6 +180,44 @@
 
     <script>
         $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            // Log out
+            $(document).on('click', '#logoutBtn', function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You Log out!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Log out'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#logout-form').submit();
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-center',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave',  Swal.resumeTimer)
+                            }
+                        })
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'Log out successfully'
+                        })
+                    }
+                })
+            })
+            // Sweet alert
             @if(Session::has('message'))
                 var type = "{{ Session::get('alert-type', 'info') }}";
                 switch(type){

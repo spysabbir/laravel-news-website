@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2023 at 01:51 PM
+-- Generation Time: May 22, 2023 at 12:02 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -209,6 +209,13 @@ CREATE TABLE `comments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `news_id`, `user_id`, `comment`, `status`, `created_at`, `updated_at`) VALUES
+(1, 7, 1, 'Good', 'Yes', '2023-05-22 09:44:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -703,6 +710,22 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `queue` varchar(255) NOT NULL,
+  `payload` longtext NOT NULL,
+  `attempts` tinyint(3) UNSIGNED NOT NULL,
+  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
+  `available_at` int(10) UNSIGNED NOT NULL,
+  `created_at` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mail_settings`
 --
 
@@ -779,7 +802,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (32, '2023_03_12_110206_create_default_settings_table', 1),
 (33, '2023_03_12_110314_create_default_setting_translations_table', 1),
 (34, '2023_03_19_111753_create_about_us_table', 1),
-(35, '2023_03_19_112006_create_about_us_translations_table', 1);
+(35, '2023_03_19_112006_create_about_us_translations_table', 1),
+(36, '2023_05_22_154748_create_jobs_table', 2);
 
 -- --------------------------------------------------------
 
@@ -821,7 +845,7 @@ INSERT INTO `news` (`id`, `news_position`, `breaking_news`, `country_id`, `divis
 (4, 'Top Right', 'No', 19, NULL, NULL, NULL, NULL, 3, 'News-Thumbnail-Photo-CQRZ6.jpg', 'News-Cover-Photo-IFLAa.jpg', NULL, 'Active', 12, 3, 3, NULL, '2023-03-20 06:32:52', '2023-05-21 10:03:05', NULL),
 (5, 'Top Right', 'No', 19, NULL, NULL, NULL, NULL, 4, 'News-Thumbnail-Photo-ktWN0.jpg', 'News-Cover-Photo-EMOGZ.jpg', NULL, 'Active', 0, 3, 3, NULL, '2023-03-20 06:46:27', '2023-03-20 06:54:05', NULL),
 (6, 'Top Right', 'No', 19, 0, NULL, NULL, NULL, 6, 'News-Thumbnail-Photo-fumYE.jpg', 'News-Cover-Photo-8zjpM.jpg', NULL, 'Active', 0, 3, NULL, NULL, '2023-03-20 09:09:42', '2023-03-20 09:09:42', NULL),
-(7, 'Featured', 'No', 19, 0, NULL, NULL, NULL, 6, 'News-Thumbnail-Photo-OAkj5.jpg', 'News-Cover-Photo-EkB8r.jpg', NULL, 'Active', 0, 3, NULL, NULL, '2023-03-20 09:13:34', '2023-03-20 09:13:34', NULL),
+(7, 'Featured', 'No', 19, 0, NULL, NULL, NULL, 6, 'News-Thumbnail-Photo-OAkj5.jpg', 'News-Cover-Photo-EkB8r.jpg', NULL, 'Active', 2, 3, NULL, NULL, '2023-03-20 09:13:34', '2023-05-22 09:44:07', NULL),
 (8, 'Featured', 'No', 19, 6, 0, NULL, NULL, 5, 'News-Thumbnail-Photo-KZq4b.jpg', 'News-Cover-Photo-45uWC.jpg', NULL, 'Active', 0, 3, NULL, NULL, '2023-03-20 09:20:11', '2023-03-20 09:20:11', NULL),
 (9, 'Featured', 'Yes', 19, 6, 41, 0, NULL, 5, 'News-Thumbnail-Photo-vzI7T.jpg', 'News-Cover-Photo-Wg8Oo.jpg', NULL, 'Active', 2, 3, NULL, NULL, '2023-03-20 09:24:15', '2023-05-21 05:41:43', NULL),
 (10, 'Top Right', 'No', 19, 6, 0, NULL, NULL, 5, 'News-Thumbnail-Photo-YRgDR.jpg', 'News-Cover-Photo-21FeI.jpg', NULL, 'Active', 0, 3, NULL, NULL, '2023-03-20 09:27:42', '2023-03-20 09:27:42', NULL),
@@ -840,6 +864,14 @@ CREATE TABLE `newsletters` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `newsletters`
+--
+
+INSERT INTO `newsletters` (`id`, `newsletter_subject`, `newsletter_body`, `created_at`, `updated_at`) VALUES
+(1, 'Test Normal', 'Test Normal', '2023-05-22 09:48:31', NULL),
+(2, 'Test Queue', 'Test Queue', '2023-05-22 09:57:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -6273,6 +6305,13 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `google_id`, `facebook_id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `email_verified_at`, `password`, `last_active`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, 'Md Sabbir Ahammed', 'customer1@email.com', '01878136530', 'Male', '2023-05-22', 'Dhaka BD', 'default_profile_photo.png', 'Active', '2023-05-22 09:39:57', '$2y$10$/TOIkRbNxfllmDkrrJE2E.qVS41AMhUwKzMQ7ruIYpRmP.lz/2he.', '2023-05-22 10:00:06', NULL, '2023-05-22 09:39:36', '2023-05-22 10:00:06');
+
 -- --------------------------------------------------------
 
 --
@@ -6755,7 +6794,26 @@ INSERT INTO `visitor_details` (`id`, `ip_address`, `visit_time`) VALUES
 (444, '127.0.0.1', '2023-05-21 10:46:39'),
 (445, '127.0.0.1', '2023-05-21 10:47:45'),
 (446, '127.0.0.1', '2023-05-21 10:49:34'),
-(447, '127.0.0.1', '2023-05-21 10:49:37');
+(447, '127.0.0.1', '2023-05-21 10:49:37'),
+(448, '127.0.0.1', '2023-05-22 09:39:10'),
+(449, '127.0.0.1', '2023-05-22 09:39:14'),
+(450, '127.0.0.1', '2023-05-22 09:39:18'),
+(451, '127.0.0.1', '2023-05-22 09:39:47'),
+(452, '127.0.0.1', '2023-05-22 09:39:58'),
+(453, '127.0.0.1', '2023-05-22 09:40:14'),
+(454, '127.0.0.1', '2023-05-22 09:40:29'),
+(455, '127.0.0.1', '2023-05-22 09:40:36'),
+(456, '127.0.0.1', '2023-05-22 09:43:54'),
+(457, '127.0.0.1', '2023-05-22 09:44:07'),
+(458, '127.0.0.1', '2023-05-22 09:44:17'),
+(459, '127.0.0.1', '2023-05-22 10:00:04'),
+(460, '127.0.0.1', '2023-05-22 10:00:06'),
+(461, '127.0.0.1', '2023-05-22 10:00:09'),
+(462, '127.0.0.1', '2023-05-22 10:01:16'),
+(463, '127.0.0.1', '2023-05-22 10:01:19'),
+(464, '127.0.0.1', '2023-05-22 10:01:27'),
+(465, '127.0.0.1', '2023-05-22 10:01:30'),
+(466, '127.0.0.1', '2023-05-22 10:01:33');
 
 --
 -- Indexes for dumped tables
@@ -6858,6 +6916,13 @@ ALTER TABLE `divisions`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_index` (`queue`);
 
 --
 -- Indexes for table `mail_settings`
@@ -7040,7 +7105,7 @@ ALTER TABLE `category_translations`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `comment_replies`
@@ -7091,6 +7156,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `mail_settings`
 --
 ALTER TABLE `mail_settings`
@@ -7100,7 +7171,7 @@ ALTER TABLE `mail_settings`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -7112,7 +7183,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `newsletters`
 --
 ALTER TABLE `newsletters`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `news_tag`
@@ -7196,7 +7267,7 @@ ALTER TABLE `upazilas`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `video_galleries`
@@ -7208,7 +7279,7 @@ ALTER TABLE `video_galleries`
 -- AUTO_INCREMENT for table `visitor_details`
 --
 ALTER TABLE `visitor_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=448;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=467;
 
 --
 -- Constraints for dumped tables

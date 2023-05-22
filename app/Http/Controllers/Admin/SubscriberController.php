@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\SubscriberExport;
 use App\Http\Controllers\Controller;
+use App\Jobs\NewsletterSendJobs;
 use App\Mail\NewsletterMail;
 use App\Models\Newsletter;
 use App\Models\Subscriber;
@@ -144,11 +145,7 @@ class SubscriberController extends Controller
                 'created_at' => Carbon::now(),
             ]);
 
-            $newsletter = Newsletter::find($newsletter_id);
-            foreach(Subscriber::where('status', 'Active')->get() as $subscriber){
-                Mail::to($subscriber->subscriber_email)
-                ->send(new NewsletterMail($newsletter));
-            }
+            dispatch(new NewsletterSendJobs($newsletter_id));
 
             return response()->json([
                 'status' => 200,
