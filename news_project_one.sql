@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2023 at 12:02 PM
+-- Generation Time: May 24, 2023 at 12:08 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -96,9 +96,9 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `email_verified_at`, `password`, `role`, `last_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'superadmin@email.com', '01878136530', 'Male', '2023-05-21', 'Dhaka, BD', 'default_profile_photo.png', 'Active', NULL, '$2y$10$hxwQ.ybXjiuqOCfb5jCt5OVqOg9HG9AjXWOSuawxMShk9e42d6mnu', 'Super Admin', '2023-03-20 03:50:13', NULL, '2023-03-19 21:50:13', '2023-05-21 10:50:42'),
-(2, 'Admin', 'admin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$pAg.VOAYeFVtlnOUUB4opuDLokQIwLQmyuz660ipkxpDK5PBmV.5.', 'Admin', '2023-05-21 11:35:40', NULL, '2023-05-21 11:35:40', '2023-05-21 11:35:40'),
-(3, 'reporter', 'reporter@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$B42rzMbFN/0MZeZrVaHOkOZUkpHIbwB7x/LJD5kmAjxY/6o7hHNfa', 'Reporter', '2023-05-21 11:36:19', NULL, '2023-05-21 11:36:19', '2023-05-21 11:36:19');
+(1, 'Super Admin', 'superadmin@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$oSmjApwFapAhYkbtgW3.k.h6moZboAZbuT09mXxTUEwN7usowyOnC', 'Super Admin', '2023-05-24 10:08:20', NULL, NULL, NULL),
+(2, 'Admin', 'admin@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$Ur3AaFA6L0/LXKHg4/tdzeKHbUNhg9HEPN39Dcd7M8/RSU51XkpMa', 'Admin', '2023-05-24 10:08:20', NULL, NULL, NULL),
+(3, 'Reporter', 'reporter@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$F8EwkUDX2QkVN3nnVVsvw.kHzgvNo7icDRJ47fXnGxRiXLlGQAAni', 'Reporter', '2023-05-24 10:08:20', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -6310,7 +6310,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `facebook_id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `email_verified_at`, `password`, `last_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'Md Sabbir Ahammed', 'customer1@email.com', '01878136530', 'Male', '2023-05-22', 'Dhaka BD', 'default_profile_photo.png', 'Active', '2023-05-22 09:39:57', '$2y$10$/TOIkRbNxfllmDkrrJE2E.qVS41AMhUwKzMQ7ruIYpRmP.lz/2he.', '2023-05-22 10:00:06', NULL, '2023-05-22 09:39:36', '2023-05-22 10:00:06');
+(1, NULL, NULL, 'User 1', 'user@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$kAQe3U4Xk7IGLfSOfDfoLOYwOq8uRyB4CJoAZZEKrwiJ6jZhF8et6', '2023-05-24 10:08:20', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

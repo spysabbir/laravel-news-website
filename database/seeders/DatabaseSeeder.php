@@ -16,16 +16,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            CountrySeeder::class,
-            DivisionSeeder::class,
-            DistrictSeeder::class,
-            UpazilaSeeder::class,
-            UnionSeeder::class,
-            MailSettingSeeder::class,
-            SeoSettingSeeder::class,
-            DefaultSettingSeeder::class,
-            SocialLoginSettingSeeder::class,
-            BackendUserSeeder::class,
+            // CountrySeeder::class,
+            // DivisionSeeder::class,
+            // DistrictSeeder::class,
+            // UpazilaSeeder::class,
+            // UnionSeeder::class,
+            // MailSettingSeeder::class,
+            // SeoSettingSeeder::class,
+            // DefaultSettingSeeder::class,
+            // SocialLoginSettingSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
