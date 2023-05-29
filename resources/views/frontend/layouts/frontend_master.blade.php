@@ -16,7 +16,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{ env('APP_NAME') }} - @yield('title')</title>
+    <title>{{ $default_setting->app_name }} - @yield('title')</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -138,7 +138,7 @@
                 <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
                     <form action="{{route('search.news')}}" method="GET">
                         <div class="d-flex">
-                            <input type="text" class="form-control border-0" name="news_headline" id="findNews" onfocus="showSearchResult()" onblur="hideSearchResult()" placeholder="Keyword" value="{{request('news_headline')}}">
+                            <input type="text" class="form-control border-0" name="news_headline" id="findNews" onfocus="showSearchResult()" onblur="hideSearchResult()" placeholder="{{ __('messages.keyword') }}" value="{{request('news_headline')}}">
                             <div class="input-group-append">
                                 <button class="input-group-text bg-primary text-dark border-0 px-3"><i class="fa fa-search"></i></button>
                             </div>
@@ -204,7 +204,7 @@
         </div>
     </div>
     <div class="container-fluid py-4 px-sm-3 px-md-5" style="background: #111111;">
-        <p class="m-0 text-center">&copy; <a href="{{ route('index') }}">{{ $default_setting->app_name }}</a>. {{ __('messages.copyright') }} <a href="">Spy Sabbir</a></p>
+        <p class="m-0 text-center">&copy; <a href="{{ route('index') }}">{{ $default_setting->app_name }}</a>. {{ __('messages.copyright') }} <a href="#">Spy Sabbir</a></p>
     </div>
     <!-- Footer End -->
 

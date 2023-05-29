@@ -9,30 +9,29 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="section-title mb-0">
-                    <h4 class="m-0 text-uppercase font-weight-bold">Contact Us For Any Queries</h4>
+                    <h4 class="m-0 text-uppercase font-weight-bold">{{ __('messages.for_query') }}</h4>
                 </div>
                 <div class="bg-white border border-top-0 p-4 mb-3">
                     <div class="mb-4">
-                        <h6 class="text-uppercase font-weight-bold">Contact Info</h6>
-                        <p class="mb-4">The contact form is currently active.</p>
+                        <h6 class="text-uppercase font-weight-bold mb-3"></h6>
                         <div class="mb-3">
                             <div class="d-flex align-items-center mb-2">
                                 <i class="fa fa-map-marker-alt text-primary mr-2"></i>
-                                <h6 class="font-weight-bold mb-0">Our Office</h6>
+                                <h6 class="font-weight-bold mb-0">{{ __('messages.office_address') }}</h6>
                             </div>
                             <p class="m-0">{{ $default_setting->address }}</p>
                         </div>
                         <div class="mb-3">
                             <div class="d-flex align-items-center mb-2">
                                 <i class="fa fa-envelope-open text-primary mr-2"></i>
-                                <h6 class="font-weight-bold mb-0">Email Us</h6>
+                                <h6 class="font-weight-bold mb-0">{{ __('messages.email_address') }}</h6>
                             </div>
                             <p class="m-0">{{ $default_setting->support_phone }}</p>
                         </div>
                         <div class="mb-3">
                             <div class="d-flex align-items-center mb-2">
                                 <i class="fa fa-phone-alt text-primary mr-2"></i>
-                                <h6 class="font-weight-bold mb-0">Call Us</h6>
+                                <h6 class="font-weight-bold mb-0">{{ __('messages.phone_number') }}</h6>
                             </div>
                             <p class="m-0">{{ $default_setting->support_email }}</p>
                         </div>
@@ -43,27 +42,27 @@
                         <div class="form-row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control p-4" placeholder="Your Name"/>
+                                    <input type="text" name="name" class="form-control p-4" placeholder="{{ __('messages.enter_name') }}"/>
                                     <span class="text-danger error-text name_error"></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control p-4" placeholder="Your Email"/>
+                                    <input type="email" name="email" class="form-control p-4" placeholder="{{ __('messages.enter_email') }}"/>
                                     <span class="text-danger error-text email_error"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="subject" class="form-control p-4" placeholder="Subject"/>
+                            <input type="text" name="subject" class="form-control p-4" placeholder="{{ __('messages.enter_subject') }}"/>
                             <span class="text-danger error-text subject_error"></span>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="message" placeholder="Message"></textarea>
+                            <textarea class="form-control" name="message" placeholder="{{ __('messages.enter_message') }}"></textarea>
                             <span class="text-danger error-text message_error"></span>
                         </div>
                         <div>
-                            <button class="btn btn-primary font-weight-semi-bold px-4" id="contact_message_btn" style="height: 50px;" type="submit">Send Message</button>
+                            <button class="btn btn-primary font-weight-semi-bold px-4" id="contact_message_btn" style="height: 50px;" type="submit">{{ __('messages.send_message') }}</button>
                         </div>
                     </form>
                 </div>
@@ -109,9 +108,9 @@
                         <form action="{{ route('subscriber.store') }}" method="POST" id="subscriber_form">
                             @csrf
                             <div class="input-group mb-2" style="width: 100%;">
-                                <input type="text" name="subscriber_email" class="form-control form-control-lg" placeholder="Enter Your Email">
+                                <input type="text" name="subscriber_email" class="form-control form-control-lg" placeholder="{{ __('messages.enter_email') }}">
                                 <div class="input-group-append">
-                                    <button id="subscriber_btn" class="btn btn-primary font-weight-bold px-3" type="submit">Subscribe</button>
+                                    <button id="subscriber_btn" class="btn btn-primary font-weight-bold px-3" type="submit">{{ __('messages.subscribe') }}</button>
                                 </div>
                             </div>
                             <span class="text-danger error-text subscriber_email_error"></span>

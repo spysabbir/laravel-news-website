@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h4 class="m-0 text-uppercase font-weight-bold">Reporter: {{ $reporter->name }}</h4>
+                            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('messages.reporter') }}: {{ $reporter->name }}</h4>
                         </div>
                     </div>
 
@@ -39,8 +39,7 @@
                                         </div>
                                     </div>
                                     <div class="mb-2">
-                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                            href="{{ route('category.wise.news', $news->relationtocategory->category_slug) }}">{{ $news->relationtocategory->category_name }}</a>
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="{{ route('category.wise.news', $news->relationtocategory->category_slug) }}">{{ $news->relationtocategory->category_name }}</a>
                                         <a class="text-body" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                                     </div>
                                     <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 30, '...')  }}</a>
@@ -82,7 +81,7 @@
                 <!-- Reporter Profile Start -->
                 <div class="mb-3">
                     <div class="section-title mb-0">
-                        <h4 class="m-0 text-uppercase font-weight-bold">Reporter Profile</h4>
+                        <h4 class="m-0 text-uppercase font-weight-bold">{{ __('messages.reporter') }}</h4>
                     </div>
                     <div class="bg-white border border-top-0 p-3">
                         <div class="text-center">
@@ -92,7 +91,7 @@
                             <br>
                             <small>Email: {{ $news->relationtouser->email }}</small>
                             <br>
-                            <small>Join: {{ $news->relationtouser->created_at->format('d-M-Y') }}</small>
+                            <small>Join: {{ $news->relationtouser->created_at->format('D d,M-Y h:m:s A') }}</small>
                         </div>
                     </div>
                 </div>
@@ -196,7 +195,7 @@
                             <div class="input-group mb-2" style="width: 100%;">
                                 <input type="date" name="archive_date" class="form-control form-control-lg">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary font-weight-bold px-3" type="submit">Find</button>
+                                    <button class="btn btn-primary font-weight-bold px-3" type="submit">{{ __('messages.find') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -214,9 +213,9 @@
                         <form action="{{ route('subscriber.store') }}" method="POST" id="subscriber_form">
                             @csrf
                             <div class="input-group mb-2" style="width: 100%;">
-                                <input type="text" name="subscriber_email" class="form-control form-control-lg" placeholder="Enter Your Email">
+                                <input type="text" name="subscriber_email" class="form-control form-control-lg" placeholder="{{ __('messages.enter_email') }}">
                                 <div class="input-group-append">
-                                    <button id="subscriber_btn" class="btn btn-primary font-weight-bold px-3" type="submit">Subscribe</button>
+                                    <button id="subscriber_btn" class="btn btn-primary font-weight-bold px-3" type="submit">{{ __('messages.subscribe') }}</button>
                                 </div>
                             </div>
                             <span class="text-danger error-text subscriber_email_error"></span>

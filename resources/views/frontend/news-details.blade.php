@@ -99,7 +99,7 @@
                 <!-- Comment List Start -->
                 <div class="mb-3">
                     <div class="section-title mb-0">
-                        <h4 class="m-0 text-uppercase font-weight-bold">{{ $comments->count() }} Comments</h4>
+                        <h4 class="m-0 text-uppercase font-weight-bold">{{ $comments->count() }} {{ __('messages.comments') }}</h4>
                     </div>
                     <div class="bg-white border border-top-0 p-4">
                         @forelse ($comments as $comment)
@@ -108,7 +108,7 @@
                             <div class="media-body">
                                 <h6><a class="text-secondary font-weight-bold" href="">{{  $comment->relationtouser->name }}</a> <small><i>{{ $comment->created_at->format('d-M, Y')}}</i></small></h6>
                                 <p>{!! $comment->comment !!}</p>
-                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-secondary" data-Commentid="{{ $comment->id }}" onclick="reply(this)">Reply</a>
+                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-secondary" data-Commentid="{{ $comment->id }}" onclick="reply(this)">{{ __('messages.reply') }}</a>
                                 @foreach (App\Models\Comment_reply::where('comment_id', $comment->id)->get() as $comment_reply)
                                 <div class="media mt-4">
                                     <img src="{{ asset('uploads/profile_photo') }}/{{ $news_details->relationtouser->profile_photo }}" alt="Image" class="img-fluid mr-3 mt-1"
@@ -123,7 +123,7 @@
                         </div>
                         @empty
                         <div class="alert alert-danger">
-                            <strong>No Comment</strong>
+                            <strong>{{ __('messages.not_found') }}</strong>
                         </div>
                         @endforelse
                     </div>
@@ -132,13 +132,12 @@
                             @csrf
                             <input type="hidden" name="comment_id" id="comment_id" value="">
                             <div class="form-group">
-                                <label for="reply">Reply *</label>
-                                <textarea id="reply" class="form-control" name="reply" placeholder="Type your reply"></textarea>
+                                <textarea id="reply" class="form-control" name="reply" placeholder="{{ __('messages.type_your_comment') }}"></textarea>
                                 <span class="text-danger error-text reply_error"></span>
                             </div>
                             <div class="form-group mb-0">
-                                <button class="btn btn-primary font-weight-semi-bold py-2 px-3" id="comment_reply_btn" type="submit">Reply Comment</button>
-                                <a href="javascript:void(0);" class="btn btn-warning font-weight-semi-bold py-2 px-3" onclick="reply_close(this)">Close</a>
+                                <button class="btn btn-primary font-weight-semi-bold py-2 px-3" id="comment_reply_btn" type="submit">{{ __('messages.reply') }} {{ __('messages.comments') }}</button>
+                                <a href="javascript:void(0);" class="btn btn-warning font-weight-semi-bold py-2 px-3" onclick="reply_close(this)">{{ __('messages.close') }}</a>
                             </div>
                         </form>
                     </div>
@@ -148,19 +147,18 @@
                 <!-- Comment Form Start -->
                 <div class="mb-3">
                     <div class="section-title mb-0">
-                        <h4 class="m-0 text-uppercase font-weight-bold">Leave a comment</h4>
+                        <h4 class="m-0 text-uppercase font-weight-bold">{{ __('messages.leave_a_comment') }}</h4>
                     </div>
                     <div class="bg-white border border-top-0 p-4">
                         <form action="{{ route('comment.store') }}" method="POST" id="comment_form">
                             @csrf
                             <input type="hidden" name="news_id" value="{{ $news_details->id }}">
                             <div class="form-group">
-                                <label for="comment">Comment *</label>
-                                <textarea id="comment" class="form-control" name="comment" placeholder="Type your reply"></textarea>
+                                <textarea id="comment" class="form-control" name="comment" placeholder="{{ __('messages.type_your_comment') }}"></textarea>
                                 <span class="text-danger error-text comment_error"></span>
                             </div>
                             <div class="form-group mb-0">
-                                <button class="btn btn-primary font-weight-semi-bold py-2 px-3" id="comment_btn" type="submit">Comment</button>
+                                <button class="btn btn-primary font-weight-semi-bold py-2 px-3" id="comment_btn" type="submit">{{ __('messages.comments') }}</button>
                             </div>
                         </form>
                     </div>
@@ -237,7 +235,7 @@
                             <div class="input-group mb-2" style="width: 100%;">
                                 <input type="date" name="archive_date" class="form-control form-control-lg">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary font-weight-bold px-3" type="submit">Find</button>
+                                    <button class="btn btn-primary font-weight-bold px-3" type="submit">{{ __('messages.find') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -255,9 +253,9 @@
                         <form action="{{ route('subscriber.store') }}" method="POST" id="subscriber_form">
                             @csrf
                             <div class="input-group mb-2" style="width: 100%;">
-                                <input type="text" name="subscriber_email" class="form-control form-control-lg" placeholder="Enter Your Email">
+                                <input type="text" name="subscriber_email" class="form-control form-control-lg" placeholder="{{ __('messages.enter_email') }}">
                                 <div class="input-group-append">
-                                    <button id="subscriber_btn" class="btn btn-primary font-weight-bold px-3" type="submit">Subscribe</button>
+                                    <button id="subscriber_btn" class="btn btn-primary font-weight-bold px-3" type="submit">{{ __('messages.subscribe') }}</button>
                                 </div>
                             </div>
                             <span class="text-danger error-text subscriber_email_error"></span>
@@ -295,7 +293,6 @@
         // Comment Post
         $('#comment_form').on('submit', function(e){
             e.preventDefault();
-            $("#comment_btn").text('Updating...');
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

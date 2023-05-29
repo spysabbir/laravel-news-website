@@ -82,9 +82,9 @@
                         <form action="{{ route('subscriber.store') }}" method="POST" id="subscriber_form">
                             @csrf
                             <div class="input-group mb-2" style="width: 100%;">
-                                <input type="text" name="subscriber_email" class="form-control form-control-lg" placeholder="Enter Your Email">
+                                <input type="text" name="subscriber_email" class="form-control form-control-lg" placeholder="{{ __('messages.enter_email') }}">
                                 <div class="input-group-append">
-                                    <button id="subscriber_btn" class="btn btn-primary font-weight-bold px-3" type="submit">Subscribe</button>
+                                    <button id="subscriber_btn" class="btn btn-primary font-weight-bold px-3" type="submit">{{ __('messages.subscribe') }}</button>
                                 </div>
                             </div>
                             <span class="text-danger error-text subscriber_email_error"></span>

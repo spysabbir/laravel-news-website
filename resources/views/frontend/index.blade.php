@@ -269,7 +269,7 @@
                     <div class="bg-white border border-top-0 p-3">
                         <form action="{{ route('location.wise.news') }}" method="GET">
                             <div class="col-12 mb-3">
-                                <label class="form-label">Country</label>
+                                <label class="form-label">{{ __('messages.country') }}</label>
                                 <select class="form-control form-control-lg select_country" name="country_id">
                                     <option value="">Select Country</option>
                                     @foreach ($countries_id as $country_id)
@@ -281,30 +281,30 @@
                                 </select>
                             </div>
                             <div class="col-12 mb-3">
-                                <label class="form-label">Division</label>
+                                <label class="form-label">{{ __('messages.division') }}</label>
                                 <select class="form-control form-control-lg select_division" name="division_id" id="all_division">
                                     <option value="">Select Division</option>
                                 </select>
                             </div>
                             <div class="col-12 mb-3">
-                                <label class="form-label">District</label>
+                                <label class="form-label">{{ __('messages.district') }}</label>
                                 <select class="form-control form-control-lg select_district" name="district_id" id="all_district">
                                     <option value="">Select District</option>
                                 </select>
                             </div>
                             <div class="col-12 mb-3">
-                                <label class="form-label">Upazila</label>
+                                <label class="form-label">{{ __('messages.upazila') }}</label>
                                 <select class="form-control form-control-lg select_upazila" name="upazila_id" id="all_upazila">
                                     <option value="">Select Upazila</option>
                                 </select>
                             </div>
                             <div class="col-12 mb-3">
-                                <label class="form-label">Union</label>
+                                <label class="form-label">{{ __('messages.union') }}</label>
                                 <select class="form-control form-control-lg select_union" name="union_id" id="all_union">
                                     <option value="">Select Union</option>
                                 </select>
                             </div>
-                            <button class="btn btn-primary font-weight-bold px-3" type="submit">Find</button>
+                            <button class="btn btn-primary font-weight-bold px-3" type="submit">{{ __('messages.find') }}</button>
                         </form>
                     </div>
                 </div>
@@ -363,7 +363,7 @@
                             <div class="input-group mb-2" style="width: 100%;">
                                 <input type="date" name="archive_date" class="form-control form-control-lg">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary font-weight-bold px-3" type="submit">Find</button>
+                                    <button class="btn btn-primary font-weight-bold px-3" type="submit">{{ __('messages.find') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -381,9 +381,9 @@
                         <form action="{{ route('subscriber.store') }}" method="POST" id="subscriber_form">
                             @csrf
                             <div class="input-group mb-2" style="width: 100%;">
-                                <input type="text" name="subscriber_email" class="form-control form-control-lg" placeholder="Enter Your Email">
+                                <input type="text" name="subscriber_email" class="form-control form-control-lg" placeholder="{{ __('messages.enter_email') }}">
                                 <div class="input-group-append">
-                                    <button id="subscriber_btn" class="btn btn-primary font-weight-bold px-3" type="submit">Subscribe</button>
+                                    <button id="subscriber_btn" class="btn btn-primary font-weight-bold px-3" type="submit">{{ __('messages.subscribe') }}</button>
                                 </div>
                             </div>
                             <span class="text-danger error-text subscriber_email_error"></span>

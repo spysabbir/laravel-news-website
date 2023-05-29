@@ -10,12 +10,11 @@
                 <div class="card-header d-flex justify-content-between">
                     <div class="text">
                         <h4 class="card-title">{{ Auth::user()->name }},</h4>
-                        <p class="card-text">logged in!</p>
                     </div>
                     <div class="action">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button class="btn btn-danger" type="submit">Log Out</button>
+                            <button class="btn btn-danger" type="submit">{{ __('messages.log_out') }}</button>
                         </form>
                     </div>
                 </div>
@@ -29,28 +28,29 @@
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Update</h4>
-                                    <p class="card-text">Profile</p>
+                                    <h4 class="card-title">{{ __('messages.update') }}</h4>
+                                    <p class="card-text">{{ __('messages.profile') }}</p>
                                 </div>
                                 <div class="card-body">
                                     <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        <img width="80" height="80" src="{{ asset('uploads/profile_photo') }}/{{ Auth::user()->profile_photo }}" alt="">
+                                        <img class="mb-3" width="80" height="80" src="{{ asset('uploads/profile_photo') }}/{{ Auth::user()->profile_photo }}" alt="">
                                         <div class="mb-3">
-                                            <label for="profile_photo" class="form-label">Profile Photo</label>
+                                            <label for="profile_photo" class="form-label">{{ __('messages.profile_photo') }}</label>
                                             <input id="profile_photo" class="form-control" type="file" name="profile_photo" />
                                             @error('profile_photo')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
-                                            <label for="name" class="form-label">Name</label>
+                                            <label for="name" class="form-label">{{ __('messages.name') }}</label>
                                             <input id="name" type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" />
                                             @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
+                                            <p>{{ __('messages.gender') }}</p>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="gender" id="Male" value="Male" @checked(Auth::user()->gender == 'Male')>
                                                 <label class="form-check-label" for="Male">Male</label>
@@ -65,25 +65,25 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">Email</label>
+                                            <label for="email" class="form-label">{{ __('messages.email_address') }}</label>
                                             <input id="email" type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" disabled/>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="date_of_birth" class="form-label">Date of Birth</label>
+                                            <label for="date_of_birth" class="form-label">{{ __('messages.date_of_birth') }}</label>
                                             <input id="date_of_birth" class="form-control" type="date" name="date_of_birth" value="{{ Auth::user()->date_of_birth }}"/>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="phone_number" class="form-label">Phone Number</label>
-                                            <input id="phone_number" class="form-control" type="text" name="phone_number" value="{{ Auth::user()->phone_number }}" placeholder="Type Phone Number"/>
+                                            <label for="phone_number" class="form-label">{{ __('messages.phone_number') }}</label>
+                                            <input id="phone_number" class="form-control" type="text" name="phone_number" value="{{ Auth::user()->phone_number }}" placeholder="{{ __('messages.phone_number') }} {{ __('messages.enter') }}"/>
                                             @error('phone_number')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
-                                            <label for="address" class="form-label">Address</label>
-                                            <textarea name="address" class="form-control" id="address" placeholder="Type Address">{{ Auth::user()->address }}</textarea>
+                                            <label for="address" class="form-label">{{ __('messages.address') }}</label>
+                                            <textarea name="address" class="form-control" id="address" placeholder="{{ __('messages.address') }} {{ __('messages.enter') }}">{{ Auth::user()->address }}</textarea>
                                         </div>
-                                        <button class="btn btn-info" type="submit">Update Profile</button>
+                                        <button class="btn btn-info" type="submit">{{ __('messages.update') }} {{ __('messages.profile') }}</button>
                                     </form>
                                 </div>
                             </div>
@@ -91,15 +91,15 @@
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Update</h4>
-                                    <p class="card-text">Password</p>
+                                    <h4 class="card-title">{{ __('messages.update') }}</h4>
+                                    <p class="card-text">{{ __('messages.password') }}</p>
                                 </div>
                                 <div class="card-body">
                                     <form action="{{ route('password.update') }}" method="POST">
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="current_password" class="form-label">Current Password</label>
-                                            <input id="current_password" class="form-control" type="password" name="current_password" placeholder="Type Current Password"/>
+                                            <label for="current_password" class="form-label">{{ __('messages.current_password') }}</label>
+                                            <input id="current_password" class="form-control" type="password" name="current_password" placeholder="{{ __('messages.current_password') }} {{ __('messages.enter') }}"/>
                                             @error('current_password')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -108,20 +108,20 @@
                                             @enderror
                                         </div>
                                         <div class="mb-3">
-                                            <label for="password" class="form-label">New Password</label>
-                                            <input id="password" class="form-control" type="password" name="password" placeholder="Type New Password"/>
+                                            <label for="password" class="form-label">{{ __('messages.new_password') }}</label>
+                                            <input id="password" class="form-control" type="password" name="password" placeholder="{{ __('messages.new_password') }} {{ __('messages.enter') }}"/>
                                             @error('password')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
-                                            <label for="password_confirmation" class="form-label">Confirm Password</label>
-                                            <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" placeholder="Type Confirm Password" />
+                                            <label for="password_confirmation" class="form-label">{{ __('messages.password_confirmation') }}</label>
+                                            <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" placeholder="{{ __('messages.password_confirmation') }} {{ __('messages.enter') }}" />
                                             @error('password_confirmation')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <button class="btn btn-info" type="submit">Update Password</button>
+                                        <button class="btn btn-info" type="submit">{{ __('messages.update') }} {{ __('messages.password') }}</button>
                                     </form>
                                 </div>
                             </div>
