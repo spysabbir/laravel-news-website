@@ -8,8 +8,7 @@
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Login</h4>
-                    <p class="card-text">Now</p>
+                    <h4 class="card-title">{{ __('messages.log_in') }}</h4>
                 </div>
                 <div class="card-body">
                     <!-- Session Error -->
@@ -30,8 +29,8 @@
 
                         <!-- Email Address -->
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Enter Your Email"/>
+                            <label for="email" class="form-label">{{ __('messages.email_address') }}</label>
+                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ __('messages.email_address') }} {{ __('messages.enter') }}"/>
                             @error('email')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -39,13 +38,13 @@
 
                         <!-- Password -->
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input id="password" type="password" class="form-control" name="password" placeholder="Enter Your Password"/>
+                            <label for="password" class="form-label">{{ __('messages.password') }}</label>
+                            <input id="password" type="password" class="form-control" name="password" placeholder="{{ __('messages.password') }} {{ __('messages.enter') }}"/>
                             @error('password')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                             @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}">Forgot your password?</a>
+                                <a class="text-right d-block mt-2" href="{{ route('password.request') }}">{{ __('messages.forgot_password') }}</a>
                             @endif
                         </div>
 
@@ -53,22 +52,22 @@
                         <div class="mb-3">
                             <label for="remember_me">
                                 <input id="remember_me" type="checkbox" name="remember">
-                                <span>Remember me</span>
+                                <span>{{ __('messages.remember_me') }}</span>
                             </label>
                         </div>
 
                         <div class="mb-3">
-                            <button class="btn btn-info" type="submit">Log in</button>
+                            <button class="btn btn-info" type="submit">{{ __('messages.log_in') }}</button>
                         </div>
                     </form>
-                    <a href="{{ route('register') }}"> Not registered? Register</a>
+                    <a href="{{ route('register') }}">{{ __('messages.not_registered') }}</a>
 
                     <div class="text-center my-3">
                         @if (App\Models\Social_login_setting::first()->google_auth_status == "Yes" )
-                        <a class="btn btn-danger" href="{{route('google.login')}}">Google</a>
+                        <a class="btn btn-danger" href="{{route('google.login')}}">{{ __('messages.google') }}</a>
                         @endif
                         @if (App\Models\Social_login_setting::first()->facebook_auth_status == "Yes" )
-                        <a class="btn btn-info" href="{{route('facebook.login')}}">Facebook</a>
+                        <a class="btn btn-info" href="{{route('facebook.login')}}">{{ __('messages.facebook') }}</a>
                         @endif
                     </div>
                 </div>

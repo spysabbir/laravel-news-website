@@ -21,14 +21,14 @@ class UserSeeder extends Seeder
             // Super Admin
             [
                 'name' => 'Super Admin',
-                'email' => 'superadmin@gmail.com',
+                'email' => 'superadmin@email.com',
                 'password' => Hash::make('12345678'),
                 'role' => 'Super Admin',
             ],
             // Admin
             [
                 'name' => 'Admin',
-                'email' => 'admin@gmail.com',
+                'email' => 'admin@email.com',
                 'password' => Hash::make('12345678'),
                 'role' => 'Admin',
             ],
@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
             // User
             [
                 'name' => 'User 1',
-                'email' => 'user@gmail.com',
+                'email' => 'user@email.com',
                 'password' => Hash::make('12345678'),
                 'last_active' => Carbon::now(),
             ]

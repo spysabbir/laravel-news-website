@@ -96,8 +96,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `email_verified_at`, `password`, `role`, `last_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'superadmin@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$oSmjApwFapAhYkbtgW3.k.h6moZboAZbuT09mXxTUEwN7usowyOnC', 'Super Admin', '2023-05-24 10:08:20', NULL, NULL, NULL),
-(2, 'Admin', 'admin@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$Ur3AaFA6L0/LXKHg4/tdzeKHbUNhg9HEPN39Dcd7M8/RSU51XkpMa', 'Admin', '2023-05-24 10:08:20', NULL, NULL, NULL),
+(1, 'Super Admin', 'superadmin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$oSmjApwFapAhYkbtgW3.k.h6moZboAZbuT09mXxTUEwN7usowyOnC', 'Super Admin', '2023-05-24 10:08:20', NULL, NULL, NULL),
+(2, 'Admin', 'admin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$Ur3AaFA6L0/LXKHg4/tdzeKHbUNhg9HEPN39Dcd7M8/RSU51XkpMa', 'Admin', '2023-05-24 10:08:20', NULL, NULL, NULL),
 (3, 'Reporter', 'reporter@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$F8EwkUDX2QkVN3nnVVsvw.kHzgvNo7icDRJ47fXnGxRiXLlGQAAni', 'Reporter', '2023-05-24 10:08:20', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -6310,7 +6310,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `facebook_id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `email_verified_at`, `password`, `last_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'User 1', 'user@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$kAQe3U4Xk7IGLfSOfDfoLOYwOq8uRyB4CJoAZZEKrwiJ6jZhF8et6', '2023-05-24 10:08:20', NULL, NULL, NULL);
+(1, NULL, NULL, 'User 1', 'user@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$kAQe3U4Xk7IGLfSOfDfoLOYwOq8uRyB4CJoAZZEKrwiJ6jZhF8et6', '2023-05-24 10:08:20', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
