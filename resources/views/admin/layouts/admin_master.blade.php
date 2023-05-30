@@ -101,6 +101,12 @@
                             <i class="bx bx-menu bx-sm"></i>
                         </a>
                     </div>
+                    <div class="text-right">
+                        <select class="changeLanguage" style="height: 30px">
+                            <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
+                            <option value="bn" {{ session()->get('locale') == 'bn' ? 'selected' : '' }}>Bangla</option>
+                        </select>
+                    </div>
                     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <!-- User -->
@@ -239,6 +245,16 @@
                 }
             @endif
         });
+    </script>
+
+    <script type="text/javascript">
+
+        var url = "{{ route('change.language') }}";
+
+        $(".changeLanguage").change(function(){
+            window.location.href = url + "?language="+ $(this).val();
+        });
+
     </script>
 </body>
 </html>
