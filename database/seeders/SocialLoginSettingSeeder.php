@@ -17,11 +17,11 @@ class SocialLoginSettingSeeder extends Seeder
     {
         Social_login_setting::create([
             'google_auth_status' => 'No',
-            'google_client_id' => '94152419762-kot722ibqmsiodh3l38dajmut3e2ot5o.apps.googleusercontent.com',
-            'google_client_secret' => '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',
+            'google_client_id' => 'google_client_id',
+            'google_client_secret' => 'google_client_secret',
             'facebook_auth_status' => 'No',
-            'facebook_client_id' => '3531091607174199',
-            'facebook_client_secret' => '4e3359ed937b50ac9598f8b0fdd001d5',
+            'facebook_client_id' => 'facebook_client_id',
+            'facebook_client_secret' => 'facebook_client_secret',
             'created_by' => 1,
         ]);
     }
