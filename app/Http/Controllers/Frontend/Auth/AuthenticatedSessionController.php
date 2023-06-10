@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -17,6 +18,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        $url = url()->previous();
+        $basePath = url('/');
+        $loginUrl = str_replace($basePath, '', $url);
+        Session::put('loginUrl', $loginUrl);
         return view('frontend.auth.login');
     }
 
@@ -32,7 +37,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $loginUrl = Session::get('loginUrl');
+
+        return redirect($loginUrl);
     }
 
     /**
