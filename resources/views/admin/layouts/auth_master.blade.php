@@ -38,9 +38,9 @@
     <!-- Content -->
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
-        <div class="authentication-inner">
+        {{-- <div class="authentication-inner"> --}}
           @yield('content')
-        </div>
+        {{-- </div> --}}
       </div>
     </div>
     <!-- / Content -->

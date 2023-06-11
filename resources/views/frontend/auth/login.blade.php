@@ -62,6 +62,28 @@
                     </form>
                     <a href="{{ route('register') }}">{{ __('messages.not_registered') }}</a>
 
+                    <div class="demo mt-2">
+                        <h5 class="text-center">Demo User Details</h5>
+                        <div class="table-responsive">
+                            <table class="table table-primary">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Password</th>
+                                        <th>Role</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>user@email.com</td>
+                                        <td>12345678</td>
+                                        <td>User</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     <div class="text-center my-3">
                         @if (App\Models\Social_login_setting::first()->google_auth_status == "Yes" )
                         <a class="btn btn-danger" href="{{route('google.login')}}">{{ __('messages.google') }}</a>

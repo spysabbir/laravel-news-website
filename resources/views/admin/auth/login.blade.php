@@ -107,6 +107,39 @@
             <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
             </div>
         </form>
+
+         <div class="demo mt-2">
+            <h5 class="text-center">Demo User Details</h5>
+            <div class="table-responsive">
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>superadmin@email.com</td>
+                            <td>12345678</td>
+                            <td>Super Admin</td>
+                        </tr>
+                        <tr>
+                            <td>admin@email.com</td>
+                            <td>12345678</td>
+                            <td>Admin</td>
+                        </tr>
+                        <tr>
+                            <td>reporter@email.com</td>
+                            <td>12345678</td>
+                            <td>Reporter</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
     </div>
 </div>
 <!-- /Login -->
