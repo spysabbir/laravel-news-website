@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -21,23 +22,29 @@ class UserController extends Controller
 
     public function handleGoogleCallback()
     {
-        $user = Socialite::driver('google')->user();
-        $existingUser = User::where('email', $user->getEmail())->first();
-
-        if ($existingUser) {
-            auth()->login($existingUser, true);
-        } else {
-            $newUser = new User();
-            $newUser->google_id = $user->getId();
-            $newUser->name = $user->getName();
-            $newUser->email = $user->getEmail();
-            $newUser->password = bcrypt(Str::random(16));
-            $newUser->email_verified_at = Carbon::now();
-            $newUser->save();
-
-            auth()->login($newUser, true);
+        try {
+            $socialUser = Socialite::driver('google')->user();
+        } catch (\Exception $e) {
+            return redirect('/login')->with('status', 'Failed to authenticate with google');
         }
-        return redirect('/dashboard');
+
+        $user = User::where('email', $socialUser->getEmail())->first();
+
+        if (!$user) {
+            $user = User::create([
+                'google_id' => $socialUser->getId(),
+                'name' => $socialUser->getName(),
+                'email' => $socialUser->getEmail(),
+                'password' => bcrypt(Str::random(16)),
+                'email_verified_at' => Carbon::now(),
+            ]);
+        }
+
+        Auth::login($user, true);
+
+        $loginUrl = Session::get('loginUrl');
+
+        return redirect($loginUrl);
     }
 
     public function redirectToFacebook()
@@ -47,22 +54,29 @@ class UserController extends Controller
 
     public function handleFacebookCallback()
     {
-        $user = Socialite::driver('facebook')->user();
-        $existingUser = User::where('email', $user->getEmail())->first();
-
-        if ($existingUser) {
-            auth()->login($existingUser, true);
-        } else {
-            $newUser = new User();
-            $newUser->name = $user->getName();
-            $newUser->email = $user->getEmail();
-            $newUser->password = bcrypt(Str::random(16));
-            $newUser->save();
-
-            auth()->login($newUser, true);
+        try {
+            $socialUser = Socialite::driver('facebook')->user();
+        } catch (\Exception $e) {
+            return redirect('/login')->with('status', 'Failed to authenticate with facebook');
         }
 
-        return redirect('/dashboard');
+        $user = User::where('email', $socialUser->getEmail())->first();
+
+        if (!$user) {
+            $user = User::create([
+                'facebook_id' => $socialUser->getId(),
+                'name' => $socialUser->getName(),
+                'email' => $socialUser->getEmail(),
+                'password' => bcrypt(Str::random(16)),
+                'email_verified_at' => Carbon::now(),
+            ]);
+        }
+
+        Auth::login($user, true);
+
+        $loginUrl = Session::get('loginUrl');
+
+        return redirect($loginUrl);
     }
 
     public function dashboard()
