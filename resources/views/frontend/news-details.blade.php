@@ -326,28 +326,36 @@
                         })
                     }else{
                         if (response.status == 401) {
-                            $.each(response.error, function(prefix, val){
-                                $('span.'+prefix+'_error').text(val[0]);
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'You are not verified user!',
+                                text: 'Please go to your email and verified your account.',
                             })
-                        }else{
-                            $("#comment_form")[0].reset();
-                            const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-center',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                            })
+                        } else {
+                            if (response.status == 402) {
+                                $.each(response.error, function(prefix, val){
+                                    $('span.'+prefix+'_error').text(val[0]);
+                                })
+                            }else{
+                                $("#comment_form")[0].reset();
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-center',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                                })
 
-                            Toast.fire({
-                            icon: 'success',
-                            title: 'Comment success'
-                            })
-                            location.reload();
+                                Toast.fire({
+                                icon: 'success',
+                                title: 'Comment success'
+                                })
+                                location.reload();
+                        }
                         }
                     }
                 }
@@ -391,28 +399,36 @@
                         })
                     }else{
                         if (response.status == 401) {
-                            $.each(response.error, function(prefix, val){
-                                $('span.'+prefix+'_error').text(val[0]);
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'You are not verified user!',
+                                text: 'Please go to your email and verified your account.',
                             })
-                        }else{
-                            $("#comment_reply_form")[0].reset();
-                            const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-center',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                            })
+                        } else {
+                            if (response.status == 402) {
+                                $.each(response.error, function(prefix, val){
+                                    $('span.'+prefix+'_error').text(val[0]);
+                                })
+                            }else{
+                                $("#comment_reply_form")[0].reset();
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-center',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                                })
 
-                            Toast.fire({
-                            icon: 'success',
-                            title: 'Comment reply success'
-                            })
-                            location.reload();
+                                Toast.fire({
+                                icon: 'success',
+                                title: 'Comment reply success'
+                                })
+                                location.reload();
+                            }
                         }
                     }
                 }

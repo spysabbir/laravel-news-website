@@ -70,11 +70,16 @@
         <div class="mb-3">
             <label class="form-label">Role</label>
             <select class="form-select" name="role">
-                <option >Select Role</option>
+                <option value="">Select Role</option>
+                @if (Auth::guard('admin')->user()->role == 'Super Admin')
                 <option value="Super Admin" @selected(old('role') == "Super Admin")>Super Admin</option>
                 <option value="Admin" @selected(old('role') == "Admin")>Admin</option>
+                @endif
                 <option value="Reporter" @selected(old('role') == "Reporter")>Reporter</option>
             </select>
+            @error('role')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>

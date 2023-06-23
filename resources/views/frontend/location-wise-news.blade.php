@@ -79,32 +79,32 @@
                                     <option value="">Select Country</option>
                                     @foreach ($countries_id as $country_id)
                                     @php
-                                        $country = App\Models\Country::find($country_id->country_id);
+                                        $country = App\Models\Country::find($country_id);
                                     @endphp
                                     <option value="{{ $country->id }}">{{ $country->country_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-12 mb-3">
-                                <label class="form-label">{{ __('messages.division') }}</label>
+                                <label class="form-label">{{ __('messages.division') }} (<span class="text-info">{{ __('messages.first') }} {{ __('messages.select_country') }}</span>)</label>
                                 <select class="form-control form-control-lg select_division" name="division_id" id="all_division">
                                     <option value="">Select Division</option>
                                 </select>
                             </div>
                             <div class="col-12 mb-3">
-                                <label class="form-label">{{ __('messages.district') }}</label>
+                                <label class="form-label">{{ __('messages.district') }} (<span class="text-info">{{ __('messages.first') }} {{ __('messages.select_division') }}</span>)</label>
                                 <select class="form-control form-control-lg select_district" name="district_id" id="all_district">
                                     <option value="">Select District</option>
                                 </select>
                             </div>
                             <div class="col-12 mb-3">
-                                <label class="form-label">{{ __('messages.upazila') }}</label>
+                                <label class="form-label">{{ __('messages.upazila') }} (<span class="text-info">{{ __('messages.first') }} {{ __('messages.select_district') }}</span>)</label>
                                 <select class="form-control form-control-lg select_upazila" name="upazila_id" id="all_upazila">
                                     <option value="">Select Upazila</option>
                                 </select>
                             </div>
                             <div class="col-12 mb-3">
-                                <label class="form-label">{{ __('messages.union') }}</label>
+                                <label class="form-label">{{ __('messages.union') }} (<span class="text-info">{{ __('messages.first') }} {{ __('messages.select_upazila') }}</span>)</label>
                                 <select class="form-control form-control-lg select_union" name="union_id" id="all_union">
                                     <option value="">Select Union</option>
                                 </select>
@@ -226,19 +226,19 @@
         });
 
         $('.select_country').select2({
-            placeholder: 'Select country',
+            placeholder: '{{ __('messages.select_country') }}',
         });
         $('.select_division').select2({
-            placeholder: 'Select country first',
+            placeholder: '{{ __('messages.select_division') }}',
         });
         $('.select_district').select2({
-            placeholder: 'Select division first',
+            placeholder: '{{ __('messages.select_district') }}',
         });
         $('.select_upazila').select2({
-            placeholder: 'Select district first',
+            placeholder: '{{ __('messages.select_upazila') }}',
         });
         $('.select_union').select2({
-            placeholder: 'Select upazila first',
+            placeholder: '{{ __('messages.select_union') }}',
         });
 
         // Divisions Data

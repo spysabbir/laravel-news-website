@@ -49,7 +49,8 @@ class FrontendController extends Controller
         $advertisements = Advertisement::where('status', 'Active')->get();
         $photo_galleries = Photo_gallery::where('status', 'Active')->latest()->take(8)->get();
         $video_galleries = Video_gallery::where('status', 'Active')->latest()->take(8)->get();
-        $countries_id = News::where('country_id', '!=', 0)->groupBy('country_id')->pluck('country_id');
+        $countries_id = News::where('country_id', '!=', NULL)->groupBy('country_id')->pluck('country_id');
+
         SEOMeta::setTitle($seo_setting->title);
         SEOMeta::setDescription($seo_setting->description);
         SEOMeta::setCanonical(url()->current());
@@ -266,26 +267,32 @@ class FrontendController extends Controller
                 'status' => 400,
             ]);
         }else{
-            $validator = Validator::make($request->all(), [
-                '*' => 'required',
-            ]);
-
-            if($validator->fails()){
+            if(Auth::user()->email_verified_at == NULL){
                 return response()->json([
                     'status' => 401,
-                    'error'=> $validator->errors()->toArray()
                 ]);
             }else{
-                Comment::insert([
-                    'news_id' => $request->news_id,
-                    'user_id' => Auth::user()->id,
-                    'comment' => $request->comment,
-                    'created_at' => Carbon::now(),
+                $validator = Validator::make($request->all(), [
+                    '*' => 'required',
                 ]);
 
-                return response()->json([
-                    'status' => 200,
-                ]);
+                if($validator->fails()){
+                    return response()->json([
+                        'status' => 402,
+                        'error'=> $validator->errors()->toArray()
+                    ]);
+                }else{
+                    Comment::insert([
+                        'news_id' => $request->news_id,
+                        'user_id' => Auth::user()->id,
+                        'comment' => $request->comment,
+                        'created_at' => Carbon::now(),
+                    ]);
+
+                    return response()->json([
+                        'status' => 200,
+                    ]);
+                }
             }
         }
     }
@@ -297,26 +304,32 @@ class FrontendController extends Controller
                 'status' => 400,
             ]);
         }else{
-            $validator = Validator::make($request->all(), [
-                '*' => 'required',
-            ]);
-
-            if($validator->fails()){
+            if(Auth::user()->email_verified_at == NULL){
                 return response()->json([
                     'status' => 401,
-                    'error'=> $validator->errors()->toArray()
                 ]);
             }else{
-                Comment_reply::insert([
-                    'comment_id' => $request->comment_id,
-                    'user_id' => Auth::user()->id,
-                    'reply' => $request->reply,
-                    'created_at' => Carbon::now(),
+                $validator = Validator::make($request->all(), [
+                    '*' => 'required',
                 ]);
 
-                return response()->json([
-                    'status' => 200,
-                ]);
+                if($validator->fails()){
+                    return response()->json([
+                        'status' => 402,
+                        'error'=> $validator->errors()->toArray()
+                    ]);
+                }else{
+                    Comment_reply::insert([
+                        'comment_id' => $request->comment_id,
+                        'user_id' => Auth::user()->id,
+                        'reply' => $request->reply,
+                        'created_at' => Carbon::now(),
+                    ]);
+
+                    return response()->json([
+                        'status' => 200,
+                    ]);
+                }
             }
         }
     }
@@ -328,6 +341,7 @@ class FrontendController extends Controller
         $categories = Category::where('status', 'Active')->get();
         return view('frontend.all-photo', compact('default_setting', 'photo_galleries', 'categories'));
     }
+
     public function allGalleryVideo()
     {
         $default_setting = DefaultSetting::first();
@@ -398,8 +412,8 @@ class FrontendController extends Controller
     }
 
     public function getDivisions(Request $request){
-        $send_data = "<option value='0'>--Select Division--</option>";
-        $divisions_id = News::where('country_id', $request->country_id)->groupBy('division_id')->select('division_id')->get();
+        $send_data = "<option value=''>--Select Division--</option>";
+        $divisions_id = News::where('country_id', $request->country_id)->where('division_id', '!=', NULL)->groupBy('division_id')->select('division_id')->get();
         foreach ($divisions_id as $division_id) {
             $division = Division::find($division_id->division_id);
             $send_data .= "<option value='$division->id' >$division->name</option>";
@@ -408,8 +422,8 @@ class FrontendController extends Controller
     }
 
     public function getDistricts(Request $request){
-        $send_data = "<option value='0'>--Select District--</option>";
-        $districts_id = News::where('division_id', $request->division_id)->groupBy('district_id')->select('district_id')->get();
+        $send_data = "<option value=''>--Select District--</option>";
+        $districts_id = News::where('division_id', $request->division_id)->where('district_id', '!=', NULL)->groupBy('district_id')->select('district_id')->get();
         foreach ($districts_id as $district_id) {
             $district = District::find($district_id->district_id);
             $send_data .= "<option value='$district->id' >$district->name</option>";
@@ -418,8 +432,8 @@ class FrontendController extends Controller
     }
 
     public function getUpazilas(Request $request){
-        $send_data = "<option value='0'>--Select Upazila--</option>";
-        $upazilas_id = News::where('district_id', $request->district_id)->groupBy('upazila_id')->select('upazila_id')->get();
+        $send_data = "<option value=''>--Select Upazila--</option>";
+        $upazilas_id = News::where('district_id', $request->district_id)->where('upazila_id', '!=', NULL)->groupBy('upazila_id')->select('upazila_id')->get();
         foreach ($upazilas_id as $upazila_id) {
             $upazila = Upazila::find($upazila_id->upazila_id);
             $send_data .= "<option value='$upazila->id' >$upazila->name</option>";
@@ -428,8 +442,8 @@ class FrontendController extends Controller
     }
 
     public function getUnions(Request $request){
-        $send_data = "<option value='0'>--Select Union--</option>";
-        $unions_id = News::where('upazila_id', $request->upazila_id)->groupBy('union_id')->select('union_id')->get();
+        $send_data = "<option value=''>--Select Union--</option>";
+        $unions_id = News::where('upazila_id', $request->upazila_id)->where('union_id', '!=', NULL)->groupBy('union_id')->select('union_id')->get();
         foreach ($unions_id as $union_id) {
             $union = Union::find($union_id->union_id);
             $send_data .= "<option value='$union->id' >$union->name</option>";
@@ -465,7 +479,9 @@ class FrontendController extends Controller
         $tranding_news = News::where('status', 'Active')->orderBy('news_view', 'desc')->get();
         $advertisements = Advertisement::where('status', 'Active')->get();
         $categories = Category::where('status', 'Active')->get();
-        $countries_id = News::where('country_id', '!=', 0)->get();
+
+        $countries_id = News::where('country_id', '!=', NULL)->groupBy('country_id')->pluck('country_id');
+
         return view('frontend.location-wise-news', compact('default_setting', 'tags', 'all_news', 'tranding_news', 'advertisements', 'categories', 'countries_id'));
     }
 }

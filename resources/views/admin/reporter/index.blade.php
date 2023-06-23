@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin_master')
 
-@section('title', 'User')
+@section('title', 'Reporter')
 
 @section('content')
 <div class="row">
@@ -8,8 +8,11 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div class="text">
-                    <h4 class="card-title">User</h4>
+                    <h4 class="card-title">Reporter</h4>
                     <p class="card-text">List</p>
+                </div>
+                <div class="action_btn">
+                    <a href="{{ route('admin.administrator.register') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i></a>
                 </div>
             </div>
             <div class="card-body">
@@ -26,7 +29,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-light" id="all_user_table">
+                    <table class="table table-light" id="all_reporter_table">
                         <thead>
                             <tr>
                                 <th>Sl No</th>
@@ -54,12 +57,12 @@
 <script>
     $(document).ready(function() {
         // Read Data
-        table = $('#all_user_table').DataTable({
+        table = $('#all_reporter_table').DataTable({
             processing: true,
             serverSide: true,
             searching: true,
             ajax: {
-                url: "{{ route('admin.all.user') }}",
+                url: "{{ route('admin.all.reporter') }}",
                 "data":function(e){
                     e.status = $('#filter_status').val();
                 },
@@ -79,14 +82,14 @@
         // Filter Data
         $(document).on('change', '.filter_data', function(e){
             e.preventDefault();
-            $('#all_user_table').DataTable().ajax.reload()
+            $('#all_reporter_table').DataTable().ajax.reload()
         })
 
         // Status Change
         $(document).on('click', '.statusBtn', function(e){
             e.preventDefault();
             let id = $(this).attr('id');
-            var url = "{{ route('admin.user.status', ":id") }}";
+            var url = "{{ route('admin.reporter.status', ":id") }}";
             url = url.replace(':id', id)
             $.ajax({
                 url: url,

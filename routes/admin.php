@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\Video_galleryController;
+use App\Http\Controllers\Admin\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function(){
@@ -33,14 +34,14 @@ Route::prefix('admin')->name('admin.')->group(function(){
     });
 
     Route::middleware('admin_auth')->group(function () {
+        Route::get('register', [RegisteredUserController::class, 'create'])->name('administrator.register');
+        Route::post('register', [RegisteredUserController::class, 'store']);
+
         Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])->name('verification.notice');
         Route::get('verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])->name('verification.verify')
                     ->middleware(['signed', 'throttle:6,1']);
         Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])->name('verification.send')
                     ->middleware('throttle:6,1');
-
-        Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])->name('password.confirm');
-        Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
@@ -50,8 +51,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::post('password-update', [AdminController::class, 'passwordUpdate'])->name('password.update');
 
         Route::middleware(['super_admin'])->group(function () {
-            Route::get('register', [RegisteredUserController::class, 'create'])->name('administrator.register');
-            Route::post('register', [RegisteredUserController::class, 'store']);
+
+            Route::get('news-report', [ReportController::class, 'newsReport'])->name('news.report');
+
             Route::get('all-administrator', [AdminController::class, 'allAdministrator'])->name('all.administrator');
             Route::get('administrator-status/{id}', [AdminController::class, 'administratorStatus'])->name('administrator.status');
             Route::get('administrator-edit/{id}', [AdminController::class, 'administratoreEdit'])->name('administrator.edit');
@@ -77,6 +79,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
         });
 
         Route::middleware(['admin'])->group(function () {
+            Route::get('all-reporter', [AdminController::class, 'allReporter'])->name('all.reporter');
+            Route::get('reporter-status/{id}', [AdminController::class, 'reporterStatus'])->name('reporter.status');
+
             Route::get('all-user', [AdminController::class, 'allUser'])->name('all.user');
             Route::get('user-status/{id}', [AdminController::class, 'userStatus'])->name('user.status');
 

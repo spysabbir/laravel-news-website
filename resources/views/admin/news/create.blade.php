@@ -88,26 +88,30 @@
                         <div class="col-md-3 col-12 mb-3">
                             <label class="form-label">Division</label>
                             <select class="form-select select_division" name="division_id" id="all_division">
-                                <option value="">Select Division</option>
+                                <option value="">--Select Division--</option>
                             </select>
+                            <small class="text-warning">* Select country first</small>
                         </div>
                         <div class="col-md-3 col-12 mb-3">
                             <label class="form-label">District</label>
                             <select class="form-select select_district" name="district_id" id="all_district">
-                                <option value="">Select District</option>
+                                <option value="">--Select District--</option>
                             </select>
+                            <small class="text-warning">* Select division first</small>
                         </div>
                         <div class="col-md-3 col-12 mb-3">
                             <label class="form-label">Upazila</label>
                             <select class="form-select select_upazila" name="upazila_id" id="all_upazila">
-                                <option value="">Select Upazila</option>
+                                <option value="">--Select Upazila--</option>
                             </select>
+                            <small class="text-warning">* Select district first</small>
                         </div>
                         <div class="col-md-3 col-12 mb-3">
                             <label class="form-label">Union</label>
                             <select class="form-select select_union" name="union_id" id="all_union">
-                                <option value="">Select Union</option>
+                                <option value="">--Select Union--</option>
                             </select>
+                            <small class="text-warning">* Select upazila first</small>
                         </div>
                         <div class="col-lg-6 col-12 mb-3">
                             <label class="form-label">News Thumbnail Photo</label>
@@ -186,16 +190,16 @@
             placeholder: 'Select country',
         });
         $('.select_division').select2({
-            placeholder: 'Select country first',
+            placeholder: 'Select division',
         });
         $('.select_district').select2({
-            placeholder: 'Select division first',
+            placeholder: 'Select district',
         });
         $('.select_upazila').select2({
-            placeholder: 'Select district first',
+            placeholder: 'Select upazila',
         });
         $('.select_union').select2({
-            placeholder: 'Select upazila first',
+            placeholder: 'Select union',
         });
 
         $('#news_details_en').summernote({

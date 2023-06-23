@@ -9,14 +9,13 @@
 </div>
 @endif
 <div class="row">
-    <div class="col-lg-8 mb-4 order-0">
+    <div class="col-lg-8 mb-4">
         <div class="card">
             <div class="d-flex align-items-end row">
                 <div class="col-sm-7">
                     <div class="card-body">
                         <h5 class="card-title text-primary">Congratulations {{ Auth::guard('admin')->user()->name }}! 🎉</h5>
                         <p class="mb-4"> You have done <span class="fw-bold">{{ $reporter_wise_news }}</span> more news. Check your all news.</p>
-                        <a href="{{ route('admin.news.index') }}" class="btn btn-sm btn-outline-primary">View All</a>
                     </div>
                 </div>
                 <div class="col-sm-5 text-center text-sm-left">
@@ -27,7 +26,76 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-4 order-1">
+    <div class="col-lg-4 mb-4">
+        <div class="card">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('admin') }}/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                                </div>
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Total Categories</span>
+                            <h3 class="card-title mb-2">{{ $categories }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('admin') }}/img/icons/unicons/wallet-info.png" alt="Credit Card" class="rounded" />
+                                </div>
+                            </div>
+                            <span class="fw-semibold d-block mb-1">Total Tags</span>
+                            <h3 class="card-title mb-2">{{ $tags }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Auth::guard('admin')->user()->role == 'Super Admin' || Auth::guard('admin')->user()->role == 'Admin')
+<div class="row">
+    <div class="col-lg-4 col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                    <span class="badge bg-success">{{ date('Y') }}</span>
+                </div>
+            </div>
+            <div class="text-center fw-semibold ">
+                {{ App\Models\Visitor_detail::whereYear('visit_time', (date('Y')))->count() }} Total Visitor
+            </div>
+            <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
+                <div class="d-flex">
+                    <div class="me-2">
+                        <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <small>{{ (date('Y')-1) }}</small>
+                        <h6 class="mb-0">{{ App\Models\Visitor_detail::whereYear('visit_time', (date('Y')-1))->count() }}</h6>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="me-2">
+                        <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <small>{{ (date('Y')-2) }}</small>
+                        <h6 class="mb-0">{{ App\Models\Visitor_detail::whereYear('visit_time', (date('Y')-2))->count() }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4">
         <div class="row">
             <div class="col-12 mb-4">
                 <div class="card">
@@ -67,45 +135,10 @@
             </div>
         </div>
     </div>
-    <!-- Total Visitor -->
-    <div class="col-12 col-lg-4 order-2 order-md-3 order-lg-2 mb-4">
-      <div class="card">
-        <div class="row row-bordered g-0">
-          <div class="col-md-12">
-            <div class="card-body">
-              <div class="text-center">
-                <span class="badge bg-success">{{ date('Y') }}</span>
-              </div>
-            </div>
-            <div class="text-center fw-semibold pt-3 mb-2">{{ App\Models\Visitor_detail::whereYear('visit_time', (date('Y')))->count() }} Total Visitor</div>
-            <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
-              <div class="d-flex">
-                <div class="me-2">
-                  <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
-                </div>
-                <div class="d-flex flex-column">
-                  <small>{{ (date('Y')-1) }}</small>
-                  <h6 class="mb-0">{{ App\Models\Visitor_detail::whereYear('visit_time', (date('Y')-1))->count() }}</h6>
-                </div>
-              </div>
-              <div class="d-flex">
-                <div class="me-2">
-                  <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>
-                </div>
-                <div class="d-flex flex-column">
-                  <small>{{ (date('Y')-2) }}</small>
-                  <h6 class="mb-0">{{ App\Models\Visitor_detail::whereYear('visit_time', (date('Y')-2))->count() }}</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--/ Total Visitor -->
-    <div class="col-12 col-md-8 col-lg-8 order-3 order-md-2">
+
+    <div class="col-lg-4 col-md-4">
         <div class="row">
-            <div class="col-3 mb-4">
+            <div class="col-6 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
@@ -119,7 +152,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 mb-4">
+            <div class="col-6 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
@@ -127,41 +160,17 @@
                                 <img src="{{ asset('admin') }}/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
                             </div>
                         </div>
-                        <span class="fw-semibold d-block mb-1">{{ App\Models\Admin::whereYear('created_at', date('Y'))->count() }} Administrator</span>
+                        <span class="fw-semibold d-block mb-1">{{ App\Models\Admin::where('role', 'Reporter')->whereYear('created_at', date('Y'))->count() }} Reporter</span>
                         <h3 class="card-title mb-2"><i class="bx bx-up-arrow-alt"></i>{{ date('Y') }}</h3>
-                        <small class="text-success fw-semibold">All Administrator: {{ $all_administrator }}</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-title d-flex align-items-start justify-content-between">
-                            <div class="avatar flex-shrink-0">
-                                <img src="{{ asset('admin') }}/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
-                            </div>
-                        </div>
-                        <span class="fw-semibold d-block mb-1">Total Categories</span>
-                        <h3 class="card-title mb-2">{{ $categories }}</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-title d-flex align-items-start justify-content-between">
-                            <div class="avatar flex-shrink-0">
-                                <img src="{{ asset('admin') }}/img/icons/unicons/wallet-info.png" alt="Credit Card" class="rounded" />
-                            </div>
-                        </div>
-                        <span class="fw-semibold d-block mb-1">Total Tags</span>
-                        <h3 class="card-title mb-2">{{ $tags }}</h3>
+                        <small class="text-success fw-semibold">All Reporter: {{ $all_reporter }}</small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endif
+
 <div class="row">
     <!-- News Category -->
     <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
@@ -176,7 +185,7 @@
                     <h2 class="mb-2">{{ $categories }}</h2>
                 </div>
                 <ul class="p-0 m-0">
-                    @foreach (App\Models\Category::latest()->limit(5)->get() as $category)
+                    @foreach (App\Models\Category::latest()->limit(8)->get() as $category)
                     <li class="d-flex mb-4 pb-1">
                         <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-primary"><i class="bx bx-mobile-alt"></i></span>
@@ -205,7 +214,16 @@
             </div>
             <div class="card-body">
                 <ul class="p-0 m-0">
-                    @foreach (App\Models\News::latest()->limit(5)->get() as $news)
+                    @if (Auth::guard('admin')->user()->role == 'Super Admin' || Auth::guard('admin')->user()->role == 'Admin')
+                        @php
+                            $latest_news = App\Models\News::latest()->limit(8)->get()
+                        @endphp
+                    @else
+                        @php
+                            $latest_news = App\Models\News::where('created_by', Auth::guard('admin')->user()->id)->latest()->limit(8)->get()
+                        @endphp
+                    @endif
+                    @foreach ($latest_news as $news)
                     <li class="d-flex mb-4 pb-1">
                         <div class="avatar flex-shrink-0 me-3">
                             <img width="80" height="80" src="{{ asset('uploads/news_thumbnail_photo') }}/{{ $news->news_thumbnail_photo }}" alt="User" class="rounded" />

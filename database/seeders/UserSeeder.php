@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
                 'name' => 'Super Admin',
                 'email' => 'superadmin@email.com',
                 'password' => Hash::make('12345678'),
+                'created_at' => Carbon::now(),
                 'role' => 'Super Admin',
             ],
             // Admin
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
                 'name' => 'Admin',
                 'email' => 'admin@email.com',
                 'password' => Hash::make('12345678'),
+                'created_at' => Carbon::now(),
                 'role' => 'Admin',
             ],
             // Reporter
@@ -37,6 +39,7 @@ class UserSeeder extends Seeder
                 'name' => 'Reporter',
                 'email' => 'reporter@email.com',
                 'password' => Hash::make('12345678'),
+                'created_at' => Carbon::now(),
                 'role' => 'Reporter',
             ],
         ]);
@@ -47,6 +50,8 @@ class UserSeeder extends Seeder
                 'name' => 'User 1',
                 'email' => 'user@email.com',
                 'password' => Hash::make('12345678'),
+                'email_verified_at' => Carbon::now(),
+                'created_at' => Carbon::now(),
                 'last_active' => Carbon::now(),
             ]
         ]);

@@ -23,10 +23,10 @@ class AdminController extends Controller
         $all_news = News::count();
         $categories = Category::count();
         $tags = Tag::count();
-        $all_administrator = Admin::count();
+        $all_reporter = Admin::where('role', 'Reporter')->count();
         $all_user = User::count();
         $reporter_wise_news = News::where('created_by', Auth::guard('admin')->user()->id)->count();
-        return view('admin.dashboard', compact('all_news', 'categories', 'tags', 'all_administrator', 'all_user', 'reporter_wise_news'));
+        return view('admin.dashboard', compact('all_news', 'categories', 'tags', 'all_reporter', 'all_user', 'reporter_wise_news'));
     }
 
     public function profile()
@@ -267,6 +267,74 @@ class AdminController extends Controller
             ]);
             return response()->json([
                 'message' => 'User status active.'
+            ]);
+        }
+    }
+
+    public function allReporter (Request $request)
+    {
+        if ($request->ajax()) {
+            $all_reporter = "";
+            $query = Admin::where('role', 'Reporter')->select('admins.*');
+
+            if($request->status){
+                $query->where('admins.status', $request->status);
+            }
+
+            $all_reporter = $query->get();
+
+            return Datatables::of($all_reporter)
+                    ->addIndexColumn()
+                    ->editColumn('profile_photo', function($row){
+                        return '<img src="'.asset('uploads/profile_photo').'/'.$row->profile_photo.'" width="40" >';
+                    })
+                    ->editColumn('last_active', function($row){
+                        return'
+                        <span class="badge bg-info">'.date('d-M,Y h:m:s A', strtotime($row->last_active)).'</span>
+                        ';
+                    })
+                    ->editColumn('created_at', function($row){
+                            return'
+                            <span class="badge bg-success">'.$row->created_at->format('d-M,Y h:m:s A').'</span>
+                            ';
+                    })
+                    ->editColumn('status', function($row){
+                        if($row->status == "Active"){
+                            return'
+                            <span class="badge bg-success">'.$row->status.'</span>
+                            <button type="button" id="'.$row->id.'" class="btn btn-warning btn-sm statusBtn"><i class="fa-solid fa-ban"></i></button>
+                            ';
+                        }else{
+                            return'
+                            <span class="badge bg-warning">'.$row->status.'</span>
+                            <button type="button" id="'.$row->id.'" class="btn btn-success btn-sm statusBtn"><i class="fa-solid fa-check"></i></button>
+                            ';
+                        }
+                    })
+                    ->rawColumns(['profile_photo', 'last_active', 'created_at', 'status'])
+                    ->make(true);
+        }
+        return view('admin.reporter.index');
+    }
+
+    public function reporterStatus($id)
+    {
+        $reporter = Admin::where('id', $id)->first();
+        if($reporter->status == "Active"){
+            $reporter->update([
+                'status' => "Inactive",
+                'updated_by' => Auth::guard('admin')->user()->id,
+            ]);
+            return response()->json([
+                'message' => 'Reporter status active.'
+            ]);
+        }else{
+            $reporter->update([
+                'status' =>"Active",
+                'updated_by' => Auth::guard('admin')->user()->id,
+            ]);
+            return response()->json([
+                'message' => 'Reporter status active.'
             ]);
         }
     }

@@ -91,4 +91,10 @@ return [
     'remember_me' => 'আমাকে মনে রেখো',
     'google' => 'গুগল',
     'facebook' => 'ফেসবুক',
+    'select_country' => 'দেশ নির্বাচন করুন',
+    'select_division' => 'বিভাগ নির্বাচন করুন',
+    'select_district' => 'জেলা নির্বাচন করুন',
+    'select_upazila' => 'উপজেলা নির্বাচন করুন',
+    'select_union' => 'ইউনিয়ন নির্বাচন করুন',
+    'first' => '* প্রথমে',
 ];

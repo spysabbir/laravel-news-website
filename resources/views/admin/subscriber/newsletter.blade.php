@@ -24,6 +24,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
+                                    <h5 class="text-info text-center">Please run cron job.</h5>
                                     <form action="#" id="send_newsletter_form" method="POST">
                                         @csrf
                                         <div class="mb-3">

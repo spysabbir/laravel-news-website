@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2023 at 12:08 PM
+-- Generation Time: Jun 21, 2023 at 12:25 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -96,9 +96,9 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `email_verified_at`, `password`, `role`, `last_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'superadmin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$oSmjApwFapAhYkbtgW3.k.h6moZboAZbuT09mXxTUEwN7usowyOnC', 'Super Admin', '2023-05-24 10:08:20', NULL, NULL, NULL),
-(2, 'Admin', 'admin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$Ur3AaFA6L0/LXKHg4/tdzeKHbUNhg9HEPN39Dcd7M8/RSU51XkpMa', 'Admin', '2023-05-24 10:08:20', NULL, NULL, NULL),
-(3, 'Reporter', 'reporter@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$F8EwkUDX2QkVN3nnVVsvw.kHzgvNo7icDRJ47fXnGxRiXLlGQAAni', 'Reporter', '2023-05-24 10:08:20', NULL, NULL, NULL);
+(1, 'Super Admin', 'superadmin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$oSmjApwFapAhYkbtgW3.k.h6moZboAZbuT09mXxTUEwN7usowyOnC', 'Super Admin', '2023-05-24 10:08:20', 'c63oH96WHAqdxCipbuVZcHp3qzdmgBLuSRUVwDUBcTyvx2luwHSZNXRTDP9q', '2023-06-18 05:23:29', NULL),
+(2, 'Admin', 'admin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$Ur3AaFA6L0/LXKHg4/tdzeKHbUNhg9HEPN39Dcd7M8/RSU51XkpMa', 'Admin', '2023-05-24 10:08:20', 'q1pxHeBM5teivisItclAM4SvCJ1mefJ2PoiJcjK80krk39pnCNpCSrGOxTbJ', '2023-06-17 18:00:00', NULL),
+(3, 'Reporter', 'reporter@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$F8EwkUDX2QkVN3nnVVsvw.kHzgvNo7icDRJ47fXnGxRiXLlGQAAni', 'Reporter', '2023-05-24 10:08:20', NULL, '2023-06-18 05:23:48', '2023-06-18 05:57:37');
 
 -- --------------------------------------------------------
 
@@ -215,7 +215,8 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `news_id`, `user_id`, `comment`, `status`, `created_at`, `updated_at`) VALUES
-(1, 7, 1, 'Good', 'Yes', '2023-05-22 09:44:06', NULL);
+(1, 7, 1, 'Good', 'Yes', '2023-05-22 09:44:06', NULL),
+(2, 4, 1, 'Good', 'Yes', '2023-06-18 05:28:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -839,17 +840,17 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `news_position`, `breaking_news`, `country_id`, `division_id`, `district_id`, `upazila_id`, `union_id`, `news_category_id`, `news_thumbnail_photo`, `news_cover_photo`, `news_video_link`, `status`, `news_view`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Top Slider', 'Yes', 119, NULL, NULL, NULL, NULL, 2, 'News-Thumbnail-Photo-NNuRw.jpg', 'News-Cover-Photo-weRJN.jpg', NULL, 'Active', 14, 3, 3, NULL, '2023-03-20 06:11:49', '2023-05-21 10:45:11', NULL),
-(2, 'Top Slider', 'No', 19, NULL, NULL, NULL, NULL, 1, 'News-Thumbnail-Photo-VuSVk.jpg', 'News-Cover-Photo-7qA4g.jpg', NULL, 'Active', 8, 3, 3, NULL, '2023-03-20 06:22:22', '2023-05-21 10:26:04', NULL),
+(1, 'Top Slider', 'Yes', 119, NULL, NULL, NULL, NULL, 2, 'News-Thumbnail-Photo-NNuRw.jpg', 'News-Cover-Photo-weRJN.jpg', NULL, 'Active', 15, 3, 3, NULL, '2023-03-20 06:11:49', '2023-06-18 05:26:18', NULL),
+(2, 'Top Slider', 'No', 19, NULL, NULL, NULL, NULL, 1, 'News-Thumbnail-Photo-VuSVk.jpg', 'News-Cover-Photo-7qA4g.jpg', NULL, 'Active', 9, 3, 3, NULL, '2023-03-20 06:22:22', '2023-06-18 05:25:32', NULL),
 (3, 'Top Slider', 'No', 19, NULL, NULL, NULL, NULL, 1, 'News-Thumbnail-Photo-MLRlC.jpg', 'News-Cover-Photo-zgeV2.jpg', NULL, 'Active', 0, 3, 3, NULL, '2023-03-20 06:28:55', '2023-03-20 06:53:00', NULL),
-(4, 'Top Right', 'No', 19, NULL, NULL, NULL, NULL, 3, 'News-Thumbnail-Photo-CQRZ6.jpg', 'News-Cover-Photo-IFLAa.jpg', NULL, 'Active', 12, 3, 3, NULL, '2023-03-20 06:32:52', '2023-05-21 10:03:05', NULL),
+(4, 'Top Right', 'No', 19, NULL, NULL, NULL, NULL, 3, 'News-Thumbnail-Photo-CQRZ6.jpg', 'News-Cover-Photo-IFLAa.jpg', NULL, 'Active', 17, 3, 3, NULL, '2023-03-20 06:32:52', '2023-06-18 05:38:27', NULL),
 (5, 'Top Right', 'No', 19, NULL, NULL, NULL, NULL, 4, 'News-Thumbnail-Photo-ktWN0.jpg', 'News-Cover-Photo-EMOGZ.jpg', NULL, 'Active', 0, 3, 3, NULL, '2023-03-20 06:46:27', '2023-03-20 06:54:05', NULL),
-(6, 'Top Right', 'No', 19, 0, NULL, NULL, NULL, 6, 'News-Thumbnail-Photo-fumYE.jpg', 'News-Cover-Photo-8zjpM.jpg', NULL, 'Active', 0, 3, NULL, NULL, '2023-03-20 09:09:42', '2023-03-20 09:09:42', NULL),
-(7, 'Featured', 'No', 19, 0, NULL, NULL, NULL, 6, 'News-Thumbnail-Photo-OAkj5.jpg', 'News-Cover-Photo-EkB8r.jpg', NULL, 'Active', 2, 3, NULL, NULL, '2023-03-20 09:13:34', '2023-05-22 09:44:07', NULL),
-(8, 'Featured', 'No', 19, 6, 0, NULL, NULL, 5, 'News-Thumbnail-Photo-KZq4b.jpg', 'News-Cover-Photo-45uWC.jpg', NULL, 'Active', 0, 3, NULL, NULL, '2023-03-20 09:20:11', '2023-03-20 09:20:11', NULL),
-(9, 'Featured', 'Yes', 19, 6, 41, 0, NULL, 5, 'News-Thumbnail-Photo-vzI7T.jpg', 'News-Cover-Photo-Wg8Oo.jpg', NULL, 'Active', 2, 3, NULL, NULL, '2023-03-20 09:24:15', '2023-05-21 05:41:43', NULL),
-(10, 'Top Right', 'No', 19, 6, 0, NULL, NULL, 5, 'News-Thumbnail-Photo-YRgDR.jpg', 'News-Cover-Photo-21FeI.jpg', NULL, 'Active', 0, 3, NULL, NULL, '2023-03-20 09:27:42', '2023-03-20 09:27:42', NULL),
-(11, 'Default', 'Yes', 19, 0, NULL, NULL, NULL, 1, 'News-Thumbnail-Photo-mqHOd.jpg', 'News-Cover-Photo-JyIUV.jpg', NULL, 'Active', 4, 3, NULL, NULL, '2023-03-20 09:31:58', '2023-05-21 10:44:11', NULL);
+(6, 'Top Right', 'No', 19, NULL, NULL, NULL, NULL, 6, 'News-Thumbnail-Photo-fumYE.jpg', 'News-Cover-Photo-8zjpM.jpg', NULL, 'Active', 0, 3, NULL, NULL, '2023-03-20 09:09:42', '2023-03-20 09:09:42', NULL),
+(7, 'Featured', 'No', 19, NULL, NULL, NULL, NULL, 6, 'News-Thumbnail-Photo-OAkj5.jpg', 'News-Cover-Photo-EkB8r.jpg', NULL, 'Active', 4, 3, NULL, NULL, '2023-03-20 09:13:34', '2023-06-18 10:37:15', NULL),
+(8, 'Featured', 'No', 19, 6, NULL, NULL, NULL, 5, 'News-Thumbnail-Photo-KZq4b.jpg', 'News-Cover-Photo-45uWC.jpg', NULL, 'Active', 0, 3, NULL, NULL, '2023-03-20 09:20:11', '2023-03-20 09:20:11', NULL),
+(9, 'Featured', 'Yes', 19, 6, 41, NULL, NULL, 5, 'News-Thumbnail-Photo-vzI7T.jpg', 'News-Cover-Photo-Wg8Oo.jpg', NULL, 'Active', 2, 3, NULL, NULL, '2023-03-20 09:24:15', '2023-05-21 05:41:43', NULL),
+(10, 'Top Right', 'No', 19, 6, NULL, NULL, NULL, 5, 'News-Thumbnail-Photo-YRgDR.jpg', 'News-Cover-Photo-21FeI.jpg', NULL, 'Active', 0, 3, NULL, NULL, '2023-03-20 09:27:42', '2023-03-20 09:27:42', NULL),
+(11, 'Default', 'Yes', 19, NULL, NULL, NULL, NULL, 1, 'News-Thumbnail-Photo-mqHOd.jpg', 'News-Cover-Photo-JyIUV.jpg', NULL, 'Active', 4, 3, NULL, NULL, '2023-03-20 09:31:58', '2023-05-21 10:44:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -6310,7 +6311,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `facebook_id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `email_verified_at`, `password`, `last_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'User 1', 'user@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$kAQe3U4Xk7IGLfSOfDfoLOYwOq8uRyB4CJoAZZEKrwiJ6jZhF8et6', '2023-05-24 10:08:20', NULL, NULL, NULL);
+(1, NULL, NULL, 'User 1', 'user@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', '2023-06-18 05:39:35', '$2y$10$kAQe3U4Xk7IGLfSOfDfoLOYwOq8uRyB4CJoAZZEKrwiJ6jZhF8et6', '2023-06-18 05:40:31', NULL, '2023-06-18 05:23:57', '2023-06-18 05:57:44');
 
 -- --------------------------------------------------------
 
@@ -6813,7 +6814,112 @@ INSERT INTO `visitor_details` (`id`, `ip_address`, `visit_time`) VALUES
 (463, '127.0.0.1', '2023-05-22 10:01:19'),
 (464, '127.0.0.1', '2023-05-22 10:01:27'),
 (465, '127.0.0.1', '2023-05-22 10:01:30'),
-(466, '127.0.0.1', '2023-05-22 10:01:33');
+(466, '127.0.0.1', '2023-05-22 10:01:33'),
+(467, '127.0.0.1', '2023-06-18 05:23:14'),
+(468, '127.0.0.1', '2023-06-18 05:24:47'),
+(469, '127.0.0.1', '2023-06-18 05:25:01'),
+(470, '127.0.0.1', '2023-06-18 05:25:03'),
+(471, '127.0.0.1', '2023-06-18 05:25:04'),
+(472, '127.0.0.1', '2023-06-18 05:25:06'),
+(473, '127.0.0.1', '2023-06-18 05:25:11'),
+(474, '127.0.0.1', '2023-06-18 05:25:15'),
+(475, '127.0.0.1', '2023-06-18 05:25:19'),
+(476, '127.0.0.1', '2023-06-18 05:25:26'),
+(477, '127.0.0.1', '2023-06-18 05:25:33'),
+(478, '127.0.0.1', '2023-06-18 05:25:39'),
+(479, '127.0.0.1', '2023-06-18 05:25:46'),
+(480, '127.0.0.1', '2023-06-18 05:25:50'),
+(481, '127.0.0.1', '2023-06-18 05:26:09'),
+(482, '127.0.0.1', '2023-06-18 05:26:12'),
+(483, '127.0.0.1', '2023-06-18 05:26:18'),
+(484, '127.0.0.1', '2023-06-18 05:26:23'),
+(485, '127.0.0.1', '2023-06-18 05:26:26'),
+(486, '127.0.0.1', '2023-06-18 05:26:36'),
+(487, '127.0.0.1', '2023-06-18 05:26:43'),
+(488, '127.0.0.1', '2023-06-18 05:26:48'),
+(489, '127.0.0.1', '2023-06-18 05:26:50'),
+(490, '127.0.0.1', '2023-06-18 05:26:55'),
+(491, '127.0.0.1', '2023-06-18 05:27:02'),
+(492, '127.0.0.1', '2023-06-18 05:27:07'),
+(493, '127.0.0.1', '2023-06-18 05:27:13'),
+(494, '127.0.0.1', '2023-06-18 05:27:16'),
+(495, '127.0.0.1', '2023-06-18 05:27:19'),
+(496, '127.0.0.1', '2023-06-18 05:27:22'),
+(497, '127.0.0.1', '2023-06-18 05:27:40'),
+(498, '127.0.0.1', '2023-06-18 05:28:01'),
+(499, '127.0.0.1', '2023-06-18 05:28:13'),
+(500, '127.0.0.1', '2023-06-18 05:28:18'),
+(501, '127.0.0.1', '2023-06-18 05:28:22'),
+(502, '127.0.0.1', '2023-06-18 05:28:28'),
+(503, '127.0.0.1', '2023-06-18 05:28:31'),
+(504, '127.0.0.1', '2023-06-18 05:28:33'),
+(505, '127.0.0.1', '2023-06-18 05:28:44'),
+(506, '127.0.0.1', '2023-06-18 05:36:12'),
+(507, '127.0.0.1', '2023-06-18 05:37:24'),
+(508, '127.0.0.1', '2023-06-18 05:38:28'),
+(509, '127.0.0.1', '2023-06-18 05:38:43'),
+(510, '127.0.0.1', '2023-06-18 05:39:31'),
+(511, '127.0.0.1', '2023-06-18 05:39:42'),
+(512, '127.0.0.1', '2023-06-18 05:39:44'),
+(513, '127.0.0.1', '2023-06-18 05:40:31'),
+(514, '127.0.0.1', '2023-06-18 05:40:39'),
+(515, '127.0.0.1', '2023-06-18 09:44:19'),
+(516, '127.0.0.1', '2023-06-18 09:46:18'),
+(517, '127.0.0.1', '2023-06-18 09:46:42'),
+(518, '127.0.0.1', '2023-06-18 10:19:27'),
+(519, '127.0.0.1', '2023-06-18 10:20:53'),
+(520, '127.0.0.1', '2023-06-18 10:21:07'),
+(521, '127.0.0.1', '2023-06-18 10:23:17'),
+(522, '127.0.0.1', '2023-06-18 10:23:49'),
+(523, '127.0.0.1', '2023-06-18 10:24:33'),
+(524, '127.0.0.1', '2023-06-18 10:25:10'),
+(525, '127.0.0.1', '2023-06-18 10:27:51'),
+(526, '127.0.0.1', '2023-06-18 10:28:23'),
+(527, '127.0.0.1', '2023-06-18 10:28:34'),
+(528, '127.0.0.1', '2023-06-18 10:29:34'),
+(529, '127.0.0.1', '2023-06-18 10:30:29'),
+(530, '127.0.0.1', '2023-06-18 10:32:11'),
+(531, '127.0.0.1', '2023-06-18 10:34:50'),
+(532, '127.0.0.1', '2023-06-18 10:34:59'),
+(533, '127.0.0.1', '2023-06-18 10:35:56'),
+(534, '127.0.0.1', '2023-06-18 10:36:25'),
+(535, '127.0.0.1', '2023-06-18 10:36:39'),
+(536, '127.0.0.1', '2023-06-18 10:37:11'),
+(537, '127.0.0.1', '2023-06-18 10:37:15'),
+(538, '127.0.0.1', '2023-06-18 10:37:31'),
+(539, '127.0.0.1', '2023-06-18 10:37:35'),
+(540, '127.0.0.1', '2023-06-18 10:38:18'),
+(541, '127.0.0.1', '2023-06-18 10:38:32'),
+(542, '127.0.0.1', '2023-06-18 10:38:39'),
+(543, '127.0.0.1', '2023-06-21 04:28:11'),
+(544, '127.0.0.1', '2023-06-21 04:31:14'),
+(545, '127.0.0.1', '2023-06-21 04:33:13'),
+(546, '127.0.0.1', '2023-06-21 04:33:17'),
+(547, '127.0.0.1', '2023-06-21 04:35:37'),
+(548, '127.0.0.1', '2023-06-21 04:37:06'),
+(549, '127.0.0.1', '2023-06-21 04:37:19'),
+(550, '127.0.0.1', '2023-06-21 04:37:29'),
+(551, '127.0.0.1', '2023-06-21 04:37:43'),
+(552, '127.0.0.1', '2023-06-21 04:38:00'),
+(553, '127.0.0.1', '2023-06-21 04:38:29'),
+(554, '127.0.0.1', '2023-06-21 04:38:42'),
+(555, '127.0.0.1', '2023-06-21 04:39:12'),
+(556, '127.0.0.1', '2023-06-21 04:39:46'),
+(557, '127.0.0.1', '2023-06-21 04:39:58'),
+(558, '127.0.0.1', '2023-06-21 04:40:13'),
+(559, '127.0.0.1', '2023-06-21 04:44:35'),
+(560, '127.0.0.1', '2023-06-21 04:48:12'),
+(561, '127.0.0.1', '2023-06-21 04:48:18'),
+(562, '127.0.0.1', '2023-06-21 04:49:09'),
+(563, '127.0.0.1', '2023-06-21 04:49:18'),
+(564, '127.0.0.1', '2023-06-21 04:49:23'),
+(565, '127.0.0.1', '2023-06-21 04:49:56'),
+(566, '127.0.0.1', '2023-06-21 04:53:51'),
+(567, '127.0.0.1', '2023-06-21 04:54:01'),
+(568, '127.0.0.1', '2023-06-21 04:54:29'),
+(569, '127.0.0.1', '2023-06-21 04:56:51'),
+(570, '127.0.0.1', '2023-06-21 04:57:15'),
+(571, '127.0.0.1', '2023-06-21 05:04:07');
 
 --
 -- Indexes for dumped tables
@@ -7105,7 +7211,7 @@ ALTER TABLE `category_translations`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `comment_replies`
@@ -7177,7 +7283,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `newsletters`
@@ -7189,13 +7295,13 @@ ALTER TABLE `newsletters`
 -- AUTO_INCREMENT for table `news_tag`
 --
 ALTER TABLE `news_tag`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `news_translations`
 --
 ALTER TABLE `news_translations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `page_settings`
@@ -7279,7 +7385,7 @@ ALTER TABLE `video_galleries`
 -- AUTO_INCREMENT for table `visitor_details`
 --
 ALTER TABLE `visitor_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=467;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=572;
 
 --
 -- Constraints for dumped tables

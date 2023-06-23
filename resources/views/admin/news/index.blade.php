@@ -51,8 +51,8 @@
                     <div class="row mb-3">
                         <div class="col-lg-3">
                             <label class="form-label">Status</label>
-                            <select class="form-control filter_data" id="status">
-                                <option value="">Status</option>
+                            <select class="form-select filter_data" id="status">
+                                <option value="">--All--</option>
                                 <option value="Active">Active</option>
                                 <option value="Inactive">Inactive</option>
                             </select>
@@ -60,7 +60,7 @@
                         <div class="col-lg-3">
                             <label class="form-label">News Position</label>
                             <select class="form-select filter_data" id="news_position">
-                                <option value="">Select Position</option>
+                                <option value="">--All--</option>
                                 <option value="Default">Default</option>
                                 <option value="Top Slider">Top Slider</option>
                                 <option value="Top Right">Top Right</option>

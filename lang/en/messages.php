@@ -91,4 +91,10 @@ return [
     'remember_me' => 'Remember Me',
     'google' => 'Google',
     'facebook' => 'Facebook',
+    'select_country' => 'select country',
+    'select_division' => 'select division',
+    'select_district' => 'select district',
+    'select_upazila' => 'select upazila',
+    'select_union' => 'select union',
+    'first' => '* First',
 ];

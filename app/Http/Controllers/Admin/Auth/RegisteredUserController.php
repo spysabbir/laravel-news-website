@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('admin.administrator.register');
+        return view('admin.auth.register');
     }
 
     /**
@@ -39,6 +39,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'indisposable', 'unique:'.Admin::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password_confirmation' => ['required', Rules\Password::defaults()],
         ]);
 
         Admin::create([
@@ -48,6 +49,6 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('admin.all.administrator');
+        return redirect()->route('admin.dashboard');
     }
 }

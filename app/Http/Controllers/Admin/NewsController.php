@@ -52,17 +52,6 @@ class NewsController extends Controller
                     ->editColumn('news_thumbnail_photo', function($row){
                         return '<img src="'.asset('uploads/news_thumbnail_photo').'/'.$row->news_thumbnail_photo.'" width="40" >';
                     })
-                    ->editColumn('name', function($row){
-                        if(!$row->updated_by){
-                            return'
-                            <span class="badge bg-success">'.$row->name.'</span>
-                            ';
-                        }else{
-                            return'
-                            <span class="badge bg-warning">'.$row->name.'</span>
-                            ';
-                        }
-                    })
                     ->editColumn('comment_count', function($row){
                         return'
                             <span class="badge bg-info">'.Comment::where('news_id', $row->id)->count().'</span>
@@ -100,7 +89,7 @@ class NewsController extends Controller
                             ';
                         return $btn;
                     })
-                    ->rawColumns(['news_thumbnail_photo', 'tag_name', 'name', 'comment_count', 'created_at', 'status', 'action'])
+                    ->rawColumns(['news_thumbnail_photo', 'comment_count', 'created_at', 'status', 'action'])
                     ->make(true);
         }
 
@@ -116,7 +105,7 @@ class NewsController extends Controller
     }
 
     public function getDivisions(Request $request){
-        $send_data = "<option value='0'>--Select Division--</option>";
+        $send_data = "<option value=''>--Select Division--</option>";
         $divisions = Division::where('country_id', $request->country_id)->get();
         foreach ($divisions as $division) {
             $send_data .= "<option value='$division->id' >$division->name</option>";
@@ -125,7 +114,7 @@ class NewsController extends Controller
     }
 
     public function getDistricts(Request $request){
-        $send_data = "<option value='0'>--Select District--</option>";
+        $send_data = "<option value=''>--Select District--</option>";
         $districts = District::where('division_id', $request->division_id)->get();
         foreach ($districts as $district) {
             $send_data .= "<option value='$district->id' >$district->name</option>";
@@ -134,7 +123,7 @@ class NewsController extends Controller
     }
 
     public function getUpazilas(Request $request){
-        $send_data = "<option value='0'>--Select Upazila--</option>";
+        $send_data = "<option value=''>--Select Upazila--</option>";
         $upazilas = Upazila::where('district_id', $request->district_id)->get();
         foreach ($upazilas as $upazila) {
             $send_data .= "<option value='$upazila->id' >$upazila->name</option>";
@@ -143,7 +132,7 @@ class NewsController extends Controller
     }
 
     public function getUnions(Request $request){
-        $send_data = "<option value='0'>--Select Union--</option>";
+        $send_data = "<option value=''>--Select Union--</option>";
         $unions = Union::where('upazila_id', $request->upazila_id)->get();
         foreach ($unions as $union) {
             $send_data .= "<option value='$union->id' >$union->name</option>";
