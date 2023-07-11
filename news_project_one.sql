@@ -6311,7 +6311,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `facebook_id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `email_verified_at`, `password`, `last_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'User 1', 'user@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', '2023-06-18 05:39:35', '$2y$10$kAQe3U4Xk7IGLfSOfDfoLOYwOq8uRyB4CJoAZZEKrwiJ6jZhF8et6', '2023-06-18 05:40:31', NULL, '2023-06-18 05:23:57', '2023-06-18 05:57:44');
+(1, NULL, NULL, 'User 1', 'user1@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', '2023-06-18 05:39:35', '$2y$10$kAQe3U4Xk7IGLfSOfDfoLOYwOq8uRyB4CJoAZZEKrwiJ6jZhF8et6', '2023-06-18 05:40:31', NULL, '2023-06-18 05:23:57', '2023-06-18 05:57:44');
 
 -- --------------------------------------------------------
 
