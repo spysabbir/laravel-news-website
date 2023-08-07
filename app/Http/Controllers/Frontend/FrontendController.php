@@ -297,6 +297,15 @@ class FrontendController extends Controller
         }
     }
 
+    public function commentDelete($id)
+    {
+        Comment::find($id)->delete();
+        
+        return response()->json([
+            'status' => 200,
+        ]);
+    }
+
     public function commentReplyStore(Request $request)
     {
         if(!Auth::check()){

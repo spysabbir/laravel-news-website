@@ -108,7 +108,11 @@
                             <div class="media-body">
                                 <h6><a class="text-secondary font-weight-bold" href="">{{  $comment->relationtouser->name }}</a> <small><i>{{ $comment->created_at->format('d-M, Y')}}</i></small></h6>
                                 <p>{!! $comment->comment !!}</p>
-                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-secondary" data-Commentid="{{ $comment->id }}" onclick="reply(this)">{{ __('messages.reply') }}</a>
+                                @if ($comment->user_id != Auth::user()->id)
+                                    <a href="javascript:void(0);" class="btn btn-sm btn-outline-secondary" data-Commentid="{{ $comment->id }}" onclick="reply(this)">{{ __('messages.reply') }}</a>
+                                @else
+                                    <a href="javascript:void(0);" data-id="{{ $comment->id }}" class="btn btn-sm btn-outline-danger deleteBtn">Delete</a>
+                                @endif
                                 @foreach (App\Models\Comment_reply::where('comment_id', $comment->id)->get() as $comment_reply)
                                 <div class="media mt-4">
                                     <img src="{{ asset('uploads/profile_photo') }}/{{ $news_details->relationtouser->profile_photo }}" alt="Image" class="img-fluid mr-3 mt-1"
@@ -434,6 +438,49 @@
                 }
             });
         });
+
+        // Delete Data
+        $(document).on('click', '.deleteBtn', function(){
+            var id = $(this).data('id');
+            var url = "{{ route('comment.delete', ":id") }}";
+            url = url.replace(':id', id)
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You will be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        method: 'GET',
+                        success: function(response) {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-center',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
+
+                            Toast.fire({
+                            icon: 'success',
+                            title: 'Comment delete success'
+                            })
+
+                            location.reload();
+                        }
+                    });
+                }
+            })
+        })
     });
 
     function reply(caller){

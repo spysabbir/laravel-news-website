@@ -75,7 +75,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>user@email.com</td>
+                                        <td>user1@email.com</td>
                                         <td>12345678</td>
                                         <td>User</td>
                                     </tr>

@@ -64,6 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::get('location-wise-news', [FrontendController::class, 'locationWiseNews'])->name('location.wise.news');
     Route::get('/news-details/{slug}', [FrontendController::class, 'newsDetails'])->name('news.details');
     Route::post('/comment-store', [FrontendController::class, 'commentStore'])->name('comment.store');
+    Route::get('/comment/delete/{id}', [FrontendController::class, 'commentDelete'])->name('comment.delete');
     Route::post('/comment-reply/store', [FrontendController::class, 'commentReplyStore'])->name('comment.reply.store');
 
     Route::get('/page/{slug}', [FrontendController::class, 'page'])->name('page');
