@@ -34,7 +34,6 @@
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
-                                    <img src="{{ asset('admin') }}/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1">Total Categories</span>
@@ -47,7 +46,6 @@
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
-                                    <img src="{{ asset('admin') }}/img/icons/unicons/wallet-info.png" alt="Credit Card" class="rounded" />
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1">Total Tags</span>
@@ -143,7 +141,6 @@
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
                             <div class="avatar flex-shrink-0">
-                                <img src="{{ asset('admin') }}/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
                             </div>
                         </div>
                         <span class="d-block mb-1">{{ App\Models\User::whereYear('created_at', date('Y'))->count() }} User</span>
@@ -157,7 +154,6 @@
                     <div class="card-body">
                         <div class="card-title d-flex align-items-start justify-content-between">
                             <div class="avatar flex-shrink-0">
-                                <img src="{{ asset('admin') }}/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
                             </div>
                         </div>
                         <span class="fw-semibold d-block mb-1">{{ App\Models\Admin::where('role', 'Reporter')->whereYear('created_at', date('Y'))->count() }} Reporter</span>

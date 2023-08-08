@@ -44,8 +44,8 @@ class SettingController extends Controller
             'app_name_bn' => 'required',
             'app_url' => 'required',
             'time_zone' => 'required',
-            'logo_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
-            'favicon' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'logo_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
+            'favicon' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
         $this->updateEnv("APP_NAME", "'$request->app_name_en'");
         $this->updateEnv("APP_URL", "'$request->app_url'");
@@ -162,7 +162,7 @@ class SettingController extends Controller
 
     public function seoSettingUpdate(Request $request, $id){
         $request->validate([
-            'seo_image' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'seo_image' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         $seo_setting = Seo_setting::where('id', $id)->first();
@@ -183,7 +183,7 @@ class SettingController extends Controller
             }
             $seo_image_name = "Seo-Image".".". $request->file('seo_image')->getClientOriginalExtension();
             $upload_link = base_path("public/uploads/default_photo/").$seo_image_name;
-            Image::make($request->file('seo_image'))->resize(70, 70)->save($upload_link);
+            Image::make($request->file('seo_image'))->resize(800, 800)->save($upload_link);
             Seo_setting::where('id', $id)->update([
                 'seo_image' => $seo_image_name
             ]);

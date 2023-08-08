@@ -16,11 +16,12 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-6 col-12 mb-3">
-                            <label class="form-label" for="image">Image</label>
-                            <input id="image" class="form-control" type="file" name="image" />
-                            @error('image')
+                            <label class="form-label" for="seo_image">Image</label>
+                            <input id="seo_image" class="form-control" type="file" name="seo_image" />
+                            @error('seo_image')
                             <span>{{ $message }}</span>
                             @enderror
+                            <img width="100" height="100" src="{{ asset('uploads/default_photo') }}/{{ $seo_setting->seo_image }}" alt="image" id="seo_imagePreview">
                         </div>
                         <div class="col-md-6 col-12 mb-3">
                             <label class="form-label" for="title">Title</label>
@@ -43,7 +44,7 @@
                             <span>{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="col-md-6 col-12 mb-3">
+                        <div class="col-12 mb-3">
                             <label class="form-label" for="description">Description</label>
                             <textarea name="description" class="form-control" id="description" >{{ $seo_setting->description }}</textarea>
                             @error('description')
@@ -61,6 +62,15 @@
 
 @section('script')
 <script>
-
+$(document).ready(function(){
+        // Logo Image Preview
+        $('#seo_image').change(function(){
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#seo_imagePreview').attr('src', e.target.result).show();
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+    })
 </script>
 @endsection
