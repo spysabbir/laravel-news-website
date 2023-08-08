@@ -278,26 +278,25 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-12 mb-3">
+                            <div class="col-12 mb-3" id="division_col">
                                 <label class="form-label">{{ __('messages.division') }} (<span class="text-info">{{ __('messages.first') }} {{ __('messages.select_country') }}</span>)</label>
                                 <select class="form-control form-control-lg select_division" name="division_id" id="all_division">
                                     <option value="">Select Division</option>
                                 </select>
-
                             </div>
-                            <div class="col-12 mb-3">
+                            <div class="col-12 mb-3" id="district_col">
                                 <label class="form-label">{{ __('messages.district') }} (<span class="text-info">{{ __('messages.first') }} {{ __('messages.select_division') }}</span>)</label>
                                 <select class="form-control form-control-lg select_district" name="district_id" id="all_district">
                                     <option value="">Select District</option>
                                 </select>
                             </div>
-                            <div class="col-12 mb-3">
+                            <div class="col-12 mb-3" id="upazila_col">
                                 <label class="form-label">{{ __('messages.upazila') }} (<span class="text-info">{{ __('messages.first') }} {{ __('messages.select_district') }}</span>)</label>
                                 <select class="form-control form-control-lg select_upazila" name="upazila_id" id="all_upazila">
                                     <option value="">Select Upazila</option>
                                 </select>
                             </div>
-                            <div class="col-12 mb-3">
+                            <div class="col-12 mb-3" id="union_col">
                                 <label class="form-label">{{ __('messages.union') }} (<span class="text-info">{{ __('messages.first') }} {{ __('messages.select_upazila') }}</span>)</label>
                                 <select class="form-control form-control-lg select_union" name="union_id" id="all_union">
                                     <option value="">Select Union</option>
@@ -485,6 +484,7 @@
         });
 
         // Divisions Data
+        $('#division_col').hide();
         $(document).on('change', '.select_country', function(e){
             e.preventDefault();
             var country_id = $(this).val();
@@ -493,11 +493,17 @@
                 method: 'POST',
                 data: {country_id:country_id},
                 success: function(response) {
-                    $('#all_division').html(response);
+                    $('#all_division').html(response.send_data);
+                    if (response.count > 0) {
+                        $('#division_col').show();
+                    } else {
+                        $('#division_col').hide();
+                    }
                 }
             });
         })
         // District Data
+        $('#district_col').hide();
         $(document).on('change', '.select_division', function(e){
             e.preventDefault();
             var division_id = $(this).val();
@@ -506,11 +512,17 @@
                 method: 'POST',
                 data: {division_id:division_id},
                 success: function(response) {
-                    $('#all_district').html(response);
+                    $('#all_district').html(response.send_data);
+                    if (response.count > 0) {
+                        $('#district_col').show();
+                    } else {
+                        $('#district_col').hide();
+                    }
                 }
             });
         })
         // Upazila Data
+        $('#upazila_col').hide();
         $(document).on('change', '.select_district', function(e){
             e.preventDefault();
             var district_id = $(this).val();
@@ -519,11 +531,17 @@
                 method: 'POST',
                 data: {district_id:district_id},
                 success: function(response) {
-                    $('#all_upazila').html(response);
+                    $('#all_upazila').html(response.send_data);
+                    if (response.count > 0) {
+                        $('#upazila_col').show();
+                    } else {
+                        $('#upazila_col').hide();
+                    }
                 }
             });
         })
         // Union Data
+        $('#union_col').hide();
         $(document).on('change', '.select_upazila', function(e){
             e.preventDefault();
             var upazila_id = $(this).val();
@@ -532,7 +550,12 @@
                 method: 'POST',
                 data: {upazila_id:upazila_id},
                 success: function(response) {
-                    $('#all_union').html(response);
+                    $('#all_union').html(response.send_data);
+                    if (response.count > 0) {
+                        $('#union_col').show();
+                    } else {
+                        $('#union_col').hide();
+                    }
                 }
             });
         })

@@ -111,7 +111,7 @@
                                 @if ($comment->user_id != Auth::user()->id)
                                     <a href="javascript:void(0);" class="btn btn-sm btn-outline-secondary" data-Commentid="{{ $comment->id }}" onclick="reply(this)">{{ __('messages.reply') }}</a>
                                 @else
-                                    <a href="javascript:void(0);" data-id="{{ $comment->id }}" class="btn btn-sm btn-outline-danger deleteBtn">Delete</a>
+                                    <a href="javascript:void(0);" data-id="{{ $comment->id }}" class="btn btn-sm btn-outline-danger deleteBtn">{{ __('messages.delete') }}</a>
                                 @endif
                                 @foreach (App\Models\Comment_reply::where('comment_id', $comment->id)->get() as $comment_reply)
                                 <div class="media mt-4">

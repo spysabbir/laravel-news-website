@@ -300,7 +300,7 @@ class FrontendController extends Controller
     public function commentDelete($id)
     {
         Comment::find($id)->delete();
-        
+
         return response()->json([
             'status' => 200,
         ]);
@@ -427,7 +427,11 @@ class FrontendController extends Controller
             $division = Division::find($division_id->division_id);
             $send_data .= "<option value='$division->id' >$division->name</option>";
         }
-        return response()->json($send_data);
+        $divisions_count = $divisions_id->count();
+        return response()->json([
+            'count' => $divisions_count,
+            'send_data' => $send_data
+        ]);
     }
 
     public function getDistricts(Request $request){
@@ -437,7 +441,11 @@ class FrontendController extends Controller
             $district = District::find($district_id->district_id);
             $send_data .= "<option value='$district->id' >$district->name</option>";
         }
-        return response()->json($send_data);
+        $districts_count = $districts_id->count();
+        return response()->json([
+            'count' => $districts_count,
+            'send_data' => $send_data
+        ]);
     }
 
     public function getUpazilas(Request $request){
@@ -447,7 +455,11 @@ class FrontendController extends Controller
             $upazila = Upazila::find($upazila_id->upazila_id);
             $send_data .= "<option value='$upazila->id' >$upazila->name</option>";
         }
-        return response()->json($send_data);
+        $upazilas_count = $upazilas_id->count();
+        return response()->json([
+            'count' => $upazilas_count,
+            'send_data' => $send_data
+        ]);
     }
 
     public function getUnions(Request $request){
@@ -457,7 +469,11 @@ class FrontendController extends Controller
             $union = Union::find($union_id->union_id);
             $send_data .= "<option value='$union->id' >$union->name</option>";
         }
-        return response()->json($send_data);
+        $union_count = $union_id->count();
+        return response()->json([
+            'count' => $union_count,
+            'send_data' => $send_data
+        ]);
     }
 
     public function locationWiseNews(Request $request){

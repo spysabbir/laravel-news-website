@@ -12,4 +12,8 @@ class Comment extends Model
     function relationtouser(){
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    function relationtonews(){
+        return $this->hasOne(News::class, 'id', 'news_id');
+    }
 }

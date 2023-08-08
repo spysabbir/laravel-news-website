@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -81,7 +82,8 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        return view('frontend.dashboard');
+        $totalComment = Comment::where('user_id', Auth::user()->id)->get();
+        return view('frontend.dashboard', compact('totalComment'));
     }
 
     public function profileUpdate(Request $request)
