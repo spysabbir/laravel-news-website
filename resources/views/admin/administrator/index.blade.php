@@ -32,7 +32,6 @@
                                 <option value="">All</option>
                                 <option value="Super Admin">Super Admin</option>
                                 <option value="Admin">Admin</option>
-                                <option value="Manager">Manager</option>
                             </select>
                         </div>
                     </div>
@@ -71,7 +70,6 @@
                                                         <option value="">Select Role</option>
                                                         <option value="Super Admin">Super Admin</option>
                                                         <option value="Admin">Admin</option>
-                                                        <option value="Reporter">Reporter</option>
                                                     </select>
                                                     <span class="text-danger error-text update_role_error"></span>
                                                 </div>

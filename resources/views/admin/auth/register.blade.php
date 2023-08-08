@@ -69,7 +69,7 @@
         @csrf
         <div class="mb-3">
             <label class="form-label">Role</label>
-            <select class="form-select" name="role">
+            <select class="form-select" name="role" id="selectRole">
                 <option value="">Select Role</option>
                 @if (Auth::guard('admin')->user()->role == 'Super Admin')
                 <option value="Super Admin" @selected(old('role') == "Super Admin")>Super Admin</option>
@@ -78,6 +78,18 @@
                 <option value="Reporter" @selected(old('role') == "Reporter")>Reporter</option>
             </select>
             @error('role')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-3" id="branchDiv">
+            <label class="form-label">Branch</label>
+            <select class="form-select" name="branch_id">
+                <option value="">Select Branch</option>
+                @foreach ($branches as $branch)
+                <option value="{{ $branch->id }}" @selected(old('branch_id') == $branch->id)>{{ $branch->branch_name }}</option>
+                @endforeach
+            </select>
+            @error('branch_id')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
@@ -124,7 +136,18 @@
 @endsection
 
 @section('script')
-<script>
-
+    <script>
+    $(document).ready(function() {
+        // Divisions Data
+        $('#branchDiv').hide();
+        $(document).on('change', '#selectRole', function(e){
+            e.preventDefault();
+            if ($(this).val() == 'Reporter') {
+                $('#branchDiv').show();
+            } else {
+                $('#branchDiv').hide();
+            }
+        })
+    })
 </script>
 @endsection

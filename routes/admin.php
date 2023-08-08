@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\Contact_messageController;
 use App\Http\Controllers\Admin\NewsController;
@@ -102,6 +103,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('advertisement-restore/{id}', [AdvertisementController::class, 'restore'])->name('advertisement.restore');
             Route::get('advertisement-forcedelete/{id}', [AdvertisementController::class, 'forceDelete'])->name('advertisement.forcedelete');
             Route::get('advertisement-status/{id}', [AdvertisementController::class, 'status'])->name('advertisement.status');
+
+            Route::resource('branch', BranchController::class);
+            Route::get('branch-trashed', [BranchController::class, 'trashed'])->name('branch.trashed');
+            Route::get('branch-restore/{id}', [BranchController::class, 'restore'])->name('branch.restore');
+            Route::get('branch-forcedelete/{id}', [BranchController::class, 'forceDelete'])->name('branch.forcedelete');
+            Route::get('branch-status/{id}', [BranchController::class, 'status'])->name('branch.status');
 
             Route::resource('photo_gallery', Photo_galleryController::class);
             Route::get('photo_gallery-trashed', [Photo_galleryController::class, 'trashed'])->name('photo_gallery.trashed');

@@ -365,7 +365,7 @@ class NewsController extends Controller
             return Datatables::of($trashed_news)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    if(Auth::guard()->user()->role == 'Super Admin'){
+                    if(Auth::guard('admin')->user()->role == 'Super Admin'){
                         $btn = '
                         <button type="button" id="'.$row->id.'" class="btn btn-danger btn-sm restoreBtn"><i class="fa-solid fa-rotate"></i></button>
                         <button type="button" id="'.$row->id.'" class="btn btn-danger btn-sm forceDeleteBtn"><i class="fa-solid fa-delete-left"></i></button>

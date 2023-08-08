@@ -8,6 +8,11 @@
     <strong>{{ session('error') }}</strong>
 </div>
 @endif
+@if (session('status'))
+<div class="alert alert-success" role="alert">
+    <strong>{{ session('status') }}</strong>
+</div>
+@endif
 <div class="row">
     <div class="col-lg-8 mb-4">
         <div class="card">

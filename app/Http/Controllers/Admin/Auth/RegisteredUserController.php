@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Branch;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -21,7 +22,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('admin.auth.register');
+        $branches  = Branch::where('status', 'Active')->get();
+        return view('admin.auth.register', compact('branches'));
     }
 
     /**
@@ -34,8 +36,15 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->role == 'Reporter') {
+            $branch_id = ['required'];
+        } else {
+            $branch_id = ['nullable'];
+        }
+
         $request->validate([
             'role' => ['required'],
+            'branch_id' => $branch_id,
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'indisposable', 'unique:'.Admin::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -44,11 +53,12 @@ class RegisteredUserController extends Controller
 
         Admin::create([
             'role' => $request->role,
+            'branch_id' => $request->branch_id,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.dashboard')->with('status', 'Account created succesfully.');
     }
 }

@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin_master')
 
-@section('title', 'Category')
+@section('title', 'Branch')
 
 @section('content')
 <div class="row">
@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div class="text">
-                    <h4 class="card-title">Category</h4>
+                    <h4 class="card-title">Branch</h4>
                     <p class="card-text">List</p>
                 </div>
                 <div class="action_btn">
@@ -26,21 +26,53 @@
                                 <div class="modal-body">
                                     <form action="#" method="POST" id="create_form" enctype="multipart/form-data">
                                         @csrf
-                                        <div class="mb-3">
-                                            <label class="form-label">Category Name (En)</label>
-                                            <input type="text" name="category_name_en" class="form-control" placeholder="Enter Category Name English" />
-                                            <span class="text-danger error-text category_name_en_error"></span>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Category Name (Bn)</label>
-                                            <input type="text" name="category_name_bn" class="form-control" placeholder="Enter Category Name Bangla" />
-                                            <span class="text-danger error-text category_name_bn_error"></span>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Category Photo</label>
-                                            <small class="text-warning">* Category Photo Size is (150 * 100 px)</small>
-                                            <input type="file" name="category_photo" class="form-control" accept=".jpg, .jpeg, .png, .webp, .svg" />
-                                            <span class="text-danger error-text category_photo_error"></span>
+                                        <div class="row">
+                                            <div class="col-lg-6 mb-3">
+                                                <label class="form-label">Branch Name (En)</label>
+                                                <input type="text" name="branch_name_en" class="form-control" placeholder="Enter Branch Name English" />
+                                                <span class="text-danger error-text branch_name_en_error"></span>
+                                            </div>
+                                            <div class="col-lg-6 mb-3">
+                                                <label class="form-label">Branch Name (Bn)</label>
+                                                <input type="text" name="branch_name_bn" class="form-control" placeholder="Enter Branch Name Bangla" />
+                                                <span class="text-danger error-text branch_name_bn_error"></span>
+                                            </div>
+                                            <div class="col-lg-6 mb-3">
+                                                <label class="form-label">Branch Phone Number (En)</label>
+                                                <input type="text" name="branch_phone_number_en" class="form-control" placeholder="Enter Branch Phone Number English" />
+                                                <span class="text-danger error-text branch_phone_number_en_error"></span>
+                                            </div>
+                                            <div class="col-lg-6 mb-3">
+                                                <label class="form-label">Branch Phone Number (Bn)</label>
+                                                <input type="text" name="branch_phone_number_bn" class="form-control" placeholder="Enter Branch Phone Number Bangla" />
+                                                <span class="text-danger error-text branch_phone_number_bn_error"></span>
+                                            </div>
+                                            <div class="col-lg-6 mb-3">
+                                                <label class="form-label">Branch Email (En)</label>
+                                                <input type="email" name="branch_email_en" class="form-control" placeholder="Enter Branch Email English" />
+                                                <span class="text-danger error-text branch_email_en_error"></span>
+                                            </div>
+                                            <div class="col-lg-6 mb-3">
+                                                <label class="form-label">Branch Email (Bn)</label>
+                                                <input type="email" name="branch_email_bn" class="form-control" placeholder="Enter Branch Email Bangla" />
+                                                <span class="text-danger error-text branch_email_bn_error"></span>
+                                            </div>
+                                            <div class="col-lg-12 mb-3">
+                                                <label class="form-label">Branch Address (En)</label>
+                                                <textarea name="branch_address_en" class="form-control" placeholder="Enter Branch Address English"></textarea>
+                                                <span class="text-danger error-text branch_address_en_error"></span>
+                                            </div>
+                                            <div class="col-lg-12 mb-3">
+                                                <label class="form-label">Branch Address (Bn)</label>
+                                                <textarea name="branch_address_bn" class="form-control" placeholder="Enter Branch Address Bangla"></textarea>
+                                                <span class="text-danger error-text branch_address_bn_error"></span>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label class="form-label">Branch Photo</label>
+                                                <small class="text-warning">* Branch Photo Size is (150 * 100 px)</small>
+                                                <input type="file" name="branch_photo" class="form-control" accept=".jpg, .jpeg, .png, .webp" />
+                                                <span class="text-danger error-text branch_photo_error"></span>
+                                            </div>
                                         </div>
                                         <button type="submit" id="create_btn" class="btn btn-primary">Create</button>
                                     </form>
@@ -63,11 +95,12 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <table class="table table-primary" id="trashed_category_table" style="width: 100%">
+                                    <table class="table table-primary" id="trashed_branch_table" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th>Sl No</th>
-                                                <th>Category Name</th>
+                                                <th>Branch Name (En)</th>
+                                                <th>Branch Name (Bn)</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -98,15 +131,14 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-light" id="all_category_table">
+                    <table class="table table-light" id="all_branch_table">
                         <thead>
                             <tr>
                                 <th>Sl No</th>
-                                <th>Category Photo</th>
-                                <th>Category Name (En)</th>
-                                <th>Category Name (Bn)</th>
-                                <th>Category Status</th>
-                                <th>Show Home Screen</th>
+                                <th>Branch Photo</th>
+                                <th>Branch Name (En)</th>
+                                <th>Branch Name (Bn)</th>
+                                <th>Branch Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -124,22 +156,54 @@
                                             <form action="#" method="POST" id="edit_form" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PATCH')
-                                                <input type="hidden" name="" id="category_id">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Category Name English</label>
-                                                    <input type="text" name="category_name_en" class="form-control" id="category_name_en" />
-                                                    <span class="text-danger error-text update_category_name_en_error"></span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Category Name Bangla</label>
-                                                    <input type="text" name="category_name_bn" class="form-control" id="category_name_bn"/>
-                                                    <span class="text-danger error-text update_category_name_bn_error"></span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Category Photo</label>
-                                                    <small class="text-warning">* Category Photo Size is (150 * 100 px)</small>
-                                                    <input type="file" name="category_photo" class="form-control" accept=".jpg, .jpeg, .png, .webp, .svg" />
-                                                    <span class="text-danger error-text update_category_photo_error"></span>
+                                                <input type="hidden" name="" id="branch_id">
+                                                <div class="row">
+                                                    <div class="col-lg-6mb-3">
+                                                        <label class="form-label">Branch Name English</label>
+                                                        <input type="text" name="branch_name_en" class="form-control" id="branch_name_en" />
+                                                        <span class="text-danger error-text update_branch_name_en_error"></span>
+                                                    </div>
+                                                    <div class="col-lg-6mb-3">
+                                                        <label class="form-label">Branch Name Bangla</label>
+                                                        <input type="text" name="branch_name_bn" class="form-control" id="branch_name_bn"/>
+                                                        <span class="text-danger error-text update_branch_name_bn_error"></span>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Branch Phone Number (En)</label>
+                                                        <input type="text" name="branch_phone_number_en" class="form-control" id="branch_phone_number_en" />
+                                                        <span class="text-danger error-text branch_phone_number_en_error"></span>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Branch Phone Number (Bn)</label>
+                                                        <input type="text" name="branch_phone_number_bn" class="form-control" id="branch_phone_number_bn" />
+                                                        <span class="text-danger error-text branch_phone_number_bn_error"></span>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Branch Email (En)</label>
+                                                        <input type="email" name="branch_email_en" class="form-control" id="branch_email_en" />
+                                                        <span class="text-danger error-text branch_email_en_error"></span>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-3">
+                                                        <label class="form-label">Branch Email (Bn)</label>
+                                                        <input type="email" name="branch_email_bn" class="form-control" id="branch_email_bn" />
+                                                        <span class="text-danger error-text branch_email_bn_error"></span>
+                                                    </div>
+                                                    <div class="col-lg-12 mb-3">
+                                                        <label class="form-label">Branch Address (En)</label>
+                                                        <textarea name="branch_address_en" class="form-control" id="branch_address_en"></textarea>
+                                                        <span class="text-danger error-text branch_address_en_error"></span>
+                                                    </div>
+                                                    <div class="col-lg-12 mb-3">
+                                                        <label class="form-label">Branch Address (Bn)</label>
+                                                        <textarea name="branch_address_bn" class="form-control" id="branch_address_bn"></textarea>
+                                                        <span class="text-danger error-text branch_address_bn_error"></span>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Branch Photo</label>
+                                                        <small class="text-warning">* Branch Photo Size is (150 * 100 px)</small>
+                                                        <input type="file" name="branch_photo" class="form-control" accept=".jpg, .jpeg, .png, .webp" />
+                                                        <span class="text-danger error-text update_branch_photo_error"></span>
+                                                    </div>
                                                 </div>
                                                 <button type="submit" id="update_btn" class="btn btn-primary">Update</button>
                                             </form>
@@ -168,23 +232,22 @@
             }
         });
         // Read Data
-        table = $('#all_category_table').DataTable({
+        table = $('#all_branch_table').DataTable({
             processing: true,
             serverSide: true,
             searching: true,
             ajax: {
-                url: "{{ route('admin.category.index') }}",
+                url: "{{ route('admin.branch.index') }}",
                 "data":function(e){
                     e.status = $('#status').val();
                 },
             },
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'category_photo', name: 'category_photo'},
-                {data: 'category_name_en', name: 'category_name_en'},
-                {data: 'category_name_bn', name: 'category_name_bn'},
+                {data: 'branch_photo', name: 'branch_photo'},
+                {data: 'branch_name_en', name: 'branch_name_en'},
+                {data: 'branch_name_bn', name: 'branch_name_bn'},
                 {data: 'status', name: 'status'},
-                {data: 'show_home_screen', name: 'show_home_screen'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
         });
@@ -192,7 +255,7 @@
         // Filter Data
         $(document).on('change', '.filter_data', function(e){
             e.preventDefault();
-            $('#all_category_table').DataTable().ajax.reload()
+            $('#all_branch_table').DataTable().ajax.reload()
         })
 
         // Store Data
@@ -201,7 +264,7 @@
             const form_data = new FormData(this);
             $("#create_btn").text('Creating...');
             $.ajax({
-                url: '{{ route('admin.category.store') }}',
+                url: '{{ route('admin.branch.store') }}',
                 method: 'POST',
                 data: form_data,
                 cache: false,
@@ -231,15 +294,21 @@
         $(document).on('click', '.editBtn', function(e){
             e.preventDefault();
             var id = $(this).attr('id');
-            var url = "{{ route('admin.category.edit', ":id") }}";
+            var url = "{{ route('admin.branch.edit', ":id") }}";
             url = url.replace(':id', id)
             $.ajax({
                 url:  url,
                 method: 'GET',
                 success: function(response) {
-                    $("#category_name_en").val(response.category_name_en);
-                    $("#category_name_bn").val(response.category_name_bn);
-                    $('#category_id').val(response.category_id)
+                    $("#branch_name_en").val(response.branch_name_en);
+                    $("#branch_name_bn").val(response.branch_name_bn);
+                    $("#branch_phone_number_en").val(response.branch_phone_number_en);
+                    $("#branch_phone_number_bn").val(response.branch_phone_number_bn);
+                    $("#branch_email_en").val(response.branch_email_en);
+                    $("#branch_email_bn").val(response.branch_email_bn);
+                    $("#branch_address_en").val(response.branch_address_en);
+                    $("#branch_address_bn").val(response.branch_address_bn);
+                    $('#branch_id').val(response.branch_id)
                 }
             });
         })
@@ -247,8 +316,8 @@
         // Update Data
         $('#edit_form').on('submit', function(e){
             e.preventDefault();
-            var id = $('#category_id').val();
-            var url = "{{ route('admin.category.update', ":id") }}";
+            var id = $('#branch_id').val();
+            var url = "{{ route('admin.branch.update', ":id") }}";
             url = url.replace(':id', id)
             const form_data = new FormData(this);
             $("#update_btn").text('Updating...');
@@ -282,7 +351,7 @@
         $(document).on('click', '.deleteBtn', function(e){
             e.preventDefault();
             let id = $(this).attr('id');
-            var url = "{{ route('admin.category.destroy', ":id") }}";
+            var url = "{{ route('admin.branch.destroy', ":id") }}";
             url = url.replace(':id', id)
             Swal.fire({
                 title: 'Are you sure?',
@@ -308,16 +377,17 @@
         })
 
         // Trashed Data
-        trashed_table = $('#trashed_category_table').DataTable({
+        trashed_table = $('#trashed_branch_table').DataTable({
             processing: true,
             serverSide: true,
             searching: true,
             ajax: {
-                url: "{{ route('admin.category.trashed') }}",
+                url: "{{ route('admin.branch.trashed') }}",
             },
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'category_name', name: 'category_name'},
+                {data: 'branch_name_en', name: 'branch_name_en'},
+                {data: 'branch_name_bn', name: 'branch_name_bn'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
         });
@@ -326,7 +396,7 @@
         $(document).on('click', '.restoreBtn', function(e){
             e.preventDefault();
             let id = $(this).attr('id');
-            var url = "{{ route('admin.category.restore', ":id") }}";
+            var url = "{{ route('admin.branch.restore', ":id") }}";
             url = url.replace(':id', id)
             $.ajax({
                 url: url,
@@ -345,7 +415,7 @@
             e.preventDefault();
             $('.btn-close').trigger('click');
             let id = $(this).attr('id');
-            var url = "{{ route('admin.category.forcedelete', ":id") }}";
+            var url = "{{ route('admin.branch.forcedelete', ":id") }}";
             url = url.replace(':id', id)
             Swal.fire({
                 title: 'Are you sure?',
@@ -370,27 +440,11 @@
             })
         })
 
-         // Status Change
+        // Status Change
         $(document).on('click', '.statusBtn', function(e){
             e.preventDefault();
             let id = $(this).attr('id');
-            var url = "{{ route('admin.category.status', ":id") }}";
-            url = url.replace(':id', id)
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function(response) {
-                    table.ajax.reload();
-                    toastr.info(response.message);
-                }
-            });
-        })
-
-         // Status Change
-        $(document).on('click', '.showHomeScreenBtn', function(e){
-            e.preventDefault();
-            let id = $(this).attr('id');
-            var url = "{{ route('admin.category.show.home.screen', ":id") }}";
+            var url = "{{ route('admin.branch.status', ":id") }}";
             url = url.replace(':id', id)
             $.ajax({
                 url: url,

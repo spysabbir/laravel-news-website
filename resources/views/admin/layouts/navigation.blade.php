@@ -78,6 +78,12 @@
     <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Admin Panel</span>
     </li>
+    <li class="menu-item {{(Route::currentRouteName() == 'admin.branch.index') ? 'active' : ''}}">
+        <a href="{{ route('admin.branch.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bxs-home"></i>
+            <div data-i18n="Branch">Branch</div>
+        </a>
+    </li>
     <li class="menu-item {{(Route::currentRouteName() == 'admin.all.reporter') ? 'active' : ''}}">
         <a href="{{ route('admin.all.reporter') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-user-pin"></i>
