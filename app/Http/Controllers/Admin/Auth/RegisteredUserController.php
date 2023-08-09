@@ -12,53 +12,49 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Validator;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        $branches  = Branch::where('status', 'Active')->get();
-        return view('admin.auth.register', compact('branches'));
-    }
-
-    /**
-     * Handle an incoming registration request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request)
     {
-        if ($request->role == 'Reporter') {
-            $branch_id = ['required'];
-        } else {
-            $branch_id = ['nullable'];
-        }
-
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'role' => ['required'],
-            'branch_id' => $branch_id,
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'indisposable', 'unique:'.Admin::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'password_confirmation' => ['required', Rules\Password::defaults()],
         ]);
 
-        Admin::create([
-            'role' => $request->role,
-            'branch_id' => $request->branch_id,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        if($validator->fails()){
+            return response()->json([
+                'status' => 400,
+                'error'=> $validator->errors()->toArray()
+            ]);
+        }else{
+            if ($request->role == 'Reporter' && $request->branch_id == NULL) {
+                $validator = Validator::make($request->all(), [
+                    'branch_id' => ['required'],
+                ]);
+                return response()->json([
+                    'status' => 401,
+                    'error'=> $validator->errors()->toArray()
+                ]);
+            } else {
+                Admin::create([
+                    'role' => $request->role,
+                    'branch_id' => $request->branch_id,
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'created_by' => Auth::guard('admin')->user()->id,
+                ]);
 
-        return redirect()->route('admin.dashboard')->with('status', 'Account created succesfully.');
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Administrator create successfully.'
+                ]);
+            }
+        }
     }
 }

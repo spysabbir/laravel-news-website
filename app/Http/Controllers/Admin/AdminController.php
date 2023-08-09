@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Branch;
 use App\Models\Category;
 use App\Models\News;
 use App\Models\Tag;
@@ -98,7 +99,7 @@ class AdminController extends Controller
     {
         if ($request->ajax()) {
             $all_administrator = "";
-            $query = Admin::select('admins.*');
+            $query = Admin::where('role', '!=', 'Reporter')->select('admins.*');
 
             if($request->status){
                 $query->where('admins.status', $request->status);
@@ -147,6 +148,7 @@ class AdminController extends Controller
                     ->rawColumns(['profile_photo', 'status', 'role', 'action'])
                     ->make(true);
         }
+
         return view('admin.administrator.index');
     }
 
@@ -171,6 +173,7 @@ class AdminController extends Controller
             ]);
         }else{
             $administratore->update([
+                'email' => $request->email,
                 'role' => $request->role,
                 'updated_by' => Auth::guard('admin')->user()->id,
             ]);
@@ -275,18 +278,26 @@ class AdminController extends Controller
     {
         if ($request->ajax()) {
             $all_reporter = "";
-            $query = Admin::where('role', 'Reporter')->select('admins.*');
+            $query = Admin::where('role', 'Reporter');
 
             if($request->status){
                 $query->where('admins.status', $request->status);
             }
+            if($request->branch_id){
+                $query->where('admins.branch_id', $request->branch_id);
+            }
 
-            $all_reporter = $query->get();
+            $all_reporter = $query->select('admins.*')->get();
 
             return Datatables::of($all_reporter)
                     ->addIndexColumn()
                     ->editColumn('profile_photo', function($row){
                         return '<img src="'.asset('uploads/profile_photo').'/'.$row->profile_photo.'" width="40" >';
+                    })
+                    ->editColumn('branch_name', function($row){
+                        return'
+                        <span class="badge bg-success">'.Branch::find($row->branch_id)->branch_name.'</span>
+                        ';
                     })
                     ->editColumn('last_active', function($row){
                         return'
@@ -311,10 +322,50 @@ class AdminController extends Controller
                             ';
                         }
                     })
-                    ->rawColumns(['profile_photo', 'last_active', 'created_at', 'status'])
+                    ->addColumn('action', function($row){
+                        $btn = '
+                            <button type="button" id="'.$row->id.'" class="btn btn-primary btn-sm editBtn" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa-regular fa-pen-to-square"></i></button>
+                        ';
+                        return $btn;
+                    })
+                    ->rawColumns(['profile_photo', 'branch_name', 'last_active', 'created_at', 'status', 'action'])
                     ->make(true);
         }
-        return view('admin.reporter.index');
+
+        $branches = Branch::where('status', 'Active')->get();
+        return view('admin.reporter.index', compact('branches'));
+    }
+
+    public function reporterEdit($id)
+    {
+        $reporter = Admin::where('id', $id)->first();
+        return response()->json($reporter);
+    }
+
+    public function reporterUpdate(Request $request, $id)
+    {
+        $reporter = Admin::where('id', $id)->first();
+
+        $validator = Validator::make($request->all(), [
+            '*' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'status' => 400,
+                'error'=> $validator->errors()->toArray()
+            ]);
+        }else{
+            $reporter->update([
+                'email' => $request->email,
+                'branch_id' => $request->branch_id,
+                'updated_by' => Auth::guard('admin')->user()->id,
+            ]);
+            return response()->json([
+                'status' => 200,
+                'message' => 'Reporter update successfully',
+            ]);
+        }
     }
 
     public function reporterStatus($id)

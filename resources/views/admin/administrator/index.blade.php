@@ -12,7 +12,64 @@
                     <p class="card-text">List</p>
                 </div>
                 <div class="action_btn">
-                    <a href="{{ route('admin.administrator.register') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i></a>
+                    <!-- createModal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel1">Create</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="#" method="POST" id="create_form">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label class="form-label">Role *</label>
+                                            <select class="form-select" name="role">
+                                                <option value="">Select Role</option>
+                                                <option value="Super Admin">Super Admin</option>
+                                                <option value="Admin">Admin</option>
+                                            </select>
+                                            <span class="text-danger error-text role_error"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Name *</label>
+                                            <input type="text" class="form-control" name="name" placeholder="Enter your name"/>
+                                            <span class="text-danger error-text name_error"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Email *</label>
+                                            <input type="email" class="form-control" name="email" placeholder="Enter your email" />
+                                            <span class="text-danger error-text email_error"></span>
+                                        </div>
+                                        <div class="mb-3 form-password-toggle">
+                                            <label class="form-label" for="password">Password *</label>
+                                            <div class="input-group input-group-merge">
+                                                <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"/>
+                                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                            </div>
+                                            <span class="text-danger error-text password_error"></span>
+                                        </div>
+                                        <div class="mb-3 form-password-toggle">
+                                            <label class="form-label" for="password_confirmation">Confirm Password *</label>
+                                            <div class="input-group input-group-merge">
+                                                <input type="password" id="password_confirmation" class="form-control" name="password_confirmation" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"/>
+                                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                            </div>
+                                            <span class="text-danger error-text password_confirmation_error"></span>
+                                        </div>
+                                        <button type="submit" id="create_btn" class="btn btn-primary">Create</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-body">
@@ -51,7 +108,7 @@
                         </thead>
                         <tbody>
 
-                            <!-- Modal -->
+                            <!-- Edit Modal -->
                             <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -65,8 +122,13 @@
                                                 @method('PATCH')
                                                 <input type="hidden" name="" id="administrator_id">
                                                 <div class="mb-3">
+                                                    <label class="form-label">Email</label>
+                                                    <input type="email" class="form-control" name="email" id="get_email">
+                                                    <span class="text-danger error-text update_email_error"></span>
+                                                </div>
+                                                <div class="mb-3">
                                                     <label class="form-label">Role</label>
-                                                    <select class="form-select" name="role" id="role">
+                                                    <select class="form-select" name="role" id="get_role">
                                                         <option value="">Select Role</option>
                                                         <option value="Super Admin">Super Admin</option>
                                                         <option value="Admin">Admin</option>
@@ -99,6 +161,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         // Read Data
         table = $('#all_administrator_table').DataTable({
             processing: true,
@@ -128,6 +191,38 @@
             $('#all_administrator_table').DataTable().ajax.reload()
         })
 
+        // Store Data
+        $('#create_form').on('submit', function(e){
+            e.preventDefault();
+            const form_data = new FormData(this);
+            $("#create_btn").text('Creating...');
+            $.ajax({
+                url: "{{ route('admin.administrator.register') }}",
+                method: 'POST',
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                beforeSend:function(){
+                    $(document).find('span.error-text').text('');
+                },
+                success: function(response) {
+                    if (response.status == 400) {
+                        $.each(response.error, function(prefix, val){
+                            $('span.'+prefix+'_error').text(val[0]);
+                        })
+                    }else{
+                        $("#create_btn").text('Created');
+                        $("#create_form")[0].reset();
+                        $('.btn-close').trigger('click');
+                        table.ajax.reload()
+                        toastr.success(response.message);
+                    }
+                }
+            });
+        });
+
         // Edit Form
         $(document).on('click', '.editBtn', function(e){
             e.preventDefault();
@@ -138,7 +233,8 @@
                 url:  url,
                 method: 'GET',
                 success: function(response) {
-                    $("#role").val(response.role);
+                    $("#get_email").val(response.email);
+                    $("#get_role").val(response.role);
                     $('#administrator_id').val(response.id)
                 }
             });

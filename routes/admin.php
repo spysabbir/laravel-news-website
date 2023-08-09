@@ -82,6 +82,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::middleware(['admin'])->group(function () {
             Route::get('all-reporter', [AdminController::class, 'allReporter'])->name('all.reporter');
             Route::get('reporter-status/{id}', [AdminController::class, 'reporterStatus'])->name('reporter.status');
+            Route::get('reporter-edit/{id}', [AdminController::class, 'reporterEdit'])->name('reporter.edit');
+            Route::patch('reporter-update/{id}', [AdminController::class, 'reporterUpdate'])->name('reporter.update');
 
             Route::get('all-user', [AdminController::class, 'allUser'])->name('all.user');
             Route::get('user-status/{id}', [AdminController::class, 'userStatus'])->name('user.status');

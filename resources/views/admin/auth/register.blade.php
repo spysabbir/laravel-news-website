@@ -68,20 +68,20 @@
     <form id="formAuthentication" class="mb-3" action="{{ route('admin.administrator.register') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label class="form-label">Role</label>
+            <label class="form-label">Role *</label>
             <select class="form-select" name="role" id="selectRole">
                 <option value="">Select Role</option>
                 @if (Auth::guard('admin')->user()->role == 'Super Admin')
                 <option value="Super Admin" @selected(old('role') == "Super Admin")>Super Admin</option>
                 <option value="Admin" @selected(old('role') == "Admin")>Admin</option>
-                @endif
                 <option value="Reporter" @selected(old('role') == "Reporter")>Reporter</option>
+                @endif
             </select>
             @error('role')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-        <div class="mb-3" id="branchDiv">
+        <div class="mb-3">
             <label class="form-label">Branch</label>
             <select class="form-select" name="branch_id">
                 <option value="">Select Branch</option>
@@ -94,21 +94,21 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
+            <label for="name" class="form-label">Name *</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" placeholder="Enter your name"/>
             @error('name')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="mb-3">
-            <label class="form-label">Email</label>
+            <label class="form-label">Email *</label>
             <input type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="Enter your email" />
             @error('email')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="mb-3 form-password-toggle">
-            <label class="form-label" for="password">Password</label>
+            <label class="form-label" for="password">Password *</label>
             <div class="input-group input-group-merge">
                 <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"/>
                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
@@ -118,7 +118,7 @@
             @enderror
         </div>
         <div class="mb-3 form-password-toggle">
-            <label class="form-label" for="password_confirmation">Confirm Password</label>
+            <label class="form-label" for="password_confirmation">Confirm Password *</label>
             <div class="input-group input-group-merge">
                 <input type="password" id="password_confirmation" class="form-control" name="password_confirmation" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"/>
                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
@@ -138,16 +138,7 @@
 @section('script')
     <script>
     $(document).ready(function() {
-        // Divisions Data
-        $('#branchDiv').hide();
-        $(document).on('change', '#selectRole', function(e){
-            e.preventDefault();
-            if ($(this).val() == 'Reporter') {
-                $('#branchDiv').show();
-            } else {
-                $('#branchDiv').hide();
-            }
-        })
+
     })
 </script>
 @endsection
