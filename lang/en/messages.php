@@ -105,4 +105,7 @@ return [
     'sl_no' => 'Serial No',
     'news_headline' => 'News Headline',
     'date' => 'Date',
+    'comments_news' => 'Comments News',
+    'branch' => 'Branch',
+    'email' => 'Email',
 ];

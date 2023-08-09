@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Comment_reply;
 use App\Models\Country;
 use App\Models\District;
 use App\Models\Division;
@@ -464,6 +465,29 @@ class NewsController extends Controller
     {
         $comment = Comment::where('id', $id)->first();
         $comment->delete();
+        return back();
+    }
+
+    public function replyCommentStatus($id)
+    {
+        $replyComment = Comment_reply::where('id', $id)->first();
+        if($replyComment->status == "Active"){
+            $replyComment->update([
+                'status' => "Inactive",
+            ]);
+            return back();
+        }else{
+            $replyComment->update([
+                'status' =>"Active",
+            ]);
+            return back();
+        }
+    }
+
+    public function replyCommentDelete($id)
+    {
+        $replyComment = Comment_reply::where('id', $id)->first();
+        $replyComment->delete();
         return back();
     }
 }

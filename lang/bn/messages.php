@@ -105,4 +105,7 @@ return [
     'sl_no' => 'ক্রমিক নং',
     'news_headline' => 'নিউজ হেডলাইন',
     'date' => 'তারিখ',
+    'comments_news' => 'মতামত নিউজ',
+    'branch' => 'শাখা',
+    'email' => 'ইমেল',
 ];

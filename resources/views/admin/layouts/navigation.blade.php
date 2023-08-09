@@ -126,12 +126,6 @@
             <div data-i18n="Advertisement">Advertisement</div>
         </a>
     </li>
-    <li class="menu-item {{(Route::currentRouteName() == 'admin.category.index') ? 'active' : ''}}">
-        <a href="{{ route('admin.category.index') }}" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-category"></i>
-            <div data-i18n="Category">Category</div>
-        </a>
-    </li>
     @endif
     <!-- Admin Panel -->
 
@@ -140,6 +134,14 @@
     <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Branch Panel</span>
     </li>
+    @if (Auth::guard('admin')->user()->role == 'Manager')
+    <li class="menu-item {{(Route::currentRouteName() == 'admin.category.index') ? 'active' : ''}}">
+        <a href="{{ route('admin.category.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-category"></i>
+            <div data-i18n="Category">Category</div>
+        </a>
+    </li>
+    @endif
     <li class="menu-item {{(Route::currentRouteName() == 'admin.tag.index') ? 'active' : ''}}">
         <a href="{{ route('admin.tag.index') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-purchase-tag-alt"></i>
@@ -165,5 +167,5 @@
         </a>
     </li>
     @endif
-    <!-- Reporter Panel -->
+    <!-- Branch Panel -->
 </ul>

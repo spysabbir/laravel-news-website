@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/comment-store', [FrontendController::class, 'commentStore'])->name('comment.store');
     Route::get('/comment/delete/{id}', [FrontendController::class, 'commentDelete'])->name('comment.delete');
     Route::post('/comment-reply/store', [FrontendController::class, 'commentReplyStore'])->name('comment.reply.store');
+    Route::get('/reply/comment/delete/{id}', [FrontendController::class, 'replyCommentDelete'])->name('reply.comment.delete');
 
     Route::get('/page/{slug}', [FrontendController::class, 'page'])->name('page');
 

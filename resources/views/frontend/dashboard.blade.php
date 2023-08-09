@@ -44,10 +44,16 @@
                                             <h4 class="card-title">{{ __('messages.dashboard') }}</h4>
                                         </div>
                                         <div class="card-body">
-                                            <p><strong>{{ __('messages.status') }}: </strong>{{ Auth::user()->status }}</p>
+                                            <p><strong>{{ __('messages.status') }}: </strong>
+                                                @if (Auth::user()->status == "Active")
+                                                    <span class="badge badge-success">{{ Auth::user()->status }}</span>
+                                                @else
+                                                <span class="badge badge-danger">{{ Auth::user()->status }}</span>
+                                                @endif
+                                            </p>
                                             <p><strong>{{ __('messages.join_date') }}: </strong>{{ Auth::user()->created_at->format('d-F,Y h:m.s A') }}</p>
                                             <p><strong>{{ __('messages.last_active') }}: </strong>{{ date('d-M,Y h:m:s A', strtotime(Auth::user()->last_active)) }}</p>
-                                            <p><strong>{{ __('messages.comments') }}: </strong>{{ $totalComment->count() }}</p>
+                                            <p><strong>{{ __('messages.comments_news') }}: </strong>{{ $totalComment->count() }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +171,7 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table table-striped table-hover">
+                                                <table class="table table-striped table-hover" id="commentsTable">
                                                     <thead>
                                                         <tr>
                                                             <th>{{ __('messages.sl_no') }}</th>
@@ -209,6 +215,8 @@
 
 @section('script')
 <script>
-
+    $(document).ready(function() {
+        $('#commentsTable').DataTable();
+    });
 </script>
 @endsection

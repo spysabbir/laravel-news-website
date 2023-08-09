@@ -238,7 +238,7 @@ class FrontendController extends Controller
         $tranding_news = News::where('status', 'Active')->orderBy('news_view', 'desc')->get();
         $related_news = News::where('news_category_id', $news_details->news_category_id)->where('id', '!=', $news_details->id)->get();
         $advertisements = Advertisement::where('status', 'Active')->get();
-        $comments = Comment::where('news_id', $news_details->id)->get();
+        $comments = Comment::where('news_id', $news_details->id)->where('status', 'Active')->get();
         $categories = Category::where('status', 'Active')->get();
 
         SEOMeta::setTitle($news_details->news_title);
@@ -341,6 +341,15 @@ class FrontendController extends Controller
                 }
             }
         }
+    }
+
+    public function replyCommentDelete($id)
+    {
+        Comment_reply::find($id)->delete();
+
+        return response()->json([
+            'status' => 200,
+        ]);
     }
 
     public function allGalleryPhoto()

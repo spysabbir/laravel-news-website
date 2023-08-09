@@ -38,8 +38,9 @@
     <!-- Libraries Stylesheet -->
     <link href="{{ asset('frontend') }}/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="{{ asset('frontend') }}/lib/lightbox/dist/simple-lightbox.css" rel="stylesheet">
+    <link href="{{ asset('admin') }}/plagins/datatables/css/datatables.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('admin') }}/plagins/select2/css/select2.min.css">
+    <link href="{{ asset('admin') }}/plagins/select2/css/select2.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('frontend') }}/css/style.css" rel="stylesheet">
@@ -127,7 +128,7 @@
                     <a href="{{ route('category.wise.news', $category->category_slug) }}" class="nav-item nav-link {{(URL::current() ==  env('APP_URL').'/category/wise/news/'.$category->category_slug) ? 'active' : ''}}">{{ $category->category_name }}</a>
                     @endforeach
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ __('messages.others') }}</a>
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ __('messages.others') }}</a>
                         <div class="dropdown-menu rounded-0 m-0">
                             @foreach (App\Models\Category::where('show_home_screen', 'No')->get() as $category)
                             <a href="{{ route('category.wise.news', $category->category_slug) }}" class="dropdown-item {{(URL::current() ==  env('APP_URL').'/category/wise/news/'.$category->category_slug) ? 'active' : ''}}">{{ $category->category_name }}</a>
@@ -209,16 +210,18 @@
     <!-- Footer End -->
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-primary btn-square back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <a href="javascript:void(0);" class="btn btn-primary btn-square back-to-top"><i class="fa fa-arrow-up"></i></a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('admin') }}/plagins/datatables/js/datatables.min.js"></script>
     <script src="{{ asset('frontend') }}/lib/easing/easing.min.js"></script>
     <script src="{{ asset('frontend') }}/lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('frontend') }}/lib/lightbox/dist/simple-lightbox.js"></script>
     <script src="{{ asset('admin') }}/plagins/select2/js/select2.min.js"></script>
+
 
     <!-- Template Javascript -->
     <script src="{{ asset('frontend') }}/js/main.js"></script>

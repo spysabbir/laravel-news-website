@@ -89,9 +89,11 @@
                             <br>
                             <small><a href="{{ route('reporter.wise.news', $news->relationtouser->id) }}">{{ $news->relationtouser->name }}</a></small>
                             <br>
-                            <small>Email: {{ $news->relationtouser->email }}</small>
+                            <small>{{ __('messages.email') }}: {{ $news->relationtouser->email }}</small>
                             <br>
-                            <small>Join: {{ $news->relationtouser->created_at->format('D d,M-Y h:m:s A') }}</small>
+                            <small>{{ __('messages.branch') }}: {{ App\Models\Branch::find($news->relationtouser->branch_id)->branch_name }}</small>
+                            <br>
+                            <small>{{ __('messages.join_date') }}: {{ $news->relationtouser->created_at->format('D d,M-Y h:m:s A') }}</small>
                         </div>
                     </div>
                 </div>

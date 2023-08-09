@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('news_id');
             $table->integer('user_id');
             $table->longText('comment');
-            $table->string('status')->default('Yes');
+            $table->string('status')->default('Active');
             $table->timestamps();
         });
     }

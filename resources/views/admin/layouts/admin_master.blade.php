@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{ asset('admin') }}/plagins/select2/css/select2.min.css">
     <link rel="stylesheet" href="{{ asset('admin') }}/plagins/summernote/summernote.min.css">
     <link rel="stylesheet" href="{{ asset('admin') }}/plagins/sweetalert2/sweetalert2.min.css">
-    <link rel="stylesheet" href="{{ asset('admin') }}/plagins/datatables/css/datatables.min.css">
     <link rel="stylesheet" href="{{ asset('admin') }}/vendor/fonts/boxicons.css" />
     <link rel="stylesheet" href="{{ asset('admin') }}/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset('admin') }}/vendor/css/theme-default.css" class="template-customizer-theme-css" />
@@ -23,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('admin') }}/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="{{ asset('admin') }}/vendor/libs/apex-charts/apex-charts.css" />
     <link rel="stylesheet" href="{{ asset('admin') }}/plagins/toastr/toastr.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/plagins/datatables/css/datatables.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" />
 </head>
 <body>
@@ -177,10 +177,10 @@
     <script src="{{ asset('admin') }}/js/main.js"></script>
     <script src="{{ asset('admin') }}/js/dashboards-analytics.js"></script>
     <script src="{{ asset('admin') }}/plagins/sweetalert2/sweetalert2.all.min.js"></script>
-    <script src="{{ asset('admin') }}/plagins/datatables/js/datatables.min.js"></script>
     <script src="{{ asset('admin') }}/plagins/summernote/summernote.min.js"></script>
     <script src="{{ asset('admin') }}/plagins/select2/js/select2.min.js"></script>
     <script src="{{ asset('admin') }}/plagins/toastr/toastr.min.js"></script>
+    <script src="{{ asset('admin') }}/plagins/datatables/js/datatables.min.js"></script>
 
     @yield('script')
 

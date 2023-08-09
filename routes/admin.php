@@ -102,19 +102,17 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('branch-restore/{id}', [BranchController::class, 'restore'])->name('branch.restore');
             Route::get('branch-forcedelete/{id}', [BranchController::class, 'forceDelete'])->name('branch.forcedelete');
             Route::get('branch-status/{id}', [BranchController::class, 'status'])->name('branch.status');
-
-            Route::resource('category', CategoryController::class);
-            Route::get('category-trashed', [CategoryController::class, 'trashed'])->name('category.trashed');
-            Route::get('category-restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
-            Route::get('category-forcedelete/{id}', [CategoryController::class, 'forceDelete'])->name('category.forcedelete');
-            Route::get('category-status/{id}', [CategoryController::class, 'status'])->name('category.status');
-            Route::get('category-show-home-screen/{id}', [CategoryController::class, 'showHomeScreen'])->name('category.show.home.screen');
         });
 
         Route::middleware(['reporter'])->group(function () {
 
             Route::middleware(['manager'])->group(function () {
-
+                Route::resource('category', CategoryController::class);
+                Route::get('category-trashed', [CategoryController::class, 'trashed'])->name('category.trashed');
+                Route::get('category-restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
+                Route::get('category-forcedelete/{id}', [CategoryController::class, 'forceDelete'])->name('category.forcedelete');
+                Route::get('category-status/{id}', [CategoryController::class, 'status'])->name('category.status');
+                Route::get('category-show-home-screen/{id}', [CategoryController::class, 'showHomeScreen'])->name('category.show.home.screen');
             });
 
             Route::resource('tag', TagController::class);
@@ -131,6 +129,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('news-comment-show/{id}', [NewsController::class, 'commentShow'])->name('news.comment.show');
             Route::get('news-comment-status/{id}', [NewsController::class, 'commentStatus'])->name('news.comment.status');
             Route::get('news-comment-delete/{id}', [NewsController::class, 'commentDelete'])->name('news.comment.delete');
+            Route::get('news-reply-comment-status/{id}', [NewsController::class, 'replyCommentStatus'])->name('news.reply.comment.status');
+            Route::get('news-reply-comment-delete/{id}', [NewsController::class, 'replyCommentDelete'])->name('news.reply.comment.delete');
             Route::post('get/divisions', [NewsController::class, 'getDivisions'])->name('get.divisions');
             Route::post('get/districts', [NewsController::class, 'getDistricts'])->name('get.districts');
             Route::post('get/upazilas', [NewsController::class, 'getUpazilas'])->name('get.upazilas');
