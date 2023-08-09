@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
     function relationtouser(){
         return $this->hasOne(User::class, 'id', 'user_id');

@@ -9,8 +9,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
 
 class Video_galleryController extends Controller
 {
@@ -18,7 +16,13 @@ class Video_galleryController extends Controller
     {
         if ($request->ajax()) {
             $video_galleries = "";
-            $query = Video_gallery::select('video_galleries.*');
+            if(Auth::guard('admin')->user()->role == "Manager"){
+                $query = Video_gallery::where('branch_id', Auth::guard('admin')->user()->branch_id)
+                            ->select('video_galleries.*');
+            }else{
+                $query = Video_gallery::where('created_by', Auth::guard('admin')->user()->id)
+                            ->select('video_galleries.*');
+            }
 
             if($request->status){
                 $query->where('video_galleries.status', $request->status);
@@ -69,6 +73,7 @@ class Video_galleryController extends Controller
         }else{
 
             Video_gallery::insert([
+                'branch_id' => Auth::guard('admin')->user()->branch_id,
                 'gallery_video_title' => $request->gallery_video_title,
                 'gallery_video_link' => $request->gallery_video_link,
                 'created_by' => Auth::guard('admin')->user()->id,
@@ -103,6 +108,7 @@ class Video_galleryController extends Controller
             ]);
         }else{
             $video_gallery->update([
+                'branch_id' => Auth::guard('admin')->user()->branch_id,
                 'gallery_video_title' => $request->gallery_video_title,
                 'gallery_video_link' => $request->gallery_video_link,
                 'updated_by' => Auth::guard('admin')->user()->id,

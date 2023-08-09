@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller
                 'error'=> $validator->errors()->toArray()
             ]);
         }else{
-            if ($request->role == 'Reporter' && $request->branch_id == NULL) {
+            if ($request->role == 'Reporter' && $request->branch_id == NULL || $request->role == 'Manager' && $request->branch_id == NULL) {
                 $validator = Validator::make($request->all(), [
                     'branch_id' => ['required'],
                 ]);

@@ -74,7 +74,7 @@
     <!-- Super Admin Panel -->
 
     <!-- Admin Panel -->
-    @if (Auth::guard('admin')->user()->role != 'Reporter')
+    @if (Auth::guard('admin')->user()->role == 'Super Admin' ||  Auth::guard('admin')->user()->role == 'Admin')
     <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Admin Panel</span>
     </li>
@@ -84,10 +84,10 @@
             <div data-i18n="Branch">Branch</div>
         </a>
     </li>
-    <li class="menu-item {{(Route::currentRouteName() == 'admin.all.reporter') ? 'active' : ''}}">
-        <a href="{{ route('admin.all.reporter') }}" class="menu-link">
+    <li class="menu-item {{(Route::currentRouteName() == 'admin.all.branch_manpower') ? 'active' : ''}}">
+        <a href="{{ route('admin.all.branch_manpower') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-user-pin"></i>
-            <div data-i18n="All Reporter">All Reporter</div>
+            <div data-i18n="Branch Manpower">Branch Manpower</div>
         </a>
     </li>
     <li class="menu-item {{(Route::currentRouteName() == 'admin.all.user') ? 'active' : ''}}">
@@ -126,6 +126,32 @@
             <div data-i18n="Advertisement">Advertisement</div>
         </a>
     </li>
+    <li class="menu-item {{(Route::currentRouteName() == 'admin.category.index') ? 'active' : ''}}">
+        <a href="{{ route('admin.category.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-category"></i>
+            <div data-i18n="Category">Category</div>
+        </a>
+    </li>
+    @endif
+    <!-- Admin Panel -->
+
+    <!-- Branch Panel -->
+    @if (Auth::guard('admin')->user()->role == 'Manager' || Auth::guard('admin')->user()->role == 'Reporter')
+    <li class="menu-header small text-uppercase">
+        <span class="menu-header-text">Branch Panel</span>
+    </li>
+    <li class="menu-item {{(Route::currentRouteName() == 'admin.tag.index') ? 'active' : ''}}">
+        <a href="{{ route('admin.tag.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-purchase-tag-alt"></i>
+            <div data-i18n="Tag">Tag</div>
+        </a>
+    </li>
+    <li class="menu-item {{(Route::currentRouteName() == 'admin.news.create' || Route::currentRouteName() == 'admin.news.index' || Route::currentRouteName() == 'admin.news.edit' || Route::currentRouteName() == 'admin.news.show') ? 'active' : ''}}">
+        <a href="{{ route('admin.news.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-news"></i>
+            <div data-i18n="News">News</div>
+        </a>
+    </li>
     <li class="menu-item {{(Route::currentRouteName() == 'admin.photo_gallery.index') ? 'active' : ''}}">
         <a href="{{ route('admin.photo_gallery.index') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-photo-album"></i>
@@ -137,37 +163,6 @@
             <i class="menu-icon tf-icons bx bxs-videos"></i>
             <div data-i18n="Video Gallery">Video Gallery</div>
         </a>
-    </li>
-    @endif
-    <!-- Admin Panel -->
-
-    <!-- Reporter Panel -->
-    @if (Auth::guard('admin')->user()->role == 'Reporter')
-    <li class="menu-header small text-uppercase">
-        <span class="menu-header-text">Reporter Panel</span>
-    </li>
-    <li class="menu-item {{(Route::currentRouteName() == 'admin.category.index' || Route::currentRouteName() == 'admin.tag.index' || Route::currentRouteName() == 'admin.news.create' || Route::currentRouteName() == 'admin.news.index' || Route::currentRouteName() == 'admin.news.edit' || Route::currentRouteName() == 'admin.news.show') ? 'active open' : ''}}">
-        <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-news"></i>
-            <div data-i18n="News interface">News interface</div>
-        </a>
-        <ul class="menu-sub">
-            <li class="menu-item {{(Route::currentRouteName() == 'admin.category.index') ? 'active' : ''}}">
-                <a href="{{ route('admin.category.index') }}" class="menu-link">
-                    <div data-i18n="Category">Category</div>
-                </a>
-            </li>
-            <li class="menu-item {{(Route::currentRouteName() == 'admin.tag.index') ? 'active' : ''}}">
-                <a href="{{ route('admin.tag.index') }}" class="menu-link">
-                    <div data-i18n="Tag">Tag</div>
-                </a>
-            </li>
-            <li class="menu-item {{(Route::currentRouteName() == 'admin.news.create' || Route::currentRouteName() == 'admin.news.index' || Route::currentRouteName() == 'admin.news.edit' || Route::currentRouteName() == 'admin.news.show') ? 'active' : ''}}">
-                <a href="{{ route('admin.news.index') }}" class="menu-link">
-                    <div data-i18n="News">News</div>
-                </a>
-            </li>
-        </ul>
     </li>
     @endif
     <!-- Reporter Panel -->

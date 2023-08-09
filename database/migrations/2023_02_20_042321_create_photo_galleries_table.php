@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('photo_galleries', function (Blueprint $table) {
             $table->id();
+            $table->integer('branch_id');
             $table->string('gallery_photo_title');
             $table->string('gallery_photo_name');
             $table->string('status')->default('Active');

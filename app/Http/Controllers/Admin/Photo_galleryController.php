@@ -18,7 +18,13 @@ class Photo_galleryController extends Controller
     {
         if ($request->ajax()) {
             $photo_galleries = "";
-            $query = Photo_gallery::select('photo_galleries.*');
+            if(Auth::guard('admin')->user()->role == "Manager"){
+                $query = Photo_gallery::where('branch_id', Auth::guard('admin')->user()->branch_id)
+                            ->select('photo_galleries.*');
+            }else{
+                $query = Photo_gallery::where('created_by', Auth::guard('admin')->user()->id)
+                            ->select('photo_galleries.*');
+            }
 
             if($request->status){
                 $query->where('photo_galleries.status', $request->status);
@@ -77,6 +83,7 @@ class Photo_galleryController extends Controller
             Image::make($request->file('gallery_photo_name'))->resize(1280, 853)->save($upload_link);
 
             Photo_gallery::insert([
+                'branch_id' => Auth::guard('admin')->user()->branch_id,
                 'gallery_photo_title' => $request->gallery_photo_title,
                 'gallery_photo_name' => $gallery_photo_name,
                 'created_by' => Auth::guard('admin')->user()->id,
@@ -124,6 +131,7 @@ class Photo_galleryController extends Controller
             }
 
             $photo_gallery->update([
+                'branch_id' => Auth::guard('admin')->user()->branch_id,
                 'gallery_photo_title' => $request->gallery_photo_title,
                 'updated_by' => Auth::guard('admin')->user()->id,
             ]);

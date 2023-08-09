@@ -9,7 +9,6 @@ use App\Models\Category;
 use App\Models\News;
 use App\Models\Tag;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -24,10 +23,10 @@ class AdminController extends Controller
         $all_news = News::count();
         $categories = Category::count();
         $tags = Tag::count();
-        $all_reporter = Admin::where('role', 'Reporter')->count();
+        $all_manager = Admin::where('role', 'Manager')->count();
         $all_user = User::count();
         $reporter_wise_news = News::where('created_by', Auth::guard('admin')->user()->id)->count();
-        return view('admin.dashboard', compact('all_news', 'categories', 'tags', 'all_reporter', 'all_user', 'reporter_wise_news'));
+        return view('admin.dashboard', compact('all_news', 'categories', 'tags', 'all_manager', 'all_user', 'reporter_wise_news'));
     }
 
     public function profile()
@@ -274,14 +273,17 @@ class AdminController extends Controller
         }
     }
 
-    public function allReporter (Request $request)
+    public function allBranchManpower (Request $request)
     {
         if ($request->ajax()) {
             $all_reporter = "";
-            $query = Admin::where('role', 'Reporter');
+            $query = Admin::where('role', 'Reporter')->orWhere('role', 'Manager');
 
             if($request->status){
                 $query->where('admins.status', $request->status);
+            }
+            if($request->role){
+                $query->where('admins.role', $request->role);
             }
             if($request->branch_id){
                 $query->where('admins.branch_id', $request->branch_id);
@@ -333,18 +335,18 @@ class AdminController extends Controller
         }
 
         $branches = Branch::where('status', 'Active')->get();
-        return view('admin.reporter.index', compact('branches'));
+        return view('admin.branch_manpower.index', compact('branches'));
     }
 
-    public function reporterEdit($id)
+    public function branchManpowerEdit($id)
     {
-        $reporter = Admin::where('id', $id)->first();
-        return response()->json($reporter);
+        $branchManpower = Admin::where('id', $id)->first();
+        return response()->json($branchManpower);
     }
 
-    public function reporterUpdate(Request $request, $id)
+    public function branchManpowerUpdate(Request $request, $id)
     {
-        $reporter = Admin::where('id', $id)->first();
+        $branchManpower = Admin::where('id', $id)->first();
 
         $validator = Validator::make($request->all(), [
             '*' => 'required',
@@ -356,36 +358,37 @@ class AdminController extends Controller
                 'error'=> $validator->errors()->toArray()
             ]);
         }else{
-            $reporter->update([
+            $branchManpower->update([
+                'role' => $request->role,
                 'email' => $request->email,
                 'branch_id' => $request->branch_id,
                 'updated_by' => Auth::guard('admin')->user()->id,
             ]);
             return response()->json([
                 'status' => 200,
-                'message' => 'Reporter update successfully',
+                'message' => 'Branch Manpower update successfully',
             ]);
         }
     }
 
-    public function reporterStatus($id)
+    public function branchManpowerStatus($id)
     {
-        $reporter = Admin::where('id', $id)->first();
-        if($reporter->status == "Active"){
-            $reporter->update([
+        $branchManpower = Admin::where('id', $id)->first();
+        if($branchManpower->status == "Active"){
+            $branchManpower->update([
                 'status' => "Inactive",
                 'updated_by' => Auth::guard('admin')->user()->id,
             ]);
             return response()->json([
-                'message' => 'Reporter status active.'
+                'message' => 'Branch manpower status active.'
             ]);
         }else{
-            $reporter->update([
+            $branchManpower->update([
                 'status' =>"Active",
                 'updated_by' => Auth::guard('admin')->user()->id,
             ]);
             return response()->json([
-                'message' => 'Reporter status active.'
+                'message' => 'Branch manpower status active.'
             ]);
         }
     }

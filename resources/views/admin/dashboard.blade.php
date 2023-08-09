@@ -20,7 +20,9 @@
                 <div class="col-sm-7">
                     <div class="card-body">
                         <h5 class="card-title text-primary">Congratulations {{ Auth::guard('admin')->user()->name }}! 🎉</h5>
+                        @if (Auth::guard('admin')->user()->role == 'Reporter')
                         <p class="mb-4"> You have done <span class="fw-bold">{{ $reporter_wise_news }}</span> more news. Check your all news.</p>
+                        @endif
                     </div>
                 </div>
                 <div class="col-sm-5 text-center text-sm-left">
@@ -161,9 +163,9 @@
                             <div class="avatar flex-shrink-0">
                             </div>
                         </div>
-                        <span class="fw-semibold d-block mb-1">{{ App\Models\Admin::where('role', 'Reporter')->whereYear('created_at', date('Y'))->count() }} Reporter</span>
+                        <span class="fw-semibold d-block mb-1">{{ App\Models\Admin::where('role', 'Manager')->whereYear('created_at', date('Y'))->count() }} Manager</span>
                         <h3 class="card-title mb-2"><i class="bx bx-up-arrow-alt"></i>{{ date('Y') }}</h3>
-                        <small class="text-success fw-semibold">All Reporter: {{ $all_reporter }}</small>
+                        <small class="text-success fw-semibold">All Manager: {{ $all_manager }}</small>
                     </div>
                 </div>
             </div>
@@ -218,6 +220,10 @@
                     @if (Auth::guard('admin')->user()->role == 'Super Admin' || Auth::guard('admin')->user()->role == 'Admin')
                         @php
                             $latest_news = App\Models\News::latest()->limit(8)->get()
+                        @endphp
+                    @elseif (Auth::guard('admin')->user()->role == 'Manager')
+                        @php
+                            $latest_news = App\Models\News::where('branch_id', Auth::guard('admin')->user()->branch_id)->latest()->limit(8)->get()
                         @endphp
                     @else
                         @php

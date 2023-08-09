@@ -128,7 +128,7 @@
                 {data: 'news_position', name: 'news_position'},
                 {data: 'news_headline', name: 'news_headline'},
                 {data: 'news_view', name: 'news_view'},
-                {data: 'comment_count', name: 'comment_count'},
+                {data: 'comment', name: 'comment'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'status', name: 'status'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},

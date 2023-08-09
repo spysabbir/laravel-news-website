@@ -26,11 +26,12 @@ class NewsController extends Controller
         if ($request->ajax()) {
 
             $all_news = "";
-            if(Auth::guard('admin')->user()->role == "Super Admin"  || Auth::guard('admin')->user()->role == "Admin"){
-                $query = News::leftJoin('admins', 'news.created_by', 'admins.id');
+            if(Auth::guard('admin')->user()->role == "Manager"){
+                $query = News::where('branch_id', Auth::guard('admin')->user()->branch_id)
+                            ->select('news.*');
             }else{
                 $query = News::where('created_by', Auth::guard('admin')->user()->id)
-                    ->leftJoin('admins', 'news.created_by', 'admins.id');
+                            ->select('news.*');
             }
 
             if($request->status){
@@ -45,26 +46,29 @@ class NewsController extends Controller
                 $query->where('news.created_at', 'LIKE', '%'.$request->created_at.'%');
             }
 
-            $all_news = $query->select('news.*', 'admins.name')->get();
+            $all_news = $query->get();
 
             return Datatables::of($all_news)
                     ->addIndexColumn()
                     ->editColumn('news_thumbnail_photo', function($row){
                         return '<img src="'.asset('uploads/news_thumbnail_photo').'/'.$row->news_thumbnail_photo.'" width="40" >';
                     })
-                    ->editColumn('comment_count', function($row){
+                    ->editColumn('comment', function($row){
                         return'
                             <span class="badge bg-info">'.Comment::where('news_id', $row->id)->count().'</span>
+                            <a href="'.route('admin.news.comment.show', $row->id).'" class="btn btn-dark btn-sm"><i class="bx bxs-comment-detail"></i></a>
                         ';
                     })
                     ->editColumn('created_at', function($row){
                         if(!$row->updated_at){
                             return'
-                            <span class="badge bg-success">'.$row->created_at->format('d-M-Y h:m:s A').'</span>
+                            <span class="badge bg-success">'.$row->created_at->format('d-M-Y').'</span>
+                            <span class="badge bg-success">'.$row->created_at->format('h:m:s A').'</span>
                             ';
                         }else{
                             return'
-                            <span class="badge bg-warning">'.$row->updated_at->format('d-M-Y h:m:s A').'</span>
+                            <span class="badge bg-warning">'.$row->updated_at->format('d-M-Y').'</span>
+                            <span class="badge bg-warning">'.$row->updated_at->format('h:m:s A').'</span>
                             ';
                         }
                     })
@@ -89,7 +93,7 @@ class NewsController extends Controller
                             ';
                         return $btn;
                     })
-                    ->rawColumns(['news_thumbnail_photo', 'comment_count', 'created_at', 'status', 'action'])
+                    ->rawColumns(['news_thumbnail_photo', 'comment', 'created_at', 'status', 'action'])
                     ->make(true);
         }
 
@@ -187,6 +191,7 @@ class NewsController extends Controller
         }
 
         $news_data = [
+            'branch_id' => Auth::guard('admin')->user()->branch_id,
             'news_position' => $request->news_position,
             'breaking_news' => $breaking_news,
             'news_thumbnail_photo' => $news_thumbnail_photo_name,
@@ -267,6 +272,7 @@ class NewsController extends Controller
         }
 
         $news_data = [
+            'branch_id' => Auth::guard('admin')->user()->branch_id,
             'news_position' => $request->news_position,
             'breaking_news' => $breaking_news,
             'country_id' => $request->country_id,
@@ -429,5 +435,35 @@ class NewsController extends Controller
                 'message' => 'News status active.'
             ]);
         }
+    }
+
+    public function commentShow($id)
+    {
+        $news = News::where('id', $id)->first();
+        $news_comments= Comment::where('news_id', $id)->get();
+        return view('admin.news.comment_show', compact('news', 'news_comments'));
+    }
+
+    public function commentStatus($id)
+    {
+        $comment = Comment::where('id', $id)->first();
+        if($comment->status == "Active"){
+            $comment->update([
+                'status' => "Inactive",
+            ]);
+            return back();
+        }else{
+            $comment->update([
+                'status' =>"Active",
+            ]);
+            return back();
+        }
+    }
+
+    public function commentDelete($id)
+    {
+        $comment = Comment::where('id', $id)->first();
+        $comment->delete();
+        return back();
     }
 }

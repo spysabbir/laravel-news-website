@@ -35,15 +35,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     });
 
     Route::middleware('admin_auth')->group(function () {
-        Route::get('register', [RegisteredUserController::class, 'create'])->name('administrator.register');
-        Route::post('register', [RegisteredUserController::class, 'store']);
-
-        Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])->name('verification.notice');
-        Route::get('verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])->name('verification.verify')
-                    ->middleware(['signed', 'throttle:6,1']);
-        Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])->name('verification.send')
-                    ->middleware('throttle:6,1');
-
+        Route::post('register', [RegisteredUserController::class, 'store'])->name('administrator.register');
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -52,7 +44,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::post('password-update', [AdminController::class, 'passwordUpdate'])->name('password.update');
 
         Route::middleware(['super_admin'])->group(function () {
-
             Route::get('news-report', [ReportController::class, 'newsReport'])->name('news.report');
 
             Route::get('all-administrator', [AdminController::class, 'allAdministrator'])->name('all.administrator');
@@ -80,10 +71,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
         });
 
         Route::middleware(['admin'])->group(function () {
-            Route::get('all-reporter', [AdminController::class, 'allReporter'])->name('all.reporter');
-            Route::get('reporter-status/{id}', [AdminController::class, 'reporterStatus'])->name('reporter.status');
-            Route::get('reporter-edit/{id}', [AdminController::class, 'reporterEdit'])->name('reporter.edit');
-            Route::patch('reporter-update/{id}', [AdminController::class, 'reporterUpdate'])->name('reporter.update');
+            Route::get('all-branch_manpower', [AdminController::class, 'allBranchManpower'])->name('all.branch_manpower');
+            Route::get('branch_manpower-status/{id}', [AdminController::class, 'branchManpowerStatus'])->name('branch_manpower.status');
+            Route::get('branch_manpower-edit/{id}', [AdminController::class, 'branchManpowerEdit'])->name('branch_manpower.edit');
+            Route::patch('branch_manpower-update/{id}', [AdminController::class, 'branchManpowerUpdate'])->name('branch_manpower.update');
 
             Route::get('all-user', [AdminController::class, 'allUser'])->name('all.user');
             Route::get('user-status/{id}', [AdminController::class, 'userStatus'])->name('user.status');
@@ -112,26 +103,19 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('branch-forcedelete/{id}', [BranchController::class, 'forceDelete'])->name('branch.forcedelete');
             Route::get('branch-status/{id}', [BranchController::class, 'status'])->name('branch.status');
 
-            Route::resource('photo_gallery', Photo_galleryController::class);
-            Route::get('photo_gallery-trashed', [Photo_galleryController::class, 'trashed'])->name('photo_gallery.trashed');
-            Route::get('photo_gallery-restore/{id}', [Photo_galleryController::class, 'restore'])->name('photo_gallery.restore');
-            Route::get('photo_gallery-forcedelete/{id}', [Photo_galleryController::class, 'forceDelete'])->name('photo_gallery.forcedelete');
-            Route::get('photo_gallery-status/{id}', [Photo_galleryController::class, 'status'])->name('photo_gallery.status');
-
-            Route::resource('video_gallery', Video_galleryController::class);
-            Route::get('video_gallery-trashed', [Video_galleryController::class, 'trashed'])->name('video_gallery.trashed');
-            Route::get('video_gallery-restore/{id}', [Video_galleryController::class, 'restore'])->name('video_gallery.restore');
-            Route::get('video_gallery-forcedelete/{id}', [Video_galleryController::class, 'forceDelete'])->name('video_gallery.forcedelete');
-            Route::get('video_gallery-status/{id}', [Video_galleryController::class, 'status'])->name('video_gallery.status');
-        });
-
-        Route::middleware(['reporter'])->group(function () {
             Route::resource('category', CategoryController::class);
             Route::get('category-trashed', [CategoryController::class, 'trashed'])->name('category.trashed');
             Route::get('category-restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
             Route::get('category-forcedelete/{id}', [CategoryController::class, 'forceDelete'])->name('category.forcedelete');
             Route::get('category-status/{id}', [CategoryController::class, 'status'])->name('category.status');
             Route::get('category-show-home-screen/{id}', [CategoryController::class, 'showHomeScreen'])->name('category.show.home.screen');
+        });
+
+        Route::middleware(['reporter'])->group(function () {
+
+            Route::middleware(['manager'])->group(function () {
+
+            });
 
             Route::resource('tag', TagController::class);
             Route::get('tag-trashed', [TagController::class, 'trashed'])->name('tag.trashed');
@@ -144,10 +128,26 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('news-restore/{id}', [NewsController::class, 'restore'])->name('news.restore');
             Route::get('news-forcedelete/{id}', [NewsController::class, 'forceDelete'])->name('news.forcedelete');
             Route::get('news-status/{id}', [NewsController::class, 'status'])->name('news.status');
+            Route::get('news-comment-show/{id}', [NewsController::class, 'commentShow'])->name('news.comment.show');
+            Route::get('news-comment-status/{id}', [NewsController::class, 'commentStatus'])->name('news.comment.status');
+            Route::get('news-comment-delete/{id}', [NewsController::class, 'commentDelete'])->name('news.comment.delete');
             Route::post('get/divisions', [NewsController::class, 'getDivisions'])->name('get.divisions');
             Route::post('get/districts', [NewsController::class, 'getDistricts'])->name('get.districts');
             Route::post('get/upazilas', [NewsController::class, 'getUpazilas'])->name('get.upazilas');
             Route::post('get/unions', [NewsController::class, 'getUnions'])->name('get.unions');
+
+            Route::resource('photo_gallery', Photo_galleryController::class);
+            Route::get('photo_gallery-trashed', [Photo_galleryController::class, 'trashed'])->name('photo_gallery.trashed');
+            Route::get('photo_gallery-restore/{id}', [Photo_galleryController::class, 'restore'])->name('photo_gallery.restore');
+            Route::get('photo_gallery-forcedelete/{id}', [Photo_galleryController::class, 'forceDelete'])->name('photo_gallery.forcedelete');
+            Route::get('photo_gallery-status/{id}', [Photo_galleryController::class, 'status'])->name('photo_gallery.status');
+
+            Route::resource('video_gallery', Video_galleryController::class);
+            Route::get('video_gallery-trashed', [Video_galleryController::class, 'trashed'])->name('video_gallery.trashed');
+            Route::get('video_gallery-restore/{id}', [Video_galleryController::class, 'restore'])->name('video_gallery.restore');
+            Route::get('video_gallery-forcedelete/{id}', [Video_galleryController::class, 'forceDelete'])->name('video_gallery.forcedelete');
+            Route::get('video_gallery-status/{id}', [Video_galleryController::class, 'status'])->name('video_gallery.status');
+
 
         });
     });

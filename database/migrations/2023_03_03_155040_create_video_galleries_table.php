@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('video_galleries', function (Blueprint $table) {
             $table->id();
+            $table->integer('branch_id');
             $table->string('gallery_video_title');
             $table->text('gallery_video_link');
             $table->string('status')->default('Active');

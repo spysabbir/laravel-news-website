@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin_master')
 
-@section('title', 'Reporter')
+@section('title', 'Branch Manpower')
 
 @section('content')
 <div class="row">
@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div class="text">
-                    <h4 class="card-title">Reporter</h4>
+                    <h4 class="card-title">Branch Manpower</h4>
                     <p class="card-text">List</p>
                 </div>
                 <div class="action_btn">
@@ -26,7 +26,15 @@
                                 <div class="modal-body">
                                     <form action="#" method="POST" id="create_form">
                                         @csrf
-                                        <input type="hidden" name="role" value="Reporter">
+                                        <div class="mb-3">
+                                            <label class="form-label">Role *</label>
+                                            <select class="form-select" name="role">
+                                                <option value="">Select Role</option>
+                                                <option value="Manager">Manager</option>
+                                                <option value="Reporter">Reporter</option>
+                                            </select>
+                                            <span class="text-danger error-text role_error"></span>
+                                        </div>
                                         <div class="mb-3">
                                             <label class="form-label">Branch *</label>
                                             <select class="form-select" name="branch_id">
@@ -86,6 +94,14 @@
                             </select>
                         </div>
                         <div class="col-lg-3">
+                            <label class="form-label">Role</label>
+                            <select class="form-control filter_data" id="filter_role">
+                                <option value="">All</option>
+                                <option value="Manager">Manager</option>
+                                <option value="Reporter">Reporter</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3">
                             <label class="form-label">Branch *</label>
                             <select class="form-select filter_data" id="filter_branch_id">
                                 <option value="">All</option>
@@ -97,7 +113,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-light" id="all_reporter_table">
+                    <table class="table table-light" id="all_branch_manpower_table">
                         <thead>
                             <tr>
                                 <th>Sl No</th>
@@ -105,6 +121,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Gender</th>
+                                <th>Role</th>
                                 <th>Branch Name</th>
                                 <th>Last Active</th>
                                 <th>Created At</th>
@@ -126,11 +143,20 @@
                                             <form action="#" method="POST" id="edit_form">
                                                 @csrf
                                                 @method('PATCH')
-                                                <input type="hidden" name="" id="reporter_id">
+                                                <input type="hidden" name="" id="branch_manpower_id">
                                                 <div class="mb-3">
                                                     <label class="form-label">Email</label>
                                                     <input type="email" class="form-control" name="email" id="get_email">
                                                     <span class="text-danger error-text update_email_error"></span>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Role</label>
+                                                    <select class="form-select" name="role" id="get_role">
+                                                        <option value="">Select Role</option>
+                                                        <option value="Manager">Manager</option>
+                                                        <option value="Reporter">Reporter</option>
+                                                    </select>
+                                                    <span class="text-danger error-text update_role_error"></span>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Branch</label>
@@ -164,15 +190,16 @@
 <script>
     $(document).ready(function() {
         // Read Data
-        table = $('#all_reporter_table').DataTable({
+        table = $('#all_branch_manpower_table').DataTable({
             processing: true,
             serverSide: true,
             searching: true,
             ajax: {
-                url: "{{ route('admin.all.reporter') }}",
+                url: "{{ route('admin.all.branch_manpower') }}",
                 "data":function(e){
                     e.status = $('#filter_status').val();
                     e.branch_id = $('#filter_branch_id').val();
+                    e.role = $('#filter_role').val();
                 },
             },
             columns: [
@@ -181,6 +208,7 @@
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'gender', name: 'gender'},
+                {data: 'role', name: 'role'},
                 {data: 'branch_name', name: 'branch_name'},
                 {data: 'last_active', name: 'last_active'},
                 {data: 'created_at', name: 'created_at'},
@@ -192,7 +220,7 @@
         // Filter Data
         $(document).on('change', '.filter_data', function(e){
             e.preventDefault();
-            $('#all_reporter_table').DataTable().ajax.reload()
+            $('#all_branch_manpower_table').DataTable().ajax.reload()
         })
 
         // Store Data
@@ -237,15 +265,16 @@
         $(document).on('click', '.editBtn', function(e){
             e.preventDefault();
             var id = $(this).attr('id');
-            var url = "{{ route('admin.reporter.edit', ":id") }}";
+            var url = "{{ route('admin.branch_manpower.edit', ":id") }}";
             url = url.replace(':id', id)
             $.ajax({
                 url:  url,
                 method: 'GET',
                 success: function(response) {
                     $("#get_email").val(response.email);
+                    $("#get_role").val(response.role);
                     $("#get_branch_id").val(response.branch_id);
-                    $('#reporter_id').val(response.id)
+                    $('#branch_manpower_id').val(response.id)
                 }
             });
         })
@@ -253,8 +282,8 @@
         // Update Data
         $('#edit_form').on('submit', function(e){
             e.preventDefault();
-            var id = $('#reporter_id').val();
-            var url = "{{ route('admin.reporter.update', ":id") }}";
+            var id = $('#branch_manpower_id').val();
+            var url = "{{ route('admin.branch_manpower.update', ":id") }}";
             url = url.replace(':id', id)
             const form_data = new FormData(this);
             $("#update_btn").text('Updating...');
@@ -288,7 +317,7 @@
         $(document).on('click', '.statusBtn', function(e){
             e.preventDefault();
             let id = $(this).attr('id');
-            var url = "{{ route('admin.reporter.status', ":id") }}";
+            var url = "{{ route('admin.branch_manpower.status', ":id") }}";
             url = url.replace(':id', id)
             $.ajax({
                 url: url,

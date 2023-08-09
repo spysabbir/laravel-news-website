@@ -8,9 +8,9 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div class="text">
-                    <h4 class="card-title">News</h4>
-                    <p class="card-text">Details</p>
+                    <h4 class="card-title">News Details</h4>
                 </div>
+                <a class="btn btn-info" href="{{ route('admin.news.index') }}">Back</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -18,8 +18,8 @@
                         <thead>
                             <tr>
                                 <th>Item</th>
-                                <th>English</th>
-                                <th>Bangla:</th>
+                                <th><strong><span class="badge bg-dark">English</span></strong></th>
+                                <th><strong><span class="badge bg-dark">Bangla</span></strong></th>
                             </tr>
                         </thead>
                         <tbody>

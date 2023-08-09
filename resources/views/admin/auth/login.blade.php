@@ -131,6 +131,11 @@
                             <td>Admin</td>
                         </tr>
                         <tr>
+                            <td>manager@email.com</td>
+                            <td>12345678</td>
+                            <td>Manager</td>
+                        </tr>
+                        <tr>
                             <td>reporter@email.com</td>
                             <td>12345678</td>
                             <td>Reporter</td>
@@ -139,7 +144,7 @@
                 </table>
             </div>
         </div>
-        
+
     </div>
 </div>
 <!-- /Login -->

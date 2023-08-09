@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Reporter
+class Manager
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,10 @@ class Reporter
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('admin')->user()->role == 'Manager' || Auth::guard('admin')->user()->role == 'Reporter') {
+        if (Auth::guard('admin')->user()->role == 'Manager') {
             return $next($request);
         }else{
-            return redirect()->route('admin.dashboard')->with('error', "You are not a reporter. You can't access this link.");
+            return redirect()->route('admin.dashboard')->with('error', "You are not a manager. You can't access this link.");
         }
     }
 }

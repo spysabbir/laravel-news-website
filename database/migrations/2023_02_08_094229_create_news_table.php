@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
+            $table->integer('branch_id');
             $table->string('news_position');
             $table->string('breaking_news')->default('No');
             $table->integer('country_id')->nullable();
