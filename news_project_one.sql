@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2023 at 12:25 PM
+-- Generation Time: Aug 09, 2023 at 02:08 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -85,8 +85,11 @@ CREATE TABLE `admins` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL,
+  `branch_id` int(11) DEFAULT NULL,
   `last_active` timestamp NOT NULL DEFAULT current_timestamp(),
   `remember_token` varchar(100) DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -95,10 +98,11 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `email_verified_at`, `password`, `role`, `last_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'superadmin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$oSmjApwFapAhYkbtgW3.k.h6moZboAZbuT09mXxTUEwN7usowyOnC', 'Super Admin', '2023-05-24 10:08:20', 'c63oH96WHAqdxCipbuVZcHp3qzdmgBLuSRUVwDUBcTyvx2luwHSZNXRTDP9q', '2023-06-18 05:23:29', NULL),
-(2, 'Admin', 'admin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$Ur3AaFA6L0/LXKHg4/tdzeKHbUNhg9HEPN39Dcd7M8/RSU51XkpMa', 'Admin', '2023-05-24 10:08:20', 'q1pxHeBM5teivisItclAM4SvCJ1mefJ2PoiJcjK80krk39pnCNpCSrGOxTbJ', '2023-06-17 18:00:00', NULL),
-(3, 'Reporter', 'reporter@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$F8EwkUDX2QkVN3nnVVsvw.kHzgvNo7icDRJ47fXnGxRiXLlGQAAni', 'Reporter', '2023-05-24 10:08:20', NULL, '2023-06-18 05:23:48', '2023-06-18 05:57:37');
+INSERT INTO `admins` (`id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `email_verified_at`, `password`, `role`, `branch_id`, `last_active`, `remember_token`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Super Admin', 'superadmin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$oSmjApwFapAhYkbtgW3.k.h6moZboAZbuT09mXxTUEwN7usowyOnC', 'Super Admin', NULL, '2023-05-24 10:08:20', 's6iQrenTRNUGgAlLBgZBYrwRFIGDuSo4taYHbWLEGsM03s5ZhBYJEXv5G4KZ', 1, 1, '2023-06-18 05:23:29', '2023-08-09 04:19:05'),
+(2, 'Admin', 'admin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$Ur3AaFA6L0/LXKHg4/tdzeKHbUNhg9HEPN39Dcd7M8/RSU51XkpMa', 'Admin', NULL, '2023-05-24 10:08:20', 'N8I4rfDMHuXstpYLoFi069JCKamtUdNHC4SbCjgpZZnxZ9qNd5C1lp4dnmGb', 1, 1, '2023-06-17 18:00:00', '2023-08-09 04:19:08'),
+(3, 'manager', 'manager@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$5iJHmP7eUgX/yihuacFuKOxGg57MluxJX6BdQbVBnQLplK2R7OhUq', 'Manager', 1, '2023-08-09 05:29:43', NULL, 1, 1, '2023-08-09 05:29:43', '2023-08-09 05:29:55'),
+(4, 'Reporter', 'reporter@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$F8EwkUDX2QkVN3nnVVsvw.kHzgvNo7icDRJ47fXnGxRiXLlGQAAni', 'Reporter', 1, '2023-05-24 10:08:20', NULL, 1, 1, '2023-06-18 05:23:48', '2023-06-18 05:57:37');
 
 -- --------------------------------------------------------
 
@@ -130,6 +134,55 @@ INSERT INTO `advertisements` (`id`, `advertisement_position`, `advertisement_tit
 (2, 'Center Top', 'Eid Offer', 'http://127.0.0.1:8000/', 'eid-offeradvertisement-photo.png', 'Active', 1, NULL, NULL, '2023-03-20 04:06:02', NULL, NULL),
 (3, 'Center Bottom', 'Ramadan Offer', 'http://127.0.0.1:8000/', 'ramadan-offeradvertisement-photo.png', 'Active', 1, 1, NULL, '2023-03-20 04:06:27', '2023-03-20 09:38:32', NULL),
 (4, 'Center Right', 'New Year Offer', 'http://127.0.0.1:8000/', 'new-year-offeradvertisement-photo.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:06:48', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `branches`
+--
+
+CREATE TABLE `branches` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `branch_photo` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'Active',
+  `created_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `branches`
+--
+
+INSERT INTO `branches` (`id`, `branch_photo`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'branch-photo-GqfUF.png', 'Active', 1, NULL, NULL, '2023-08-09 04:25:48', '2023-08-09 04:25:48', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `branch_translations`
+--
+
+CREATE TABLE `branch_translations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `branch_id` bigint(20) UNSIGNED NOT NULL,
+  `locale` varchar(255) NOT NULL,
+  `branch_name` varchar(255) NOT NULL,
+  `branch_phone_number` varchar(255) NOT NULL,
+  `branch_email` varchar(255) NOT NULL,
+  `branch_address` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `branch_translations`
+--
+
+INSERT INTO `branch_translations` (`id`, `branch_id`, `locale`, `branch_name`, `branch_phone_number`, `branch_email`, `branch_address`) VALUES
+(1, 1, 'en', 'Enu', 'Enu', 'Enu@u', 'EN'),
+(2, 1, 'bn', 'Bnu', 'Bnu', 'Bnu@u', 'BN');
 
 -- --------------------------------------------------------
 
@@ -205,18 +258,10 @@ CREATE TABLE `comments` (
   `news_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `comment` longtext NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'Yes',
+  `status` varchar(255) NOT NULL DEFAULT 'Active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `news_id`, `user_id`, `comment`, `status`, `created_at`, `updated_at`) VALUES
-(1, 7, 1, 'Good', 'Yes', '2023-05-22 09:44:06', NULL),
-(2, 4, 1, 'Good', 'Yes', '2023-06-18 05:28:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -229,7 +274,7 @@ CREATE TABLE `comment_replies` (
   `comment_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `reply` longtext NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'Yes',
+  `status` varchar(255) NOT NULL DEFAULT 'Active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -804,7 +849,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (33, '2023_03_12_110314_create_default_setting_translations_table', 1),
 (34, '2023_03_19_111753_create_about_us_table', 1),
 (35, '2023_03_19_112006_create_about_us_translations_table', 1),
-(36, '2023_05_22_154748_create_jobs_table', 2);
+(36, '2023_05_22_154748_create_jobs_table', 2),
+(41, '2023_08_08_151514_create_branches_table', 3),
+(42, '2023_08_08_152038_create_branch_translations_table', 3);
 
 -- --------------------------------------------------------
 
@@ -814,6 +861,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `news` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `branch_id` int(11) NOT NULL,
   `news_position` varchar(255) NOT NULL,
   `breaking_news` varchar(255) NOT NULL DEFAULT 'No',
   `country_id` int(11) DEFAULT NULL,
@@ -839,18 +887,18 @@ CREATE TABLE `news` (
 -- Dumping data for table `news`
 --
 
-INSERT INTO `news` (`id`, `news_position`, `breaking_news`, `country_id`, `division_id`, `district_id`, `upazila_id`, `union_id`, `news_category_id`, `news_thumbnail_photo`, `news_cover_photo`, `news_video_link`, `status`, `news_view`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Top Slider', 'Yes', 119, NULL, NULL, NULL, NULL, 2, 'News-Thumbnail-Photo-NNuRw.jpg', 'News-Cover-Photo-weRJN.jpg', NULL, 'Active', 15, 3, 3, NULL, '2023-03-20 06:11:49', '2023-06-18 05:26:18', NULL),
-(2, 'Top Slider', 'No', 19, NULL, NULL, NULL, NULL, 1, 'News-Thumbnail-Photo-VuSVk.jpg', 'News-Cover-Photo-7qA4g.jpg', NULL, 'Active', 9, 3, 3, NULL, '2023-03-20 06:22:22', '2023-06-18 05:25:32', NULL),
-(3, 'Top Slider', 'No', 19, NULL, NULL, NULL, NULL, 1, 'News-Thumbnail-Photo-MLRlC.jpg', 'News-Cover-Photo-zgeV2.jpg', NULL, 'Active', 0, 3, 3, NULL, '2023-03-20 06:28:55', '2023-03-20 06:53:00', NULL),
-(4, 'Top Right', 'No', 19, NULL, NULL, NULL, NULL, 3, 'News-Thumbnail-Photo-CQRZ6.jpg', 'News-Cover-Photo-IFLAa.jpg', NULL, 'Active', 17, 3, 3, NULL, '2023-03-20 06:32:52', '2023-06-18 05:38:27', NULL),
-(5, 'Top Right', 'No', 19, NULL, NULL, NULL, NULL, 4, 'News-Thumbnail-Photo-ktWN0.jpg', 'News-Cover-Photo-EMOGZ.jpg', NULL, 'Active', 0, 3, 3, NULL, '2023-03-20 06:46:27', '2023-03-20 06:54:05', NULL),
-(6, 'Top Right', 'No', 19, NULL, NULL, NULL, NULL, 6, 'News-Thumbnail-Photo-fumYE.jpg', 'News-Cover-Photo-8zjpM.jpg', NULL, 'Active', 0, 3, NULL, NULL, '2023-03-20 09:09:42', '2023-03-20 09:09:42', NULL),
-(7, 'Featured', 'No', 19, NULL, NULL, NULL, NULL, 6, 'News-Thumbnail-Photo-OAkj5.jpg', 'News-Cover-Photo-EkB8r.jpg', NULL, 'Active', 4, 3, NULL, NULL, '2023-03-20 09:13:34', '2023-06-18 10:37:15', NULL),
-(8, 'Featured', 'No', 19, 6, NULL, NULL, NULL, 5, 'News-Thumbnail-Photo-KZq4b.jpg', 'News-Cover-Photo-45uWC.jpg', NULL, 'Active', 0, 3, NULL, NULL, '2023-03-20 09:20:11', '2023-03-20 09:20:11', NULL),
-(9, 'Featured', 'Yes', 19, 6, 41, NULL, NULL, 5, 'News-Thumbnail-Photo-vzI7T.jpg', 'News-Cover-Photo-Wg8Oo.jpg', NULL, 'Active', 2, 3, NULL, NULL, '2023-03-20 09:24:15', '2023-05-21 05:41:43', NULL),
-(10, 'Top Right', 'No', 19, 6, NULL, NULL, NULL, 5, 'News-Thumbnail-Photo-YRgDR.jpg', 'News-Cover-Photo-21FeI.jpg', NULL, 'Active', 0, 3, NULL, NULL, '2023-03-20 09:27:42', '2023-03-20 09:27:42', NULL),
-(11, 'Default', 'Yes', 19, NULL, NULL, NULL, NULL, 1, 'News-Thumbnail-Photo-mqHOd.jpg', 'News-Cover-Photo-JyIUV.jpg', NULL, 'Active', 4, 3, NULL, NULL, '2023-03-20 09:31:58', '2023-05-21 10:44:11', NULL);
+INSERT INTO `news` (`id`, `branch_id`, `news_position`, `breaking_news`, `country_id`, `division_id`, `district_id`, `upazila_id`, `union_id`, `news_category_id`, `news_thumbnail_photo`, `news_cover_photo`, `news_video_link`, `status`, `news_view`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'Top Slider', 'Yes', 119, NULL, NULL, NULL, NULL, 2, 'News-Thumbnail-Photo-NNuRw.jpg', 'News-Cover-Photo-weRJN.jpg', NULL, 'Active', 21, 4, 4, NULL, '2023-03-20 06:11:49', '2023-08-09 10:01:55', NULL),
+(2, 1, 'Top Slider', 'No', 19, NULL, NULL, NULL, NULL, 1, 'News-Thumbnail-Photo-VuSVk.jpg', 'News-Cover-Photo-7qA4g.jpg', NULL, 'Active', 16, 4, 4, NULL, '2023-03-20 06:22:22', '2023-08-08 05:55:31', NULL),
+(3, 1, 'Top Slider', 'No', 19, NULL, NULL, NULL, NULL, 1, 'News-Thumbnail-Photo-MLRlC.jpg', 'News-Cover-Photo-zgeV2.jpg', NULL, 'Active', 2, 4, 4, NULL, '2023-03-20 06:28:55', '2023-08-09 10:33:25', NULL),
+(4, 1, 'Top Right', 'No', 19, NULL, NULL, NULL, NULL, 3, 'News-Thumbnail-Photo-CQRZ6.jpg', 'News-Cover-Photo-IFLAa.jpg', NULL, 'Active', 17, 4, 4, NULL, '2023-03-20 06:32:52', '2023-06-18 05:38:27', NULL),
+(5, 1, 'Top Right', 'No', 19, NULL, NULL, NULL, NULL, 4, 'News-Thumbnail-Photo-ktWN0.jpg', 'News-Cover-Photo-EMOGZ.jpg', NULL, 'Active', 0, 4, 4, NULL, '2023-03-20 06:46:27', '2023-03-20 06:54:05', NULL),
+(6, 1, 'Top Right', 'No', 19, NULL, NULL, NULL, NULL, 6, 'News-Thumbnail-Photo-fumYE.jpg', 'News-Cover-Photo-8zjpM.jpg', NULL, 'Active', 1, 4, NULL, NULL, '2023-03-20 09:09:42', '2023-08-09 11:02:03', NULL),
+(7, 1, 'Featured', 'No', 19, NULL, NULL, NULL, NULL, 6, 'News-Thumbnail-Photo-OAkj5.jpg', 'News-Cover-Photo-EkB8r.jpg', NULL, 'Active', 5, 4, NULL, NULL, '2023-03-20 09:13:34', '2023-08-08 04:14:59', NULL),
+(8, 1, 'Featured', 'No', 19, 6, NULL, NULL, NULL, 5, 'News-Thumbnail-Photo-KZq4b.jpg', 'News-Cover-Photo-45uWC.jpg', NULL, 'Active', 0, 4, NULL, NULL, '2023-03-20 09:20:11', '2023-03-20 09:20:11', NULL),
+(9, 1, 'Featured', 'Yes', 19, 6, 41, NULL, NULL, 5, 'News-Thumbnail-Photo-vzI7T.jpg', 'News-Cover-Photo-Wg8Oo.jpg', NULL, 'Active', 39, 4, NULL, NULL, '2023-03-20 09:24:15', '2023-08-09 11:27:51', NULL),
+(10, 1, 'Top Right', 'No', 19, 6, NULL, NULL, NULL, 5, 'News-Thumbnail-Photo-YRgDR.jpg', 'News-Cover-Photo-21FeI.jpg', NULL, 'Active', 0, 4, NULL, NULL, '2023-03-20 09:27:42', '2023-03-20 09:27:42', NULL),
+(11, 1, 'Default', 'Yes', 19, NULL, NULL, NULL, NULL, 1, 'News-Thumbnail-Photo-mqHOd.jpg', 'News-Cover-Photo-JyIUV.jpg', NULL, 'Active', 20, 4, NULL, NULL, '2023-03-20 09:31:58', '2023-08-09 10:02:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -1035,6 +1083,7 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `photo_galleries` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `branch_id` int(11) NOT NULL,
   `gallery_photo_title` varchar(255) NOT NULL,
   `gallery_photo_name` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'Active',
@@ -1050,15 +1099,15 @@ CREATE TABLE `photo_galleries` (
 -- Dumping data for table `photo_galleries`
 --
 
-INSERT INTO `photo_galleries` (`id`, `gallery_photo_title`, `gallery_photo_name`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Title 1', 'gallery-photoqxfVepjbDr.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:08:29', NULL, NULL),
-(2, 'Title 2', 'gallery-photofjvOVY9J5D.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:08:38', NULL, NULL),
-(3, 'Title 3', 'gallery-photozspg8mLO9c.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:08:46', NULL, NULL),
-(4, 'Title 4', 'gallery-photoTCldlhPG0S.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:09:02', NULL, NULL),
-(5, 'Title 5', 'gallery-photoCLBjqFd0fI.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:09:12', NULL, NULL),
-(6, 'Title 6', 'gallery-photoG3dyHVDLCN.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:09:20', NULL, NULL),
-(7, 'Title 7', 'gallery-photohEhnvuoS74.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:09:30', NULL, NULL),
-(8, 'Title 8', 'gallery-photoYIkufjcimM.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:09:39', NULL, NULL);
+INSERT INTO `photo_galleries` (`id`, `branch_id`, `gallery_photo_title`, `gallery_photo_name`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'Title 1', 'gallery-photoqxfVepjbDr.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:08:29', NULL, NULL),
+(2, 1, 'Title 2', 'gallery-photofjvOVY9J5D.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:08:38', NULL, NULL),
+(3, 1, 'Title 3', 'gallery-photozspg8mLO9c.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:08:46', NULL, NULL),
+(4, 1, 'Title 4', 'gallery-photoTCldlhPG0S.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:09:02', NULL, NULL),
+(5, 1, 'Title 5', 'gallery-photoCLBjqFd0fI.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:09:12', NULL, NULL),
+(6, 1, 'Title 6', 'gallery-photoG3dyHVDLCN.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:09:20', NULL, NULL),
+(7, 1, 'Title 7', 'gallery-photohEhnvuoS74.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:09:30', NULL, NULL),
+(8, 1, 'Title 8', 'gallery-photoYIkufjcimM.jpg', 'Active', 1, NULL, NULL, '2023-03-20 04:09:39', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1084,7 +1133,7 @@ CREATE TABLE `seo_settings` (
 --
 
 INSERT INTO `seo_settings` (`id`, `title`, `keywords`, `author`, `description`, `seo_image`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Spy News', 'news, blog, khobor', 'Md Sabbir Ahammed', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...', NULL, 1, 1, '2023-03-20 03:55:58', '2023-03-20 04:00:04');
+(1, 'Spy News', 'news, blog, khobor', 'Md Sabbir Ahammed', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...', 'Seo-Image.png', 1, 1, '2023-03-20 03:55:58', '2023-08-08 06:43:47');
 
 -- --------------------------------------------------------
 
@@ -6311,7 +6360,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `facebook_id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `email_verified_at`, `password`, `last_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'User 1', 'user1@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', '2023-06-18 05:39:35', '$2y$10$kAQe3U4Xk7IGLfSOfDfoLOYwOq8uRyB4CJoAZZEKrwiJ6jZhF8et6', '2023-06-18 05:40:31', NULL, '2023-06-18 05:23:57', '2023-06-18 05:57:44');
+(1, NULL, NULL, 'User 1', 'user1@email.com', '01878136530', 'Male', '2023-08-08', 'Dhaka', 'default_profile_photo.png', 'Active', '2023-06-18 05:39:35', '$2y$10$kAQe3U4Xk7IGLfSOfDfoLOYwOq8uRyB4CJoAZZEKrwiJ6jZhF8et6', '2023-08-09 11:27:57', NULL, '2023-06-18 05:23:57', '2023-08-09 11:27:57');
 
 -- --------------------------------------------------------
 
@@ -6321,6 +6370,7 @@ INSERT INTO `users` (`id`, `google_id`, `facebook_id`, `name`, `email`, `phone_n
 
 CREATE TABLE `video_galleries` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `branch_id` int(11) NOT NULL,
   `gallery_video_title` varchar(255) NOT NULL,
   `gallery_video_link` text NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'Active',
@@ -6919,7 +6969,311 @@ INSERT INTO `visitor_details` (`id`, `ip_address`, `visit_time`) VALUES
 (568, '127.0.0.1', '2023-06-21 04:54:29'),
 (569, '127.0.0.1', '2023-06-21 04:56:51'),
 (570, '127.0.0.1', '2023-06-21 04:57:15'),
-(571, '127.0.0.1', '2023-06-21 05:04:07');
+(571, '127.0.0.1', '2023-06-21 05:04:07'),
+(572, '127.0.0.1', '2023-08-07 11:51:47'),
+(573, '127.0.0.1', '2023-08-07 11:52:11'),
+(574, '127.0.0.1', '2023-08-07 11:52:18'),
+(575, '127.0.0.1', '2023-08-07 11:52:21'),
+(576, '127.0.0.1', '2023-08-07 11:53:18'),
+(577, '127.0.0.1', '2023-08-07 11:53:34'),
+(578, '127.0.0.1', '2023-08-07 11:53:37'),
+(579, '127.0.0.1', '2023-08-07 11:53:38'),
+(580, '127.0.0.1', '2023-08-07 11:53:40'),
+(581, '127.0.0.1', '2023-08-07 11:53:45'),
+(582, '127.0.0.1', '2023-08-07 11:53:59'),
+(583, '127.0.0.1', '2023-08-07 11:54:06'),
+(584, '127.0.0.1', '2023-08-07 11:54:11'),
+(585, '127.0.0.1', '2023-08-07 11:54:12'),
+(586, '127.0.0.1', '2023-08-07 11:54:15'),
+(587, '127.0.0.1', '2023-08-07 11:54:18'),
+(588, '127.0.0.1', '2023-08-07 11:54:19'),
+(589, '127.0.0.1', '2023-08-07 11:54:24'),
+(590, '127.0.0.1', '2023-08-07 11:54:26'),
+(591, '127.0.0.1', '2023-08-07 11:54:28'),
+(592, '127.0.0.1', '2023-08-07 11:54:33'),
+(593, '127.0.0.1', '2023-08-07 11:54:41'),
+(594, '127.0.0.1', '2023-08-07 11:54:46'),
+(595, '127.0.0.1', '2023-08-07 11:54:49'),
+(596, '127.0.0.1', '2023-08-07 11:54:57'),
+(597, '127.0.0.1', '2023-08-07 11:55:00'),
+(598, '127.0.0.1', '2023-08-07 11:55:16'),
+(599, '127.0.0.1', '2023-08-07 11:55:30'),
+(600, '127.0.0.1', '2023-08-07 11:55:35'),
+(601, '127.0.0.1', '2023-08-07 11:55:42'),
+(602, '127.0.0.1', '2023-08-07 11:55:51'),
+(603, '127.0.0.1', '2023-08-07 11:55:55'),
+(604, '127.0.0.1', '2023-08-07 11:56:22'),
+(605, '127.0.0.1', '2023-08-07 11:56:23'),
+(606, '127.0.0.1', '2023-08-07 11:56:26'),
+(607, '127.0.0.1', '2023-08-07 11:56:51'),
+(608, '127.0.0.1', '2023-08-07 11:56:55'),
+(609, '127.0.0.1', '2023-08-07 11:57:01'),
+(610, '127.0.0.1', '2023-08-07 11:57:11'),
+(611, '127.0.0.1', '2023-08-07 11:57:15'),
+(612, '127.0.0.1', '2023-08-07 11:57:18'),
+(613, '127.0.0.1', '2023-08-07 11:57:21'),
+(614, '127.0.0.1', '2023-08-07 11:57:28'),
+(615, '127.0.0.1', '2023-08-07 11:57:39'),
+(616, '127.0.0.1', '2023-08-07 11:57:48'),
+(617, '127.0.0.1', '2023-08-07 11:58:18'),
+(618, '127.0.0.1', '2023-08-07 11:58:35'),
+(619, '127.0.0.1', '2023-08-07 11:58:51'),
+(620, '127.0.0.1', '2023-08-07 11:59:04'),
+(621, '127.0.0.1', '2023-08-07 11:59:13'),
+(622, '127.0.0.1', '2023-08-07 11:59:20'),
+(623, '127.0.0.1', '2023-08-07 11:59:28'),
+(624, '127.0.0.1', '2023-08-07 12:00:07'),
+(625, '127.0.0.1', '2023-08-07 12:00:17'),
+(626, '127.0.0.1', '2023-08-07 12:00:20'),
+(627, '127.0.0.1', '2023-08-07 12:00:29'),
+(628, '127.0.0.1', '2023-08-07 12:00:47'),
+(629, '127.0.0.1', '2023-08-07 12:00:57'),
+(630, '127.0.0.1', '2023-08-07 12:01:04'),
+(631, '127.0.0.1', '2023-08-07 12:01:13'),
+(632, '127.0.0.1', '2023-08-07 12:01:31'),
+(633, '127.0.0.1', '2023-08-07 12:02:49'),
+(634, '127.0.0.1', '2023-08-07 12:03:45'),
+(635, '127.0.0.1', '2023-08-07 12:03:53'),
+(636, '127.0.0.1', '2023-08-07 12:07:48'),
+(637, '127.0.0.1', '2023-08-07 12:07:55'),
+(638, '127.0.0.1', '2023-08-07 12:08:00'),
+(639, '127.0.0.1', '2023-08-07 12:08:09'),
+(640, '127.0.0.1', '2023-08-07 12:17:06'),
+(641, '127.0.0.1', '2023-08-07 12:17:13'),
+(642, '127.0.0.1', '2023-08-07 12:17:45'),
+(643, '127.0.0.1', '2023-08-07 12:19:08'),
+(644, '127.0.0.1', '2023-08-07 12:19:13'),
+(645, '127.0.0.1', '2023-08-07 12:19:32'),
+(646, '127.0.0.1', '2023-08-07 12:19:39'),
+(647, '127.0.0.1', '2023-08-07 12:19:57'),
+(648, '127.0.0.1', '2023-08-07 12:20:06'),
+(649, '127.0.0.1', '2023-08-07 12:20:20'),
+(650, '127.0.0.1', '2023-08-07 12:20:22'),
+(651, '127.0.0.1', '2023-08-07 12:20:25'),
+(652, '127.0.0.1', '2023-08-07 12:20:28'),
+(653, '127.0.0.1', '2023-08-07 12:20:56'),
+(654, '127.0.0.1', '2023-08-07 12:20:59'),
+(655, '127.0.0.1', '2023-08-07 12:21:03'),
+(656, '127.0.0.1', '2023-08-07 12:21:05'),
+(657, '127.0.0.1', '2023-08-07 12:21:20'),
+(658, '127.0.0.1', '2023-08-07 12:21:56'),
+(659, '127.0.0.1', '2023-08-07 12:21:58'),
+(660, '127.0.0.1', '2023-08-07 12:22:00'),
+(661, '127.0.0.1', '2023-08-07 12:22:02'),
+(662, '127.0.0.1', '2023-08-07 12:22:21'),
+(663, '127.0.0.1', '2023-08-07 12:22:29'),
+(664, '127.0.0.1', '2023-08-07 12:22:31'),
+(665, '127.0.0.1', '2023-08-07 12:22:34'),
+(666, '127.0.0.1', '2023-08-07 12:22:43'),
+(667, '127.0.0.1', '2023-08-07 12:22:59'),
+(668, '127.0.0.1', '2023-08-07 12:23:09'),
+(669, '127.0.0.1', '2023-08-07 12:23:30'),
+(670, '127.0.0.1', '2023-08-07 12:23:32'),
+(671, '127.0.0.1', '2023-08-08 03:29:22'),
+(672, '127.0.0.1', '2023-08-08 03:29:52'),
+(673, '127.0.0.1', '2023-08-08 03:30:15'),
+(674, '127.0.0.1', '2023-08-08 03:30:37'),
+(675, '127.0.0.1', '2023-08-08 03:31:30'),
+(676, '127.0.0.1', '2023-08-08 03:31:36'),
+(677, '127.0.0.1', '2023-08-08 03:31:39'),
+(678, '127.0.0.1', '2023-08-08 03:32:54'),
+(679, '127.0.0.1', '2023-08-08 03:33:28'),
+(680, '127.0.0.1', '2023-08-08 03:37:20'),
+(681, '127.0.0.1', '2023-08-08 03:40:21'),
+(682, '127.0.0.1', '2023-08-08 03:41:15'),
+(683, '127.0.0.1', '2023-08-08 03:41:52'),
+(684, '127.0.0.1', '2023-08-08 03:43:22'),
+(685, '127.0.0.1', '2023-08-08 03:46:14'),
+(686, '127.0.0.1', '2023-08-08 03:48:17'),
+(687, '127.0.0.1', '2023-08-08 03:50:21'),
+(688, '127.0.0.1', '2023-08-08 03:51:29'),
+(689, '127.0.0.1', '2023-08-08 03:54:07'),
+(690, '127.0.0.1', '2023-08-08 03:54:18'),
+(691, '127.0.0.1', '2023-08-08 03:54:39'),
+(692, '127.0.0.1', '2023-08-08 03:54:42'),
+(693, '127.0.0.1', '2023-08-08 03:54:53'),
+(694, '127.0.0.1', '2023-08-08 03:55:16'),
+(695, '127.0.0.1', '2023-08-08 03:56:01'),
+(696, '127.0.0.1', '2023-08-08 03:58:31'),
+(697, '127.0.0.1', '2023-08-08 04:01:07'),
+(698, '127.0.0.1', '2023-08-08 04:02:25'),
+(699, '127.0.0.1', '2023-08-08 04:04:04'),
+(700, '127.0.0.1', '2023-08-08 04:05:20'),
+(701, '127.0.0.1', '2023-08-08 04:08:33'),
+(702, '127.0.0.1', '2023-08-08 04:10:45'),
+(703, '127.0.0.1', '2023-08-08 04:11:13'),
+(704, '127.0.0.1', '2023-08-08 04:11:49'),
+(705, '127.0.0.1', '2023-08-08 04:12:02'),
+(706, '127.0.0.1', '2023-08-08 04:12:32'),
+(707, '127.0.0.1', '2023-08-08 04:13:31'),
+(708, '127.0.0.1', '2023-08-08 04:13:43'),
+(709, '127.0.0.1', '2023-08-08 04:14:56'),
+(710, '127.0.0.1', '2023-08-08 04:15:00'),
+(711, '127.0.0.1', '2023-08-08 04:15:15'),
+(712, '127.0.0.1', '2023-08-08 04:15:16'),
+(713, '127.0.0.1', '2023-08-08 04:15:24'),
+(714, '127.0.0.1', '2023-08-08 04:19:03'),
+(715, '127.0.0.1', '2023-08-08 04:19:24'),
+(716, '127.0.0.1', '2023-08-08 04:20:08'),
+(717, '127.0.0.1', '2023-08-08 04:20:36'),
+(718, '127.0.0.1', '2023-08-08 04:21:05'),
+(719, '127.0.0.1', '2023-08-08 04:21:23'),
+(720, '127.0.0.1', '2023-08-08 04:21:40'),
+(721, '127.0.0.1', '2023-08-08 04:21:47'),
+(722, '127.0.0.1', '2023-08-08 04:23:48'),
+(723, '127.0.0.1', '2023-08-08 04:36:52'),
+(724, '127.0.0.1', '2023-08-08 04:40:18'),
+(725, '127.0.0.1', '2023-08-08 04:40:31'),
+(726, '127.0.0.1', '2023-08-08 04:40:35'),
+(727, '127.0.0.1', '2023-08-08 04:40:46'),
+(728, '127.0.0.1', '2023-08-08 04:40:58'),
+(729, '127.0.0.1', '2023-08-08 04:47:23'),
+(730, '127.0.0.1', '2023-08-08 04:48:07'),
+(731, '127.0.0.1', '2023-08-08 04:48:14'),
+(732, '127.0.0.1', '2023-08-08 04:48:19'),
+(733, '127.0.0.1', '2023-08-08 04:49:01'),
+(734, '127.0.0.1', '2023-08-08 04:49:10'),
+(735, '127.0.0.1', '2023-08-08 04:49:13'),
+(736, '127.0.0.1', '2023-08-08 04:51:05'),
+(737, '127.0.0.1', '2023-08-08 04:51:16'),
+(738, '127.0.0.1', '2023-08-08 04:51:39'),
+(739, '127.0.0.1', '2023-08-08 04:51:58'),
+(740, '127.0.0.1', '2023-08-08 04:52:25'),
+(741, '127.0.0.1', '2023-08-08 04:53:57'),
+(742, '127.0.0.1', '2023-08-08 04:54:09'),
+(743, '127.0.0.1', '2023-08-08 04:54:18'),
+(744, '127.0.0.1', '2023-08-08 04:54:24'),
+(745, '127.0.0.1', '2023-08-08 04:54:28'),
+(746, '127.0.0.1', '2023-08-08 04:54:55'),
+(747, '127.0.0.1', '2023-08-08 04:56:51'),
+(748, '127.0.0.1', '2023-08-08 04:59:12'),
+(749, '127.0.0.1', '2023-08-08 05:01:59'),
+(750, '127.0.0.1', '2023-08-08 05:02:10'),
+(751, '127.0.0.1', '2023-08-08 05:03:44'),
+(752, '127.0.0.1', '2023-08-08 05:06:21'),
+(753, '127.0.0.1', '2023-08-08 05:08:36'),
+(754, '127.0.0.1', '2023-08-08 05:14:38'),
+(755, '127.0.0.1', '2023-08-08 05:33:19'),
+(756, '127.0.0.1', '2023-08-08 05:40:26'),
+(757, '127.0.0.1', '2023-08-08 05:40:30'),
+(758, '127.0.0.1', '2023-08-08 05:42:50'),
+(759, '127.0.0.1', '2023-08-08 05:54:17'),
+(760, '127.0.0.1', '2023-08-08 05:54:33'),
+(761, '127.0.0.1', '2023-08-08 05:54:42'),
+(762, '127.0.0.1', '2023-08-08 05:54:46'),
+(763, '127.0.0.1', '2023-08-08 05:54:51'),
+(764, '127.0.0.1', '2023-08-08 05:55:09'),
+(765, '127.0.0.1', '2023-08-08 05:55:12'),
+(766, '127.0.0.1', '2023-08-08 05:55:32'),
+(767, '127.0.0.1', '2023-08-08 05:55:35'),
+(768, '127.0.0.1', '2023-08-08 05:55:36'),
+(769, '127.0.0.1', '2023-08-08 05:55:39'),
+(770, '127.0.0.1', '2023-08-08 05:58:15'),
+(771, '127.0.0.1', '2023-08-08 05:58:19'),
+(772, '127.0.0.1', '2023-08-08 05:58:25'),
+(773, '127.0.0.1', '2023-08-08 06:14:58'),
+(774, '127.0.0.1', '2023-08-08 06:15:24'),
+(775, '127.0.0.1', '2023-08-08 06:16:02'),
+(776, '127.0.0.1', '2023-08-08 12:14:23'),
+(777, '127.0.0.1', '2023-08-09 10:01:52'),
+(778, '127.0.0.1', '2023-08-09 10:01:56'),
+(779, '127.0.0.1', '2023-08-09 10:02:03'),
+(780, '127.0.0.1', '2023-08-09 10:02:14'),
+(781, '127.0.0.1', '2023-08-09 10:02:23'),
+(782, '127.0.0.1', '2023-08-09 10:02:32'),
+(783, '127.0.0.1', '2023-08-09 10:02:40'),
+(784, '127.0.0.1', '2023-08-09 10:02:48'),
+(785, '127.0.0.1', '2023-08-09 10:04:25'),
+(786, '127.0.0.1', '2023-08-09 10:04:34'),
+(787, '127.0.0.1', '2023-08-09 10:05:38'),
+(788, '127.0.0.1', '2023-08-09 10:05:44'),
+(789, '127.0.0.1', '2023-08-09 10:33:09'),
+(790, '127.0.0.1', '2023-08-09 10:33:20'),
+(791, '127.0.0.1', '2023-08-09 10:33:26'),
+(792, '127.0.0.1', '2023-08-09 10:33:35'),
+(793, '127.0.0.1', '2023-08-09 10:33:54'),
+(794, '127.0.0.1', '2023-08-09 10:34:01'),
+(795, '127.0.0.1', '2023-08-09 10:34:03'),
+(796, '127.0.0.1', '2023-08-09 10:34:09'),
+(797, '127.0.0.1', '2023-08-09 10:34:13'),
+(798, '127.0.0.1', '2023-08-09 10:34:22'),
+(799, '127.0.0.1', '2023-08-09 10:34:35'),
+(800, '127.0.0.1', '2023-08-09 10:35:14'),
+(801, '127.0.0.1', '2023-08-09 10:35:30'),
+(802, '127.0.0.1', '2023-08-09 10:36:15'),
+(803, '127.0.0.1', '2023-08-09 10:36:23'),
+(804, '127.0.0.1', '2023-08-09 10:36:35'),
+(805, '127.0.0.1', '2023-08-09 10:36:38'),
+(806, '127.0.0.1', '2023-08-09 10:36:43'),
+(807, '127.0.0.1', '2023-08-09 10:36:53'),
+(808, '127.0.0.1', '2023-08-09 10:36:56'),
+(809, '127.0.0.1', '2023-08-09 10:37:04'),
+(810, '127.0.0.1', '2023-08-09 10:38:24'),
+(811, '127.0.0.1', '2023-08-09 10:38:33'),
+(812, '127.0.0.1', '2023-08-09 10:39:05'),
+(813, '127.0.0.1', '2023-08-09 10:41:07'),
+(814, '127.0.0.1', '2023-08-09 10:42:05'),
+(815, '127.0.0.1', '2023-08-09 10:42:10'),
+(816, '127.0.0.1', '2023-08-09 10:42:13'),
+(817, '127.0.0.1', '2023-08-09 10:42:22'),
+(818, '127.0.0.1', '2023-08-09 10:42:31'),
+(819, '127.0.0.1', '2023-08-09 10:42:36'),
+(820, '127.0.0.1', '2023-08-09 10:42:41'),
+(821, '127.0.0.1', '2023-08-09 10:42:46'),
+(822, '127.0.0.1', '2023-08-09 10:42:48'),
+(823, '127.0.0.1', '2023-08-09 10:42:55'),
+(824, '127.0.0.1', '2023-08-09 10:45:56'),
+(825, '127.0.0.1', '2023-08-09 10:46:28'),
+(826, '127.0.0.1', '2023-08-09 10:46:36'),
+(827, '127.0.0.1', '2023-08-09 10:47:05'),
+(828, '127.0.0.1', '2023-08-09 10:47:33'),
+(829, '127.0.0.1', '2023-08-09 10:48:09'),
+(830, '127.0.0.1', '2023-08-09 10:50:41'),
+(831, '127.0.0.1', '2023-08-09 10:50:57'),
+(832, '127.0.0.1', '2023-08-09 10:51:00'),
+(833, '127.0.0.1', '2023-08-09 10:51:09'),
+(834, '127.0.0.1', '2023-08-09 10:51:32'),
+(835, '127.0.0.1', '2023-08-09 10:51:35'),
+(836, '127.0.0.1', '2023-08-09 10:51:38'),
+(837, '127.0.0.1', '2023-08-09 10:51:50'),
+(838, '127.0.0.1', '2023-08-09 10:51:53'),
+(839, '127.0.0.1', '2023-08-09 10:51:55'),
+(840, '127.0.0.1', '2023-08-09 11:01:46'),
+(841, '127.0.0.1', '2023-08-09 11:01:51'),
+(842, '127.0.0.1', '2023-08-09 11:02:01'),
+(843, '127.0.0.1', '2023-08-09 11:02:03'),
+(844, '127.0.0.1', '2023-08-09 11:02:14'),
+(845, '127.0.0.1', '2023-08-09 11:02:19'),
+(846, '127.0.0.1', '2023-08-09 11:02:23'),
+(847, '127.0.0.1', '2023-08-09 11:02:27'),
+(848, '127.0.0.1', '2023-08-09 11:02:30'),
+(849, '127.0.0.1', '2023-08-09 11:02:33'),
+(850, '127.0.0.1', '2023-08-09 11:02:37'),
+(851, '127.0.0.1', '2023-08-09 11:27:51'),
+(852, '127.0.0.1', '2023-08-09 11:27:57'),
+(853, '127.0.0.1', '2023-08-09 11:55:18'),
+(854, '127.0.0.1', '2023-08-09 11:55:29'),
+(855, '127.0.0.1', '2023-08-09 11:55:33'),
+(856, '127.0.0.1', '2023-08-09 11:56:14'),
+(857, '127.0.0.1', '2023-08-09 11:56:42'),
+(858, '127.0.0.1', '2023-08-09 11:56:58'),
+(859, '127.0.0.1', '2023-08-09 11:57:08'),
+(860, '127.0.0.1', '2023-08-09 11:57:12'),
+(861, '127.0.0.1', '2023-08-09 11:57:25'),
+(862, '127.0.0.1', '2023-08-09 11:57:42'),
+(863, '127.0.0.1', '2023-08-09 11:58:09'),
+(864, '127.0.0.1', '2023-08-09 11:58:40'),
+(865, '127.0.0.1', '2023-08-09 11:58:45'),
+(866, '127.0.0.1', '2023-08-09 12:00:09'),
+(867, '127.0.0.1', '2023-08-09 12:00:15'),
+(868, '127.0.0.1', '2023-08-09 12:00:27'),
+(869, '127.0.0.1', '2023-08-09 12:00:29'),
+(870, '127.0.0.1', '2023-08-09 12:00:41'),
+(871, '127.0.0.1', '2023-08-09 12:01:02'),
+(872, '127.0.0.1', '2023-08-09 12:01:17'),
+(873, '127.0.0.1', '2023-08-09 12:02:19'),
+(874, '127.0.0.1', '2023-08-09 12:04:11'),
+(875, '127.0.0.1', '2023-08-09 12:05:25');
 
 --
 -- Indexes for dumped tables
@@ -6951,6 +7305,20 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `advertisements`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `branches`
+--
+ALTER TABLE `branches`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `branch_translations`
+--
+ALTER TABLE `branch_translations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `branch_translations_branch_id_locale_unique` (`branch_id`,`locale`),
+  ADD KEY `branch_translations_locale_index` (`locale`);
 
 --
 -- Indexes for table `categories`
@@ -7187,13 +7555,25 @@ ALTER TABLE `about_us_translations`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `branches`
+--
+ALTER TABLE `branches`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `branch_translations`
+--
+ALTER TABLE `branch_translations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -7211,13 +7591,13 @@ ALTER TABLE `category_translations`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `comment_replies`
 --
 ALTER TABLE `comment_replies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `contact_messages`
@@ -7277,7 +7657,7 @@ ALTER TABLE `mail_settings`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -7373,7 +7753,7 @@ ALTER TABLE `upazilas`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `video_galleries`
@@ -7385,7 +7765,7 @@ ALTER TABLE `video_galleries`
 -- AUTO_INCREMENT for table `visitor_details`
 --
 ALTER TABLE `visitor_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=572;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=876;
 
 --
 -- Constraints for dumped tables
@@ -7396,6 +7776,12 @@ ALTER TABLE `visitor_details`
 --
 ALTER TABLE `about_us_translations`
   ADD CONSTRAINT `about_us_translations_about_us_id_foreign` FOREIGN KEY (`about_us_id`) REFERENCES `about_us` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `branch_translations`
+--
+ALTER TABLE `branch_translations`
+  ADD CONSTRAINT `branch_translations_branch_id_foreign` FOREIGN KEY (`branch_id`) REFERENCES `branches` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `category_translations`
