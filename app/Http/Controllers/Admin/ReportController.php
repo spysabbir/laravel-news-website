@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 use App\Models\Country;
 use App\Models\Division;
 use App\Models\District;
@@ -28,6 +29,9 @@ class ReportController extends Controller
             }
             if($request->news_position){
                 $query->where('news.news_position', $request->news_position);
+            }
+            if($request->branch_id){
+                $query->where('news.branch_id', $request->branch_id);
             }
             if($request->country_id){
                 $query->where('news.country_id', $request->country_id);
@@ -96,11 +100,12 @@ class ReportController extends Controller
                     ->make(true);
         }
 
+        $all_branch = Branch::all();
         $all_country = Country::all();
         $all_division = Division::all();
         $all_district = District::all();
         $all_upazila = Upazila::all();
         $all_union = Union::all();
-        return view('admin.report.news', compact('all_country', 'all_division', 'all_district', 'all_upazila', 'all_union'));
+        return view('admin.report.news', compact('all_branch', 'all_country', 'all_division', 'all_district', 'all_upazila', 'all_union'));
     }
 }

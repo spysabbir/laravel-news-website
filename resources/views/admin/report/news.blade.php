@@ -33,6 +33,15 @@
                                 <option value="Featured">Featured</option>
                             </select>
                         </div>
+                        <div class="col-lg-2">
+                            <label class="form-label">Branch</label>
+                            <select class="form-select filter_data" id="branch_id">
+                                <option value="">--All--</option>
+                                @foreach ($all_branch as $branch)
+                                <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="col-lg-3">
                             <label class="form-label">Country</label>
                             <select class="form-select filter_data" id="country_id">
@@ -133,6 +142,7 @@
                 "data":function(e){
                     e.status = $('#status').val();
                     e.news_position = $('#news_position').val();
+                    e.branch_id = $('#branch_id').val();
                     e.country_id = $('#country_id').val();
                     e.division_id = $('#division_id').val();
                     e.district_id = $('#district_id').val();
