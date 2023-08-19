@@ -36,7 +36,7 @@
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="{{ route('category.wise.news', $news->relationtocategory->category_slug) }}">{{ $news->relationtocategory->category_name }}</a>
                                     <a class="text-body" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                                 </div>
-                                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 50)  }}</a>
+                                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{!! substr($news->news_headline, 0, 50) . '...' !!}</a>
                             </div>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                                     <br>
                                     <a class="text-body" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                                 </div>
-                                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 25) }}</a>
+                                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{!! substr($news->news_headline, 0, 25) . '...' !!}</a>
                             </div>
                         </div>
                         @empty

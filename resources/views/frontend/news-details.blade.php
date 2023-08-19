@@ -84,7 +84,7 @@
                                 <div class="mb-2">
                                     <a class="text-white" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                                 </div>
-                                <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 25)  }}</a>
+                                <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{{ route('news.details', $news->news_slug) }}">{!! substr($news->news_headline, 0, 25) . '...' !!}</a>
                             </div>
                         </div>
                         @empty
@@ -219,7 +219,7 @@
                                     <br>
                                     <a class="text-body" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                                 </div>
-                                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 25) }}</a>
+                                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{!! substr($news->news_headline, 0, 25) . '...' !!}</a>
                             </div>
                         </div>
                         @empty

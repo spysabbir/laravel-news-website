@@ -17,7 +17,7 @@
                                 href="{{ route('category.wise.news', $news->relationtocategory->category_slug) }}">{{ $news->relationtocategory->category_name }}</a>
                             <a class="text-white" href="#">{{ $news->created_at->format('d-M, Y') }}</a>
                         </div>
-                        <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 50)  }}</a>
+                        <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{!! substr($news->news_headline, 0, 50) . '...' !!}</a>
                     </div>
                 </div>
                 @empty
@@ -39,7 +39,7 @@
                                     href="{{ route('category.wise.news', $news->relationtocategory->category_slug) }}">{{ $news->relationtocategory->category_name }}</a>
                                 <a class="text-white" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                             </div>
-                            <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 25)  }}</a>
+                            <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{{ route('news.details', $news->news_slug) }}">{!! substr($news->news_headline, 0, 25) . '...' !!}</a>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                     <div class="mb-2">
                         <a class="text-white" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                     </div>
-                    <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 25)  }}</a>
+                    <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{{ route('news.details', $news->news_slug) }}">{!! substr($news->news_headline, 0, 25) . '...' !!}</a>
                 </div>
             </div>
             @empty
@@ -132,8 +132,8 @@
                                                 href="{{ route('category.wise.news', $news->relationtocategory->category_slug) }}">{{ $news->relationtocategory->category_name }}</a>
                                             <a class="text-body" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                                         </div>
-                                        <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 25)  }}</a>
-                                        <p class="m-0">{!! Str::limit($news->news_details, 50) !!}</p>
+                                        <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{!! substr($news->news_headline, 0, 25) . '...' !!}</a>
+                                        <p class="m-0">{!! substr($news->news_details, 0, 50) . '...' !!}</p>
                                     </div>
                                     <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                                         <div class="d-flex align-items-center">
@@ -173,8 +173,8 @@
                                             href="{{ route('category.wise.news', $news->relationtocategory->category_slug) }}">{{ $news->relationtocategory->category_name }}</a>
                                         <a class="text-body" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                                     </div>
-                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 25)  }}</a>
-                                    <p class="m-0">{!! Str::limit($news->news_details, 50) !!}</p>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{!! substr($news->news_headline, 0, 25) . '...' !!}</a>
+                                    <p class="m-0">{!! substr($news->news_details, 0, 50) . '...' !!}</p>
                                 </div>
                                 <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                                     <div class="d-flex align-items-center">
@@ -194,7 +194,7 @@
                                         <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="{{ route('category.wise.news', $news->relationtocategory->category_slug) }}">{{ $news->relationtocategory->category_name }}</a>
                                         <a class="text-body" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                                     </div>
-                                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 25)  }}</a>
+                                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{!! substr($news->news_headline, 0, 25) . '...' !!}</a>
                                 </div>
                             </div>
                         </div>
@@ -228,7 +228,7 @@
                                                 <a class="text-body" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                                             </div>
                                             <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ $news->news_headline  }}</a>
-                                            <p class="m-0">{!! Str::limit($news->news_details, 50) !!}</p>
+                                            <p class="m-0">{!! substr($news->news_details, 0, 50) . '...' !!}</p>
                                         </div>
                                         <div class="d-flex justify-content-between bg-white border-top mt-auto p-4">
                                             <div class="d-flex align-items-center">
@@ -250,7 +250,7 @@
                                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="{{ route('category.wise.news', $news->relationtocategory->category_slug) }}">{{ $news->relationtocategory->category_name }}</a>
                                             <a class="text-body" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                                         </div>
-                                        <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 25)  }}.</a>
+                                        <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{!! substr($news->news_headline, 0, 25) . '...' !!}.</a>
                                     </div>
                                 </div>
                             </div>
@@ -338,7 +338,7 @@
                                     <br>
                                     <a class="text-body" href="#"><small>{{ $news->created_at->format('d-M, Y') }}</small></a>
                                 </div>
-                                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{{ Str::limit($news->news_headline, 25) }}</a>
+                                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ route('news.details', $news->news_slug) }}">{!! substr($news->news_headline, 0, 25) . '...' !!}</a>
                             </div>
                         </div>
                         @empty
