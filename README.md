@@ -12,7 +12,7 @@ git clone https://github.com/spysabbir/Laravel-News-Website-Application.git
 ``` 
 - Now change the command line present working directory (pwd) by
  ```
-cd laravel-news-project-one
+cd Laravel-News-Website-Application
 ``` 
 - Now with help of `composer` download all required packages those need to run this laravel project
  ```
