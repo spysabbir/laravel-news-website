@@ -8,11 +8,11 @@ This is project is the News Website. Built with `Laravel` & various packages inc
 
 - First of all we have to `clone` the project at our local machine using below command
  ```
-git clone https://github.com/spysabbir/Laravel-News-Website-Application.git
+git clone https://github.com/spysabbir/laravel-news-website.git
 ``` 
 - Now change the command line present working directory (pwd) by
  ```
-cd Laravel-News-Website-Application
+cd laravel-news-website
 ``` 
 - Now with help of `composer` download all required packages those need to run this laravel project
  ```
