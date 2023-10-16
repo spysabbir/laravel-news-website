@@ -129,7 +129,7 @@
                                             <h4 class="card-title">{{ __('messages.password') }} {{ __('messages.update') }}</h4>
                                         </div>
                                         <div class="card-body">
-                                            <form action="{{ route('password.update') }}" method="POST">
+                                            <form action="{{ route('password.change') }}" method="POST">
                                                 @csrf
                                                 <div class="mb-3">
                                                     <label for="current_password" class="form-label">{{ __('messages.current_password') }}</label>

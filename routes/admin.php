@@ -3,13 +3,9 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdvertisementController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
-use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\Contact_messageController;
@@ -41,7 +37,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::get('profile', [AdminController::class, 'profile'])->name('profile');
         Route::post('profile-update', [AdminController::class, 'profileUpdate'])->name('profile.update');
-        Route::post('password-update', [AdminController::class, 'passwordUpdate'])->name('password.update');
+        Route::post('password-change', [AdminController::class, 'passwordUpdate'])->name('password.change');
 
         Route::middleware(['super_admin'])->group(function () {
             Route::get('news-report', [ReportController::class, 'newsReport'])->name('news.report');

@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['verified'])->group(function(){
         Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
         Route::post('profile-update', [UserController::class, 'profileUpdate'])->name('profile.update');
-        Route::post('password-update', [UserController::class, 'passwordUpdate'])->name('password.update');
+        Route::post('password-change', [UserController::class, 'passwordUpdate'])->name('password.change');
     });
 });
 

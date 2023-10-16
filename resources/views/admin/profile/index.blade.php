@@ -72,7 +72,7 @@
                 </form>
             </div>
             <div class="card-body">
-                <form id="formAccountSettings" action="{{ route('admin.password.update') }}" method="POST">
+                <form id="formAccountSettings" action="{{ route('admin.password.change') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-md-4 col-12 mb-3">
