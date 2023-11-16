@@ -1,4 +1,4 @@
-<p align="center"><a href="https://news.spysabbir.com/" target="_blank"><img src="#" ></a></p>
+<p align="center"><a href="https://news.spysabbir.com/" target="_blank"><img src="https://news.spysabbir.com/uploads/default_photo/Logo-Photo.png" ></a></p>
 
 ## About This Project
 
@@ -30,8 +30,9 @@ php artisan key:generate
 
 Variable Name | Description
 --- | ---
-DB_* | database settings to connect the database with this project
-MAIL_* | database settings to send email via SMTP
+*DB | database settings for connect the database with this project
+*MAIL | mail settings for send email via smtp server
+*SOCIAL_LOGIN | social login settings for login using social account via socialite package
 
 - Now migrate and seed the database using
  ```
@@ -45,15 +46,18 @@ php artisan serve
 
 - Demo login credentials 
  ```
+Backend.....
 For Super Admin:- 
 Email: superadmin@email.com
 For Admin:- 
 Email: admin@email.com
 For Reporter:- 
 Email: reporter@email.com
-Password: 12345678
 
+Frontend.....
 For User:- 
 Email: user1@email.com
+
+All account password as same
 Password: 12345678
 ``` 
