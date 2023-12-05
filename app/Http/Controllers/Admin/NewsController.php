@@ -87,11 +87,25 @@ class NewsController extends Controller
                         }
                     })
                     ->addColumn('action', function($row){
-                        $btn = '
-                            <a href="'.route('admin.news.edit', $row->id).'" class="btn btn-primary btn-sm"><i class="fa-regular fa-pen-to-square"></i></a>
-                            <a href="'.route('admin.news.show', $row->id).'" class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></a>
-                            <button type="button" id="'.$row->id.'" class="btn btn-danger btn-sm deleteBtn"><i class="fa-solid fa-trash-can"></i></button>
+                        $deleteBtn = '';
+
+                        if (Auth::guard('admin')->user()->role != 'Reporter') {
+                            $deleteBtn = '
+                                <button type="button" id="'.$row->id.'" class="btn btn-danger btn-sm deleteBtn">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
                             ';
+                        }
+
+                        $btn = '
+                            <a href="'.route('admin.news.edit', $row->id).'" class="btn btn-primary btn-sm">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                            <a href="'.route('admin.news.show', $row->id).'" class="btn btn-info btn-sm">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                            '.$deleteBtn;
+
                         return $btn;
                     })
                     ->rawColumns(['news_thumbnail_photo', 'comment', 'created_at', 'status', 'action'])

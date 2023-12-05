@@ -26,7 +26,8 @@ class AdminController extends Controller
         $all_manager = Admin::where('role', 'Manager')->count();
         $all_user = User::count();
         $reporter_wise_news = News::where('created_by', Auth::guard('admin')->user()->id)->count();
-        return view('admin.dashboard', compact('all_news', 'categories', 'tags', 'all_manager', 'all_user', 'reporter_wise_news'));
+        $branch_wise_news = News::where('branch_id', Auth::guard('admin')->user()->branch_id)->count();
+        return view('admin.dashboard', compact('all_news', 'categories', 'tags', 'all_manager', 'all_user', 'reporter_wise_news', 'branch_wise_news'));
     }
 
     public function profile()

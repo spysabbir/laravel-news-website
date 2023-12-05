@@ -14,6 +14,7 @@
                 <div class="action_btn">
                     <a href="{{ route('admin.news.create') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i></a>
                     <!-- trashedModal -->
+                    @if (Auth::guard('admin')->user()->role != 'Reporter')
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#trashedModal">
                         <i class="fa-solid fa-recycle"></i>
                     </button>
@@ -44,6 +45,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
             <div class="card-body">

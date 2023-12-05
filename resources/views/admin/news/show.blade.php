@@ -10,7 +10,7 @@
                 <div class="text">
                     <h4 class="card-title">News Details</h4>
                 </div>
-                <a class="btn btn-info" href="{{ route('admin.news.index') }}">Back</a>
+                <a class="btn btn-info" href="{{ url()->previous() }}">Back</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

@@ -126,6 +126,12 @@
             <div data-i18n="Advertisement">Advertisement</div>
         </a>
     </li>
+    <li class="menu-item {{(Route::currentRouteName() == 'admin.category.index') ? 'active' : ''}}">
+        <a href="{{ route('admin.category.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-category"></i>
+            <div data-i18n="Category">Category</div>
+        </a>
+    </li>
     @endif
     <!-- Admin Panel -->
 
@@ -135,19 +141,13 @@
         <span class="menu-header-text">Branch Panel</span>
     </li>
     @if (Auth::guard('admin')->user()->role == 'Manager')
-    <li class="menu-item {{(Route::currentRouteName() == 'admin.category.index') ? 'active' : ''}}">
-        <a href="{{ route('admin.category.index') }}" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-category"></i>
-            <div data-i18n="Category">Category</div>
-        </a>
-    </li>
-    @endif
     <li class="menu-item {{(Route::currentRouteName() == 'admin.tag.index') ? 'active' : ''}}">
         <a href="{{ route('admin.tag.index') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-purchase-tag-alt"></i>
             <div data-i18n="Tag">Tag</div>
         </a>
     </li>
+    @endif
     <li class="menu-item {{(Route::currentRouteName() == 'admin.news.create' || Route::currentRouteName() == 'admin.news.index' || Route::currentRouteName() == 'admin.news.edit' || Route::currentRouteName() == 'admin.news.show') ? 'active' : ''}}">
         <a href="{{ route('admin.news.index') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-news"></i>

@@ -11,6 +11,7 @@
                     <h4 class="card-title">News Comment Details</h4>
                     <p class="card-text"><strong>News Headline:</strong> {{ $news->news_headline }}</p>
                 </div>
+                <a class="btn btn-info mt-4" href="{{ route('admin.news.index') }}">Back</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

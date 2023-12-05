@@ -41,6 +41,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
         Route::middleware(['super_admin'])->group(function () {
             Route::get('news-report', [ReportController::class, 'newsReport'])->name('news.report');
+            Route::get('report-news-report/{id}', [ReportController::class, 'reportNewsShow'])->name('report.news.show');
 
             Route::get('all-administrator', [AdminController::class, 'allAdministrator'])->name('all.administrator');
             Route::get('administrator-status/{id}', [AdminController::class, 'administratorStatus'])->name('administrator.status');
@@ -98,24 +99,23 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('branch-restore/{id}', [BranchController::class, 'restore'])->name('branch.restore');
             Route::get('branch-forcedelete/{id}', [BranchController::class, 'forceDelete'])->name('branch.forcedelete');
             Route::get('branch-status/{id}', [BranchController::class, 'status'])->name('branch.status');
+
+            Route::resource('category', CategoryController::class);
+            Route::get('category-trashed', [CategoryController::class, 'trashed'])->name('category.trashed');
+            Route::get('category-restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
+            Route::get('category-forcedelete/{id}', [CategoryController::class, 'forceDelete'])->name('category.forcedelete');
+            Route::get('category-status/{id}', [CategoryController::class, 'status'])->name('category.status');
+            Route::get('category-show-home-screen/{id}', [CategoryController::class, 'showHomeScreen'])->name('category.show.home.screen');
         });
 
         Route::middleware(['reporter'])->group(function () {
-
             Route::middleware(['manager'])->group(function () {
-                Route::resource('category', CategoryController::class);
-                Route::get('category-trashed', [CategoryController::class, 'trashed'])->name('category.trashed');
-                Route::get('category-restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
-                Route::get('category-forcedelete/{id}', [CategoryController::class, 'forceDelete'])->name('category.forcedelete');
-                Route::get('category-status/{id}', [CategoryController::class, 'status'])->name('category.status');
-                Route::get('category-show-home-screen/{id}', [CategoryController::class, 'showHomeScreen'])->name('category.show.home.screen');
+                Route::resource('tag', TagController::class);
+                Route::get('tag-trashed', [TagController::class, 'trashed'])->name('tag.trashed');
+                Route::get('tag-restore/{id}', [TagController::class, 'restore'])->name('tag.restore');
+                Route::get('tag-forcedelete/{id}', [TagController::class, 'forceDelete'])->name('tag.forcedelete');
+                Route::get('tag-status/{id}', [TagController::class, 'status'])->name('tag.status');
             });
-
-            Route::resource('tag', TagController::class);
-            Route::get('tag-trashed', [TagController::class, 'trashed'])->name('tag.trashed');
-            Route::get('tag-restore/{id}', [TagController::class, 'restore'])->name('tag.restore');
-            Route::get('tag-forcedelete/{id}', [TagController::class, 'forceDelete'])->name('tag.forcedelete');
-            Route::get('tag-status/{id}', [TagController::class, 'status'])->name('tag.status');
 
             Route::resource('news', NewsController::class);
             Route::get('news-trashed', [NewsController::class, 'trashed'])->name('news.trashed');
@@ -143,8 +143,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('video_gallery-restore/{id}', [Video_galleryController::class, 'restore'])->name('video_gallery.restore');
             Route::get('video_gallery-forcedelete/{id}', [Video_galleryController::class, 'forceDelete'])->name('video_gallery.forcedelete');
             Route::get('video_gallery-status/{id}', [Video_galleryController::class, 'status'])->name('video_gallery.status');
-
-
         });
     });
 });

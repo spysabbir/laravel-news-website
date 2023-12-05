@@ -92,7 +92,7 @@ class ReportController extends Controller
                     })
                     ->addColumn('action', function($row){
                         $btn = '
-                            <a href="'.route('admin.news.show', $row->id).'" class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></a>
+                            <a href="'.route('admin.report.news.show', $row->id).'" class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></a>
                             ';
                         return $btn;
                     })
@@ -107,5 +107,11 @@ class ReportController extends Controller
         $all_upazila = Upazila::all();
         $all_union = Union::all();
         return view('admin.report.news', compact('all_branch', 'all_country', 'all_division', 'all_district', 'all_upazila', 'all_union'));
+    }
+
+    public function reportNewsShow($id)
+    {
+        $news = News::where('id', $id)->first();
+        return view('admin.news.show', compact('news'));
     }
 }

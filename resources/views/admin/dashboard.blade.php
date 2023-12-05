@@ -20,6 +20,9 @@
                 <div class="col-sm-7">
                     <div class="card-body">
                         <h5 class="card-title text-primary">Congratulations {{ Auth::guard('admin')->user()->name }}! 🎉</h5>
+                        @if (Auth::guard('admin')->user()->role == 'Manager')
+                        <p class="mb-4"> Your branch have done <span class="fw-bold">{{ $branch_wise_news }}</span> more news. Check your all news.</p>
+                        @endif
                         @if (Auth::guard('admin')->user()->role == 'Reporter')
                         <p class="mb-4"> You have done <span class="fw-bold">{{ $reporter_wise_news }}</span> more news. Check your all news.</p>
                         @endif
