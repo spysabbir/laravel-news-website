@@ -1,53 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en" class="light-style" dir="ltr" data-theme="theme-default" data-assets-path="{{ asset('admin') }}/" data-template="vertical-menu-template-free" >
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-        <title>@yield('title')</title>
+    <title>{{ env('APP_NAME') }} - @yield('title')</title>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+    <meta name="description" content="" />
 
-            .full-height {
-                height: 100vh;
-            }
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('admin') }}/img/favicon/favicon.ico" />
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
-            .position-ref {
-                position: relative;
-            }
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendor/fonts/boxicons.css" />
 
-            .content {
-                text-align: center;
-            }
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('admin') }}/css/demo.css" />
 
-            .title {
-                font-size: 36px;
-                padding: 20px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            <div class="content">
-                <div class="title">
-                    @yield('message')
-                </div>
-            </div>
-        </div>
-    </body>
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendor/css/pages/page-misc.css" />
+    <!-- Helpers -->
+    <script src="{{ asset('admin') }}/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{{ asset('admin') }}/js/config.js"></script>
+  </head>
+
+  <body>
+    <!-- Content -->
+
+    @yield('content')
+
+    <!-- / Content -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{ asset('admin') }}/vendor/libs/jquery/jquery.js"></script>
+    <script src="{{ asset('admin') }}/vendor/libs/popper/popper.js"></script>
+    <script src="{{ asset('admin') }}/vendor/js/bootstrap.js"></script>
+    <script src="{{ asset('admin') }}/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="{{ asset('admin') }}/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="{{ asset('admin') }}/js/main.js"></script>
+  </body>
 </html>
