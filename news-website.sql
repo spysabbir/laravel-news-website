@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2023 at 11:35 AM
+-- Generation Time: Dec 12, 2023 at 05:08 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -99,10 +99,10 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `email_verified_at`, `password`, `role`, `branch_id`, `last_active`, `remember_token`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'superadmin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$oSmjApwFapAhYkbtgW3.k.h6moZboAZbuT09mXxTUEwN7usowyOnC', 'Super Admin', NULL, '2023-05-24 10:08:20', 's6iQrenTRNUGgAlLBgZBYrwRFIGDuSo4taYHbWLEGsM03s5ZhBYJEXv5G4KZ', 1, 1, '2023-06-18 05:23:29', '2023-08-09 04:19:05'),
-(2, 'Admin', 'admin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$Ur3AaFA6L0/LXKHg4/tdzeKHbUNhg9HEPN39Dcd7M8/RSU51XkpMa', 'Admin', NULL, '2023-05-24 10:08:20', 'N8I4rfDMHuXstpYLoFi069JCKamtUdNHC4SbCjgpZZnxZ9qNd5C1lp4dnmGb', 1, 1, '2023-06-17 18:00:00', '2023-08-09 04:19:08'),
-(3, 'manager', 'manager@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$5iJHmP7eUgX/yihuacFuKOxGg57MluxJX6BdQbVBnQLplK2R7OhUq', 'Manager', 1, '2023-08-09 05:29:43', NULL, 1, 1, '2023-08-09 05:29:43', '2023-08-09 05:29:55'),
-(4, 'Reporter', 'reporter@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$F8EwkUDX2QkVN3nnVVsvw.kHzgvNo7icDRJ47fXnGxRiXLlGQAAni', 'Reporter', 1, '2023-05-24 10:08:20', NULL, 1, 1, '2023-06-18 05:23:48', '2023-06-18 05:57:37');
+(1, 'Super Admin', 'superadmin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$oSmjApwFapAhYkbtgW3.k.h6moZboAZbuT09mXxTUEwN7usowyOnC', 'Super Admin', NULL, '2023-05-24 10:08:20', 'uWI2rSYZCXxLw7ZzKEgJ1oY7QzTyvMMLMCDZN8A3TCjoXpVnPa4ndV8vhg8D', 1, 1, '2023-06-18 05:23:29', '2023-08-09 04:19:05'),
+(2, 'Admin', 'admin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$Ur3AaFA6L0/LXKHg4/tdzeKHbUNhg9HEPN39Dcd7M8/RSU51XkpMa', 'Admin', NULL, '2023-05-24 10:08:20', 'fz8mQ6WbLnOaWZrocwmVEFfPWv9b4hKJVdUchVAoxbZ6UWj98EFSYtW7mYkL', 1, 1, '2023-06-17 18:00:00', '2023-08-09 04:19:08'),
+(3, 'Manager', 'manager@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$5iJHmP7eUgX/yihuacFuKOxGg57MluxJX6BdQbVBnQLplK2R7OhUq', 'Manager', 1, '2023-08-09 05:29:43', 'kPvHd4S4l6L3I8Z5WcPgjHaQ0EOVLyHRdOzNzwQqiZ7T1j28h9TAjexrjSEu', 1, 1, '2023-08-09 05:29:43', '2023-08-09 05:29:55'),
+(4, 'Reporter', 'reporter@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Active', NULL, '$2y$10$F8EwkUDX2QkVN3nnVVsvw.kHzgvNo7icDRJ47fXnGxRiXLlGQAAni', 'Reporter', 1, '2023-05-24 10:08:20', 'BFyy2U2vpWAwfNJcs7E6au8hASAoQ4bMQfaRrH0UWxRBx2np2HNkre8DWPvi', 1, 1, '2023-06-18 05:23:48', '2023-06-18 05:57:37');
 
 -- --------------------------------------------------------
 
@@ -888,7 +888,7 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `branch_id`, `news_position`, `breaking_news`, `country_id`, `division_id`, `district_id`, `upazila_id`, `union_id`, `news_category_id`, `news_thumbnail_photo`, `news_cover_photo`, `news_video_link`, `status`, `news_view`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'Top Slider', 'Yes', 119, NULL, NULL, NULL, NULL, 2, 'News-Thumbnail-Photo-NNuRw.jpg', 'News-Cover-Photo-weRJN.jpg', NULL, 'Active', 21, 4, 4, NULL, '2023-03-20 06:11:49', '2023-08-09 10:01:55', NULL),
+(1, 1, 'Top Slider', 'Yes', 119, NULL, NULL, NULL, NULL, 2, 'News-Thumbnail-Photo-NNuRw.jpg', 'News-Cover-Photo-weRJN.jpg', NULL, 'Active', 24, 4, 4, NULL, '2023-03-20 06:11:49', '2023-12-05 04:00:53', NULL),
 (2, 1, 'Top Slider', 'No', 19, NULL, NULL, NULL, NULL, 1, 'News-Thumbnail-Photo-VuSVk.jpg', 'News-Cover-Photo-7qA4g.jpg', NULL, 'Active', 16, 4, 4, NULL, '2023-03-20 06:22:22', '2023-08-08 05:55:31', NULL),
 (3, 1, 'Top Slider', 'No', 19, NULL, NULL, NULL, NULL, 1, 'News-Thumbnail-Photo-MLRlC.jpg', 'News-Cover-Photo-zgeV2.jpg', NULL, 'Active', 2, 4, 4, NULL, '2023-03-20 06:28:55', '2023-08-09 10:33:25', NULL),
 (4, 1, 'Top Right', 'No', 19, NULL, NULL, NULL, NULL, 3, 'News-Thumbnail-Photo-CQRZ6.jpg', 'News-Cover-Photo-IFLAa.jpg', NULL, 'Active', 17, 4, 4, NULL, '2023-03-20 06:32:52', '2023-06-18 05:38:27', NULL),
@@ -6360,7 +6360,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `facebook_id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `email_verified_at`, `password`, `last_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'User 1', 'user1@email.com', '01878136530', 'Male', '2023-08-08', 'Dhaka', 'default_profile_photo.png', 'Active', '2023-06-18 05:39:35', '$2y$10$kAQe3U4Xk7IGLfSOfDfoLOYwOq8uRyB4CJoAZZEKrwiJ6jZhF8et6', '2023-08-09 11:27:57', NULL, '2023-06-18 05:23:57', '2023-08-09 11:27:57');
+(1, NULL, NULL, 'User 1', 'user1@email.com', '01878136530', 'Male', '2023-08-08', 'Dhaka', 'default_profile_photo.png', 'Active', '2023-06-18 05:39:35', '$2y$10$kAQe3U4Xk7IGLfSOfDfoLOYwOq8uRyB4CJoAZZEKrwiJ6jZhF8et6', '2023-12-05 05:04:17', NULL, '2023-06-18 05:23:57', '2023-12-05 05:04:17');
 
 -- --------------------------------------------------------
 
@@ -7288,7 +7288,54 @@ INSERT INTO `visitor_details` (`id`, `ip_address`, `visit_time`) VALUES
 (887, '127.0.0.1', '2023-11-29 10:32:23'),
 (888, '127.0.0.1', '2023-11-29 10:32:45'),
 (889, '127.0.0.1', '2023-11-29 10:32:59'),
-(890, '127.0.0.1', '2023-11-29 10:33:23');
+(890, '127.0.0.1', '2023-11-29 10:33:23'),
+(891, '127.0.0.1', '2023-12-05 03:57:24'),
+(892, '127.0.0.1', '2023-12-05 03:58:05'),
+(893, '127.0.0.1', '2023-12-05 03:58:27'),
+(894, '127.0.0.1', '2023-12-05 03:58:29'),
+(895, '127.0.0.1', '2023-12-05 03:58:30'),
+(896, '127.0.0.1', '2023-12-05 03:58:31'),
+(897, '127.0.0.1', '2023-12-05 03:58:32'),
+(898, '127.0.0.1', '2023-12-05 03:58:32'),
+(899, '127.0.0.1', '2023-12-05 03:58:34'),
+(900, '127.0.0.1', '2023-12-05 03:58:36'),
+(901, '127.0.0.1', '2023-12-05 03:58:38'),
+(902, '127.0.0.1', '2023-12-05 03:58:43'),
+(903, '127.0.0.1', '2023-12-05 03:58:52'),
+(904, '127.0.0.1', '2023-12-05 03:58:55'),
+(905, '127.0.0.1', '2023-12-05 03:58:58'),
+(906, '127.0.0.1', '2023-12-05 03:58:59'),
+(907, '127.0.0.1', '2023-12-05 03:59:01'),
+(908, '127.0.0.1', '2023-12-05 03:59:03'),
+(909, '127.0.0.1', '2023-12-05 03:59:05'),
+(910, '127.0.0.1', '2023-12-05 03:59:07'),
+(911, '127.0.0.1', '2023-12-05 03:59:16'),
+(912, '127.0.0.1', '2023-12-05 03:59:22'),
+(913, '127.0.0.1', '2023-12-05 03:59:29'),
+(914, '127.0.0.1', '2023-12-05 03:59:37'),
+(915, '127.0.0.1', '2023-12-05 03:59:43'),
+(916, '127.0.0.1', '2023-12-05 03:59:51'),
+(917, '127.0.0.1', '2023-12-05 03:59:57'),
+(918, '127.0.0.1', '2023-12-05 04:00:00'),
+(919, '127.0.0.1', '2023-12-05 04:00:03'),
+(920, '127.0.0.1', '2023-12-05 04:00:07'),
+(921, '127.0.0.1', '2023-12-05 04:00:14'),
+(922, '127.0.0.1', '2023-12-05 04:00:26'),
+(923, '127.0.0.1', '2023-12-05 04:00:33'),
+(924, '127.0.0.1', '2023-12-05 04:00:37'),
+(925, '127.0.0.1', '2023-12-05 04:00:51'),
+(926, '127.0.0.1', '2023-12-05 04:00:54'),
+(927, '127.0.0.1', '2023-12-05 04:00:58'),
+(928, '127.0.0.1', '2023-12-05 04:01:19'),
+(929, '127.0.0.1', '2023-12-05 05:02:35'),
+(930, '127.0.0.1', '2023-12-05 05:02:38'),
+(931, '127.0.0.1', '2023-12-05 05:04:02'),
+(932, '127.0.0.1', '2023-12-05 05:04:11'),
+(933, '127.0.0.1', '2023-12-05 05:04:17'),
+(934, '127.0.0.1', '2023-12-05 05:04:25'),
+(935, '127.0.0.1', '2023-12-05 08:10:59'),
+(936, '127.0.0.1', '2023-12-05 08:27:25'),
+(937, '127.0.0.1', '2023-12-05 08:31:18');
 
 --
 -- Indexes for dumped tables
@@ -7780,7 +7827,7 @@ ALTER TABLE `video_galleries`
 -- AUTO_INCREMENT for table `visitor_details`
 --
 ALTER TABLE `visitor_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=891;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=938;
 
 --
 -- Constraints for dumped tables
