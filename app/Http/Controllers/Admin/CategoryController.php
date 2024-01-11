@@ -86,7 +86,7 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), [
             'category_name_en' => 'required|unique:category_translations,category_name',
             'category_name_bn' => 'required|unique:category_translations,category_name',
-            'category_photo' => 'required|image|mimes:png,jpg,jpeg,webp,svg',
+            'category_photo' => 'required|image|mimes:png,jpg,jpeg',
         ]);
 
         if($validator->fails()){
@@ -139,7 +139,7 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), [
             'category_name_en' => 'required',
             'category_name_bn' => 'required',
-            'category_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'category_photo' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
 
         if($validator->fails()){

@@ -44,8 +44,8 @@ class SettingController extends Controller
             'app_name_bn' => 'required',
             'app_url' => 'required',
             'time_zone' => 'required',
-            'logo_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
-            'favicon' => 'nullable|image|mimes:png,jpg,jpeg,webp',
+            'logo_photo' => 'nullable|image|mimes:png,jpg,jpeg',
+            'favicon' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
         $this->updateEnv("APP_NAME", "'$request->app_name_en'");
         $this->updateEnv("APP_URL", "'$request->app_url'");
@@ -162,7 +162,7 @@ class SettingController extends Controller
 
     public function seoSettingUpdate(Request $request, $id){
         $request->validate([
-            'seo_image' => 'nullable|image|mimes:png,jpg,jpeg,webp',
+            'seo_image' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
 
         $seo_setting = Seo_setting::where('id', $id)->first();

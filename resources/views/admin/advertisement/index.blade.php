@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Advertisement Photo</label>
-                                            <input type="file" name="advertisement_photo" class="form-control" accept=".jpg, .jpeg, .png, .webp, .svg" />
+                                            <input type="file" name="advertisement_photo" class="form-control" accept=".jpg, .jpeg, .png" />
                                             <span class="text-danger error-text advertisement_photo_error"></span>
                                             <small class="text-warning">* Center Right Advertisement Photo Size is (800 * 500 px) and Others Advertisement Photo Size is (728 * 90 px)</small>
                                         </div>
@@ -146,7 +146,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Advertisement Photo</label>
-                                                    <input type="file" name="advertisement_photo" class="form-control" accept=".jpg, .jpeg, .png, .webp, .svg" />
+                                                    <input type="file" name="advertisement_photo" class="form-control" accept=".jpg, .jpeg, .png" />
                                                     <span class="text-danger error-text advertisement_photo_error"></span>
                                                     <small class="text-warning">* Center Right Advertisement Photo Size is (800 * 500 px) and Others Advertisement Photo Size is (728 * 90 px)</small>
                                                 </div>

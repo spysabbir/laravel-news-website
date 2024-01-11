@@ -74,7 +74,7 @@ class BranchController extends Controller
             '*' => 'required',
             'branch_name_en' => 'required|unique:branch_translations,branch_name',
             'branch_name_bn' => 'required|unique:branch_translations,branch_name',
-            'branch_photo' => 'required|image|mimes:png,jpg,jpeg,webp',
+            'branch_photo' => 'required|image|mimes:png,jpg,jpeg',
         ]);
 
         if($validator->fails()){
@@ -138,7 +138,7 @@ class BranchController extends Controller
             '*' => 'required',
             'branch_name_en' => 'required',
             'branch_name_bn' => 'required',
-            'branch_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
+            'branch_photo' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
 
         if($validator->fails()){

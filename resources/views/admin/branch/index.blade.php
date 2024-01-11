@@ -70,7 +70,7 @@
                                             <div class="col-12 mb-3">
                                                 <label class="form-label">Branch Photo</label>
                                                 <small class="text-warning">* Branch Photo Size is (150 * 100 px)</small>
-                                                <input type="file" name="branch_photo" class="form-control" accept=".jpg, .jpeg, .png, .webp" />
+                                                <input type="file" name="branch_photo" class="form-control" accept=".jpg, .jpeg, .png" />
                                                 <span class="text-danger error-text branch_photo_error"></span>
                                             </div>
                                         </div>
@@ -201,7 +201,7 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">Branch Photo</label>
                                                         <small class="text-warning">* Branch Photo Size is (150 * 100 px)</small>
-                                                        <input type="file" name="branch_photo" class="form-control" accept=".jpg, .jpeg, .png, .webp" />
+                                                        <input type="file" name="branch_photo" class="form-control" accept=".jpg, .jpeg, .png" />
                                                         <span class="text-danger error-text update_branch_photo_error"></span>
                                                     </div>
                                                 </div>

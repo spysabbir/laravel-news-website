@@ -33,7 +33,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Gallery Photo</label>
-                                            <input type="file" name="gallery_photo_name" class="form-control" accept=".jpg, .jpeg, .png, .webp, .svg" />
+                                            <input type="file" name="gallery_photo_name" class="form-control" accept=".jpg, .jpeg, .png" />
                                             <small class="text-warning">* Gallery Photo Size is (1280 * 853 px)</small>
                                             <span class="text-danger error-text gallery_photo_name_error"></span>
                                         </div>
@@ -125,7 +125,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Gallery Photo</label>
-                                                    <input type="file" name="gallery_photo_name" class="form-control" accept=".jpg, .jpeg, .png, .webp, .svg" />
+                                                    <input type="file" name="gallery_photo_name" class="form-control" accept=".jpg, .jpeg, .png" />
                                                     <small class="text-warning">* Gallery Photo Size is (1280 * 853 px)</small>
                                                     <span class="text-danger error-text update_gallery_photo_name_error"></span>
                                                 </div>

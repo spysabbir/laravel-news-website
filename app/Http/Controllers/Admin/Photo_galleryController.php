@@ -68,7 +68,7 @@ class Photo_galleryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             '*' => 'required',
-            'gallery_photo_name' => 'required|image|mimes:png,jpg,jpeg,webp,svg',
+            'gallery_photo_name' => 'required|image|mimes:png,jpg,jpeg',
         ]);
 
         if($validator->fails()){
@@ -109,7 +109,7 @@ class Photo_galleryController extends Controller
 
         $validator = Validator::make($request->all(), [
             '*' => 'required',
-            'gallery_photo_name' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'gallery_photo_name' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
 
         if($validator->fails()){

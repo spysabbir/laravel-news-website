@@ -62,7 +62,7 @@ class AdvertisementController extends Controller
     {
         $validator = Validator::make($request->all(), [
             '*' => 'required',
-            'advertisement_photo' => 'required|image|mimes:png,jpg,jpeg,webp,svg',
+            'advertisement_photo' => 'required|image|mimes:png,jpg,jpeg',
         ]);
 
         if($validator->fails()){
@@ -109,7 +109,7 @@ class AdvertisementController extends Controller
 
         $validator = Validator::make($request->all(), [
             '*' => 'required',
-            'advertisement_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'advertisement_photo' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
 
         if($validator->fails()){

@@ -39,7 +39,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Category Photo</label>
                                             <small class="text-warning">* Category Photo Size is (150 * 100 px)</small>
-                                            <input type="file" name="category_photo" class="form-control" accept=".jpg, .jpeg, .png, .webp, .svg" />
+                                            <input type="file" name="category_photo" class="form-control" accept=".jpg, .jpeg, .png" />
                                             <span class="text-danger error-text category_photo_error"></span>
                                         </div>
                                         <button type="submit" id="create_btn" class="btn btn-primary">Create</button>
@@ -138,7 +138,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Category Photo</label>
                                                     <small class="text-warning">* Category Photo Size is (150 * 100 px)</small>
-                                                    <input type="file" name="category_photo" class="form-control" accept=".jpg, .jpeg, .png, .webp, .svg" />
+                                                    <input type="file" name="category_photo" class="form-control" accept=".jpg, .jpeg, .png" />
                                                     <span class="text-danger error-text update_category_photo_error"></span>
                                                 </div>
                                                 <button type="submit" id="update_btn" class="btn btn-primary">Update</button>
