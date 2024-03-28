@@ -28,7 +28,7 @@
                             <label class="form-label" for="name">Name</label>
                             <input id="name" class="form-control" type="text" name="name" value="{{ Auth::guard('admin')->user()->name }}" />
                             @error('name')
-                            <span>{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="col-md-6 col-12 mb-3">
@@ -60,7 +60,7 @@
                             <label class="form-label" for="phone_number">Phone Number</label>
                             <input id="phone_number" class="form-control" type="text" name="phone_number" value="{{ Auth::guard('admin')->user()->phone_number }}" placeholder="Type your phone number"/>
                             @error('phone_number')
-                            <span>{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="col-12 mb-3">
@@ -79,24 +79,24 @@
                             <label class="form-label" for="current_password">Current Password</label>
                             <input class="form-control" id="current_password" type="password" name="current_password" placeholder="Type your current password"/>
                             @error('current_password')
-                            <span>{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                             @error('password_error')
-                            <span>{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="col-md-4 col-12 mb-3">
                             <label class="form-label" for="password">New Password</label>
                             <input class="form-control" id="password" type="password" name="password" placeholder="Type your new password"/>
                             @error('password')
-                            <span>{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="col-md-4 col-12 mb-3">
                             <label class="form-label" for="password_confirmation">Confirm Password</label>
                             <input class="form-control" id="password_confirmation" type="password" name="password_confirmation" placeholder="Type your confirm password"/>
                             @error('password_confirmation')
-                            <span>{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
