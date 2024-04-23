@@ -11,14 +11,17 @@
         App\Models\User::where('id', Auth::user()->id)->update(['last_active' =>  Carbon\Carbon::now() ])
     @endphp
 @endauth
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>{{ $default_setting->app_name }} - @yield('title')</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ $default_setting->app_name }} - @yield('title')</title>
 
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
@@ -160,7 +163,6 @@
     @yield('content')
     <!-- Content End -->
 
-
     <!-- Footer Start -->
     <div class="container-fluid bg-dark pt-5 px-sm-3 px-md-5 mt-5">
         <div class="row py-4">
@@ -205,7 +207,7 @@
         </div>
     </div>
     <div class="container-fluid py-4 px-sm-3 px-md-5" style="background: #111111;">
-        <p class="m-0 text-center">&copy; <a href="{{ route('index') }}">{{ $default_setting->app_name }}</a>. {{ __('messages.copyright') }} <a href="#">Spy Sabbir</a></p>
+        <p class="m-0 text-center">&copy; <a href="{{ route('index') }}">{{ $default_setting->app_name }}</a>. {{ __('messages.copyright') }} <a href="https://spysabbir.com/">Spy Sabbir</a></p>
     </div>
     <!-- Footer End -->
 
@@ -221,7 +223,6 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('frontend') }}/lib/lightbox/dist/simple-lightbox.js"></script>
     <script src="{{ asset('admin') }}/plagins/select2/js/select2.min.js"></script>
-
 
     <!-- Template Javascript -->
     <script src="{{ asset('frontend') }}/js/main.js"></script>
@@ -317,6 +318,7 @@
         });
 
     </script>
+
 </body>
 
 </html>
